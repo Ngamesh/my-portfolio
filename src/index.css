@@ -1,0 +1,264 @@
+/* =========================
+   TAILWIND IMPORTS (Correct Order for v4)
+========================= */
+@import "tailwindcss";
+
+/* =========================
+   CSS VARIABLES
+========================= */
+:root {
+  /* Font Families */
+  --font-sans: "Avenir Next", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Nunito", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Colors */
+  --color-gray-100: oklch(96.7% 0.003 264.542);
+  --color-gray-200: oklch(92.8% 0.006 264.531);
+  --color-gray-300: oklch(87.2% 0.01 258.338);
+  --color-gray-400: oklch(70.7% 0.022 261.325);
+  --color-gray-500: oklch(55.1% 0.027 264.364);
+  --color-gray-600: oklch(44.6% 0.03 256.802);
+  --color-gray-700: oklch(37.3% 0.034 259.733);
+
+  /* Text Sizes & Line Heights */
+  --text-sm: 0.875rem;
+  --text-sm--line-height: calc(1.25 / 0.875);
+  --text-lg: 1.125rem;
+  --text-lg--line-height: calc(1.75 / 1.125);
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: calc(2 / 1.5);
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: calc(2.25 / 1.875);
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: calc(2.5 / 2.25);
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 1;
+
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Tracking */
+  --tracking-tight: -0.025em;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+
+  /* Line height */
+  --leading-relaxed: 1.625;
+
+  /* Border Radius */
+  --radius-md: 0.375rem;
+  --radius-xl: 0.75rem;
+
+  /* Shadows */
+  --drop-shadow-lg: 0 4px 4px rgb(0 0 0 / 0.15);
+
+  /* Spacing & Containers */
+  --spacing: 0.25rem;
+  --container-3xl: 48rem;
+  --container-6xl: 72rem;
+
+  /* Transition */
+  --default-transition-duration: 150ms;
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================
+   GLOBAL STYLES
+========================= */
+html,
+body,
+#root {
+  height: 100%;
+  font-family: var(--font-sans);
+  background-color: #f9fafb; /* Light mode bg */
+  color: #000000; /* Light mode text */
+  margin: 0;
+  padding: 0;
+  scroll-behavior: auto;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode global background + text color */
+html.dark,
+body.dark,
+html.dark #root {
+  background-color: #000000; /* Black bg in dark mode */
+  color: #f9fafb; /* Light text in dark mode */
+}
+
+/* =========================
+   HEADINGS (Nunito)
+========================= */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Dark mode headings */
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  font-family: var(--font-heading);
+}
+
+/* =========================
+   GLASSY NAVBAR
+========================= */
+.glass {
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Dark mode navbar glass */
+.dark .glass {
+  background-color: rgba(0, 0, 0, 0.45);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  background-color: #000000; /* Dark gray button for light mode */
+  color: rgb(223, 223, 223);
+  font-weight: var(--font-weight-semibold);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  font-family: var(--font-sans);
+}
+
+.btn-primary:hover {
+  background-color: #111827;
+}
+
+/* Dark mode button inversion */
+.dark .btn-primary {
+  background-color: #f9fafb; /* Light button on dark mode */
+  color: #111827; /* Dark text */
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.05);
+}
+
+.dark .btn-primary:hover {
+  background-color: #e5e7eb; /* Slightly darker white */
+}
+
+/* =========================
+   AVATAR RING
+========================= */
+.avatar-ring {
+  border-radius: 9999px;
+  overflow: hidden;
+  box-shadow: 0 18px 28px rgba(15, 15, 15, 0.12),
+              inset 0 6px 10px rgba(255, 255, 255, 0.02);
+}
+
+.dark .avatar-ring {
+  box-shadow: 0 18px 28px rgba(255, 255, 255, 0.05),
+              inset 0 6px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* =========================
+   CARDS
+========================= */
+.card {
+  border-radius: var(--radius-xl);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  color: #111827;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  font-family: var(--font-sans);
+}
+
+/* Dark mode cards */
+.dark .card {
+  background-color: #1a1a1a; /* Dark gray card */
+  color: #f9fafb;
+  box-shadow: 0 10px 15px rgba(255, 255, 255, 0.05);
+}
+
+/* =========================
+   DROP SHADOW UTILITY
+========================= */
+.drop-shadow-lg {
+  filter: drop-shadow(0 10px 8px rgba(0,0,0,0.04))
+          drop-shadow(0 4px 3px rgba(0,0,0,0.1));
+}
+
+.dark .drop-shadow-lg {
+  filter: drop-shadow(0 10px 8px rgba(255,255,255,0.03))
+          drop-shadow(0 4px 3px rgba(255,255,255,0.05));
+}
+
+/* =========================
+   SECTION PADDING
+========================= */
+section {
+  padding: 6rem 1rem;
+  font-family: var(--font-sans);
+}
+
+@media (min-width: 640px) {
+  section {
+    padding: 7rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  section {
+    padding: 8rem 6rem;
+  }
+}
+
+/* =========================
+   TEXT SIZES
+========================= */
+.text-sm { font-size: var(--text-sm); line-height: var(--text-sm--line-height); font-family: var(--font-sans); }
+.text-lg { font-size: var(--text-lg); line-height: var(--text-lg--line-height); font-family: var(--font-sans); }
+.text-2xl { font-size: var(--text-2xl); line-height: var(--text-2xl--line-height); font-family: var(--font-sans); }
+.text-3xl { font-size: var(--text-3xl); line-height: var(--text-3xl--line-height); font-family: var(--font-sans); }
+.text-4xl { font-size: var(--text-4xl); line-height: var(--text-4xl--line-height); font-family: var(--font-sans); }
+.text-5xl { font-size: var(--text-5xl); line-height: var(--text-5xl--line-height); font-family: var(--font-sans); }
+
+/* =========================
+   TEXT COLORS IN LIGHT MODE
+========================= */
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6 {
+  color: #000000;
+}
+
+
+
+/* =========================
+   TEXT COLORS IN DARK MODE
+========================= */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 
+.dark p,
+.dark span,
+.dark a {
+  color: #f9fafb;
+}
+
+.dark a:hover {
+  color: #93c5fd; /* Light blue hover effect */
+}
