@@ -49,7 +49,7 @@ export default function Projects() {
       <ProjectCard
         titleBold="Hotel "
         titleLight="– A hotel booking website"
-        img="/assets/muscle.png"
+        img="/assets/luxury.png"
       >
         {intro}
       </ProjectCard>
@@ -60,7 +60,7 @@ export default function Projects() {
       <ProjectCard
         titleBold="FGA "
         titleLight="– Fitness Gym App"
-        img="/assets/home-fga.png"
+        img="/assets/fga.png"
       >
         {intro}
       </ProjectCard>

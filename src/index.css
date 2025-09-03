@@ -158,6 +158,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* =========================
+   BUTTON ICON COLOR ADJUSTMENT
+========================= */
+
+/* Default: white plane in light mode */
+.btn-primary img {
+  filter: brightness(0) saturate(100%) invert(100%);
+  transition: filter 0.3s ease;
+}
+
+/* Dark mode: make plane icon black */
+.dark .btn-primary img {
+  filter: brightness(0) saturate(100%) invert(0%);
+}
+
+
+/* =========================
    AVATAR RING
 ========================= */
 .avatar-ring {
@@ -275,8 +291,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Hover: scale + light shadow (light mode) */
 .social-icon:hover {
   transform: scale(1.2);
-  /* subtle shadow in light mode */
-  box-shadow: 1 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
 }
 
 /* =========================
@@ -303,33 +318,38 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* =========================
-   DARK MODE: neon glow relevant to brand
+   DARK MODE DEFAULT COLOR
+   - All icons start as pure white (#f9fafb)
 ========================= */
-.dark .social-icon:hover img {
-  filter: brightness(1); /* maintain bright icon in dark mode */
+.dark .social-icon img {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
 }
+
+/* =========================
+   DARK MODE: neon glow on hover
+========================= */
 
 /* Instagram neon */
 .dark .social-icon.instagram:hover img {
-  filter: drop-shadow(0 0 6px #f30808) drop-shadow(0 0 12px #f77737);
+  filter: brightness(0) saturate(100%) invert(100%) drop-shadow(0 0 6px #f30808) drop-shadow(0 0 14px #f77737);
 }
 
 /* LinkedIn neon */
 .dark .social-icon.linkedin:hover img {
-  filter: drop-shadow(0 0 6px #0a66c2) drop-shadow(0 0 12px #0a66c2);
+  filter: brightness(0) saturate(100%) invert(100%) drop-shadow(0 0 6px #0a66c2) drop-shadow(0 0 14px #0a66c2);
 }
 
 /* YouTube neon */
 .dark .social-icon.youtube:hover img {
-  filter: drop-shadow(0 0 6px #ff0000) drop-shadow(0 0 12px #ff0000);
+  filter: brightness(0) saturate(100%) invert(100%) drop-shadow(0 0 6px #ff0000) drop-shadow(0 0 14px #ff0000);
 }
 
 /* Discord neon */
 .dark .social-icon.discord:hover img {
-  filter: drop-shadow(0 0 6px #5865f2) drop-shadow(0 0 12px #5865f2);
+  filter: brightness(0) saturate(100%) invert(100%) drop-shadow(0 0 6px #5865f2) drop-shadow(0 0 14px #5865f2);
 }
 
 /* GitHub neon */
 .dark .social-icon.github:hover img {
-  filter: drop-shadow(0 0 6px #ffffff) drop-shadow(0 0 12px #ffffff);
+  filter: brightness(0) saturate(100%) invert(100%) drop-shadow(0 0 6px #ffffff) drop-shadow(0 0 14px #ffffff);
 }

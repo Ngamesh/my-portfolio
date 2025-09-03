@@ -53,7 +53,7 @@ export default function Hero() {
           </div>
 
           {/* Social icons */}
-          <div className="flex gap-6 mt-6 justify-start">
+          <div className="flex gap-3 mt-5 justify-start">
             <a href="#" className="social-icon instagram">
               <img src="/assets/insta.svg" alt="Instagram" className="icon-svg" />
             </a>
