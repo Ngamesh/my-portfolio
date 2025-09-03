@@ -134,12 +134,14 @@ h1, h2, h3, h4, h5, h6 {
   color: rgb(223, 223, 223);
   font-weight: var(--font-weight-semibold);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   font-family: var(--font-sans);
 }
 
 .btn-primary:hover {
   background-color: #111827;
+  transform: scale(1.03);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Dark mode button inversion */
@@ -151,6 +153,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .dark .btn-primary:hover {
   background-color: #e5e7eb; /* Slightly darker white */
+  transform: scale(1.03);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* =========================
@@ -231,28 +235,13 @@ section {
 .text-5xl { font-size: var(--text-5xl); line-height: var(--text-5xl--line-height); font-family: var(--font-sans); }
 
 /* =========================
-   TEXT COLORS IN LIGHT MODE
+   TEXT COLORS
 ========================= */
-h1, 
-h2, 
-h3, 
-h4, 
-h5, 
-h6 {
+h1, h2, h3, h4, h5, h6 {
   color: #000000;
 }
 
-
-
-/* =========================
-   TEXT COLORS IN DARK MODE
-========================= */
-.dark h1,
-.dark h2,
-.dark h3,
-.dark h4,
-.dark h5,
-.dark h6 
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6,
 .dark p,
 .dark span,
 .dark a {
@@ -261,4 +250,86 @@ h6 {
 
 .dark a:hover {
   color: #93c5fd; /* Light blue hover effect */
+}
+
+/* =========================
+   SOCIAL ICONS (NO BORDER, PURE ICONS)
+========================= */
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+  padding: 0; /* no border or extra padding */
+}
+
+/* SVG size and transition */
+.social-icon img {
+  width: 36px;
+  height: 36px;
+  transition: transform 0.3s ease, filter 0.3s ease, drop-shadow 0.3s ease;
+}
+
+/* Hover: scale + light shadow (light mode) */
+.social-icon:hover {
+  transform: scale(1.2);
+  /* subtle shadow in light mode */
+  box-shadow: 1 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================
+   LIGHT MODE: brand colors on hover
+========================= */
+.social-icon.instagram:hover img {
+  filter: brightness(0) saturate(100%) invert(39%) sepia(94%) saturate(2984%) hue-rotate(315deg) brightness(92%) contrast(95%);
+}
+
+.social-icon.linkedin:hover img {
+  filter: invert(28%) sepia(93%) saturate(2289%) hue-rotate(180deg) brightness(90%) contrast(100%);
+}
+
+.social-icon.youtube:hover img {
+  filter: invert(16%) sepia(98%) saturate(7264%) hue-rotate(356deg) brightness(100%) contrast(95%);
+}
+
+.social-icon.discord:hover img {
+  filter: invert(47%) sepia(82%) saturate(1720%) hue-rotate(222deg) brightness(92%) contrast(98%);
+}
+
+.social-icon.github:hover img {
+  filter: brightness(0) saturate(100%) invert(6%) sepia(10%) saturate(747%) hue-rotate(202deg) brightness(95%) contrast(92%);
+}
+
+/* =========================
+   DARK MODE: neon glow relevant to brand
+========================= */
+.dark .social-icon:hover img {
+  filter: brightness(1); /* maintain bright icon in dark mode */
+}
+
+/* Instagram neon */
+.dark .social-icon.instagram:hover img {
+  filter: drop-shadow(0 0 6px #f30808) drop-shadow(0 0 12px #f77737);
+}
+
+/* LinkedIn neon */
+.dark .social-icon.linkedin:hover img {
+  filter: drop-shadow(0 0 6px #0a66c2) drop-shadow(0 0 12px #0a66c2);
+}
+
+/* YouTube neon */
+.dark .social-icon.youtube:hover img {
+  filter: drop-shadow(0 0 6px #ff0000) drop-shadow(0 0 12px #ff0000);
+}
+
+/* Discord neon */
+.dark .social-icon.discord:hover img {
+  filter: drop-shadow(0 0 6px #5865f2) drop-shadow(0 0 12px #5865f2);
+}
+
+/* GitHub neon */
+.dark .social-icon.github:hover img {
+  filter: drop-shadow(0 0 6px #ffffff) drop-shadow(0 0 12px #ffffff);
 }

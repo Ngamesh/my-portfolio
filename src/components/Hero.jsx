@@ -15,7 +15,7 @@ export default function Hero() {
             className="w-full h-full object-cover"
           />
         </div>
-        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight drop-shadow-lg text-gray-600">
+        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight drop-shadow-lg text-gray-600 dark:text-gray-200">
           NGAMESH
         </h2>
         <p className="text-sm text-gray-500 dark:text-gray-400">Raj Bhandari</p>
@@ -40,89 +40,35 @@ export default function Hero() {
             continuous learning and collaboration drive innovation.
           </p>
 
-          {/* Button with PNG */}
-          <div className="mt-8 flex flex-col items-center md:items-start">
+          {/* Button */}
+          <div className="mt-8">
             <button className="btn-primary text-lg px-6 py-3 flex items-center gap-2">
               GET CONNECTED
               <img
-                src="/assets/plane.png"
+                src="/assets/plane.svg"
                 alt="Plane Icon"
                 className="w-6 h-6 inline-block"
               />
             </button>
+          </div>
 
-            {/* Social Icons */}
-            <div className="flex gap-5 mt-6">
-              {/* Facebook */}
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-transform duration-200 hover:scale-105"
-              >
-                <img
-                  src="/assets/fb.png"
-                  alt="Facebook"
-                  className="w-8 h-8 sm:w-9 sm:h-9"
-                />
-              </a>
-
-              {/* LinkedIn */}
-              <a
-                href="https://lin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-transform duration-200 hover:scale-105"
-              >
-                <img
-                  src="/assets/lin.png"
-                  alt="LinkedIn"
-                  className="w-8 h-8 sm:w-9 sm:h-9"
-                />
-              </a>
-
-              {/* YouTube */}
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-transform duration-200 hover:scale-105"
-              >
-                <img
-                  src="/assets/yt.png"
-                  alt="YouTube"
-                  className="w-8 h-8 sm:w-9 sm:h-9"
-                />
-              </a>
-
-              {/* Discord */}
-              <a
-                href="https://discord.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-transform duration-200 hover:scale-105"
-              >
-                <img
-                  src="/assets/dis.png"
-                  alt="Discord"
-                  className="w-8 h-8 sm:w-9 sm:h-9"
-                />
-              </a>
-
-              {/* GitHub */}
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-transform duration-200 hover:scale-105"
-              >
-                <img
-                  src="/assets/git.png"
-                  alt="GitHub"
-                  className="w-8 h-8 sm:w-9 sm:h-9"
-                />
-              </a>
-            </div>
+          {/* Social icons */}
+          <div className="flex gap-6 mt-6 justify-start">
+            <a href="#" className="social-icon instagram">
+              <img src="/assets/insta.svg" alt="Instagram" className="icon-svg" />
+            </a>
+            <a href="#" className="social-icon linkedin">
+              <img src="/assets/lin.svg" alt="LinkedIn" className="icon-svg" />
+            </a>
+            <a href="#" className="social-icon youtube">
+              <img src="/assets/yt.svg" alt="YouTube" className="icon-svg" />
+            </a>
+            <a href="#" className="social-icon discord">
+              <img src="/assets/dis.svg" alt="Discord" className="icon-svg" />
+            </a>
+            <a href="#" className="social-icon github">
+              <img src="/assets/git.svg" alt="GitHub" className="icon-svg" />
+            </a>
           </div>
         </div>
       </div>
