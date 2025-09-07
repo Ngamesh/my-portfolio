@@ -353,3 +353,28 @@ h1, h2, h3, h4, h5, h6 {
 .dark .social-icon.github:hover img {
   filter: brightness(0) saturate(100%) invert(100%) drop-shadow(0 0 6px #ffffff) drop-shadow(0 0 14px #ffffff);
 }
+
+
+/* perspective */
+.perspective-1000px {
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+
+.card img {
+
+  backface-visibility: hidden;
+}
+
+.card img:hover {
+  transform: scale(1.25);
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.25);
+}
+
+.dark .card img {
+  box-shadow: 0 0px 0px rgba(255, 255, 255, 0.05);
+}
+
+.dark .card img:hover {
+  box-shadow: 0 0px 0px rgba(255, 255, 255, 0.15);
+}
