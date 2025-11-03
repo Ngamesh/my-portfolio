@@ -1,0 +1,78 @@
+/* ===========================
+   Custom Scrollbar
+=========================== */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #000000b4 transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #9ca3af;
+  border-radius: 10px;
+}
+
+.dark .custom-scrollbar {
+  scrollbar-color: #ffffff80 transparent;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #4b5563;
+}
+
+/* ===========================
+   Modal Header (Navbar-style)
+=========================== */
+.modal-header {
+  position: sticky;
+  top: 1rem;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.69rem 1.5rem;
+  margin: 1rem; /* matches navbar spacing inside modal */
+  border-radius: var(--radius-xl); /* matches navbar rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* same as navbar */
+  backdrop-filter: blur(5px);
+
+  background-color: rgba(255, 255, 255, 0.058); /* Light mode glass */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .modal-header {
+  background-color: rgba(0, 0, 0, 0.45); /* Dark mode glass */
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+}
+
+/* ===========================
+   Close Button Styling
+=========================== */
+.close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000b4;
+  transition: all 0.2s ease-in-out;
+}
+
+.close-btn:hover {
+  color: #670000;
+  transform: scale(1.1);
+}
+
+.dark .close-btn {
+  color: #ffffff80;
+}
+
+.dark .close-btn:hover {
+  color: #f9fafb;
+}

@@ -46,7 +46,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className={`fixed left-0 right-0 z-40 top-4 mx-auto max-w-[1200px] px-4 transition-opacity ${scrolled ? 'opacity-100' : 'opacity-95'}`}>
+    <nav className={`fixed left-0 right-0 z-9999 top-4 mx-auto max-w-[1200px] px-4 transition-opacity ${scrolled ? 'opacity-100' : 'opacity-95'}`}>
       <div className={`glass flex items-center justify-between p-3 rounded-xl ${scrolled ? 'shadow-lg' : ''}`}>
         <div className="flex items-center gap-4">
           <button className="p-2 rounded-md md:hidden">

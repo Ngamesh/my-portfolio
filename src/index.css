@@ -15,16 +15,17 @@
   /* Colors */
   --color-gray-100: oklch(96.7% 0.003 264.542);
   --color-gray-200: oklch(92.8% 0.006 264.531);
-  --color-gray-300: oklch(87.2% 0.01 258.338);
-  --color-gray-400: oklch(70.7% 0.022 261.325);
-  --color-gray-500: oklch(55.1% 0.027 264.364);
-  --color-gray-600: oklch(44.6% 0.03 256.802);
-  --color-gray-700: oklch(37.3% 0.034 259.733);
+  --color-gray-300: oklch(72.193% 0.00008 271.152);
+  --color-gray-400: oklch(88.531% 0.0001 271.152);
+  --color-gray-500: oklch(60.325% 0.00007 271.152);
+  --color-gray-600: oklch(49.261% 0.00006 271.152);
+  --color-gray-700: oklch(43.128% 0.00005 271.152);
+  --color-gray-800: #e6e6e6;
 
   /* Text Sizes & Line Heights */
   --text-sm: 0.875rem;
   --text-sm--line-height: calc(1.25 / 0.875);
-  --text-lg: 1.125rem;
+  --text-lg: 1.3rem;
   --text-lg--line-height: calc(1.75 / 1.125);
   --text-2xl: 1.5rem;
   --text-2xl--line-height: calc(2 / 1.5);
@@ -86,7 +87,7 @@ body,
 html.dark,
 body.dark,
 html.dark #root {
-  background-color: #000000; /* Black bg in dark mode */
+  background-color: #101010; /* Black bg in dark mode */
   color: #f9fafb; /* Light text in dark mode */
 }
 
@@ -97,10 +98,34 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
 }
 
+p {
+  text-align: justify;
+  color: #340d0d;
+  /* font-style: italic; */
+}
+
+li {
+  text-align: justify;
+  color: #acacac;
+  /* font-style: italic; */
+}
+
+a {
+  font-size: 17px;
+  color:#ff4343;
+}
+.dark p, .dark li {
+  text-align: justify;
+  color: #d1d1d1;
+  /* font-style: italic; */
+}
+
+
 /* Dark mode headings */
 .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
   font-family: var(--font-heading);
 }
+
 
 /* =========================
    GLASSY NAVBAR
@@ -129,7 +154,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1.5rem;
-  border-radius: var(--radius-md);
+  border-radius: 3px;
   background-color: #000000; /* Dark gray button for light mode */
   color: rgb(223, 223, 223);
   font-weight: var(--font-weight-semibold);
@@ -139,9 +164,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary:hover {
-  background-color: #111827;
+  background-color: #bc1616;
   transform: scale(1.03);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  
 }
 
 /* Dark mode button inversion */
@@ -152,9 +178,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .dark .btn-primary:hover {
-  background-color: #e5e7eb; /* Slightly darker white */
+  /* background-color: #fc0202; Slightly darker white */
   transform: scale(1.03);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px rgba(174, 174, 174, 0.451);
+  color: rgb(0, 0, 0);
 }
 
 /* =========================
@@ -193,7 +220,7 @@ h1, h2, h3, h4, h5, h6 {
 ========================= */
 .card {
   border-radius: var(--radius-xl);
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 10px 15px rgba(0, 0, 0, 0.1);
   background-color: white;
   color: #111827;
   transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
@@ -202,9 +229,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Dark mode cards */
 .dark .card {
-  background-color: #1a1a1a; /* Dark gray card */
+  background-color: #161616; /* Dark gray card */
   color: #f9fafb;
-  box-shadow: 0 10px 15px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 15px rgba(255, 255, 255, 0.019);
 }
 
 /* =========================
@@ -230,13 +257,13 @@ section {
 
 @media (min-width: 640px) {
   section {
-    padding: 7rem 2rem;
+    padding: 0rem 2rem;
   }
 }
 
 @media (min-width: 1024px) {
   section {
-    padding: 8rem 6rem;
+    padding: 1rem 4rem;
   }
 }
 

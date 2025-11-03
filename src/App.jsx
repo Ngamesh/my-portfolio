@@ -3,6 +3,7 @@ import { HelmetProvider, Helmet } from "react-helmet-async";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Projects from "./components/Projects";
+import ResumeSection from "./components/ResumeSection";
 import Footer from "./components/Footer";
 
 export default function App() {
@@ -34,6 +35,7 @@ export default function App() {
       <main>
         <Hero />
         <Projects />
+        <ResumeSection />
       </main>
 
       {/* Footer */}
