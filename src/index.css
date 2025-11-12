@@ -106,7 +106,7 @@ p {
 
 li {
   text-align: justify;
-  color: #acacac;
+  color: #5d5d5d;
   /* font-style: italic; */
 }
 
@@ -405,3 +405,7 @@ h1, h2, h3, h4, h5, h6 {
 .dark .card img:hover {
   box-shadow: 0 0px 0px rgba(255, 255, 255, 0.151);
 }
+
+/* ====== WISPY SMOKE TRAIL ====== */
+
+
