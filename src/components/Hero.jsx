@@ -44,11 +44,27 @@ export default function Hero() {
         {/* Left: avatar + name */}
         <div className="flex flex-col items-center justify-center md:col-span-1 mb-8 md:mb-0">
           <div className="w-48 h-48 rounded-full overflow-hidden avatar-ring mb-4 shadow-lg">
-            <img
-              src="/assets/avatar.jpg"
-              alt="Ngamesh"
-              className="w-full h-full object-cover"
-            />
+            <picture>
+              <source
+                type="image/avif"
+                srcSet="/assets/avatar-192.avif 192w, /assets/avatar-384.avif 384w"
+                sizes="192px"
+              />
+              <source
+                type="image/webp"
+                srcSet="/assets/avatar-192.webp 192w, /assets/avatar-384.webp 384w"
+                sizes="192px"
+              />
+              <img
+                src="/assets/avatar.jpg"
+                alt="Ngamesh"
+                width={192}
+                height={192}
+                className="w-full h-full object-cover"
+                decoding="async"
+                fetchPriority="high"
+              />
+            </picture>
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight drop-shadow-lg text-gray-600 dark:text-gray-200">
             NGAMESH
@@ -87,6 +103,7 @@ export default function Hero() {
                   src="/assets/plane.svg"
                   alt="Plane Icon"
                   className="w-6 h-6 inline-block"
+                  decoding="async"
                 />
               </button>
             </div>
@@ -94,19 +111,19 @@ export default function Hero() {
             {/* Social icons */}
             <div className="flex gap-3 mt-5 justify-start">
               <a href="#" className="social-icon instagram">
-                <img src="/assets/insta.svg" alt="Instagram" className="icon-svg" />
+                <img src="/assets/insta.svg" alt="Instagram" className="icon-svg" decoding="async" />
               </a>
               <a href="#" className="social-icon linkedin">
-                <img src="/assets/lin.svg" alt="LinkedIn" className="icon-svg" />
+                <img src="/assets/lin.svg" alt="LinkedIn" className="icon-svg" decoding="async" />
               </a>
               <a href="#" className="social-icon youtube">
-                <img src="/assets/yt.svg" alt="YouTube" className="icon-svg" />
+                <img src="/assets/yt.svg" alt="YouTube" className="icon-svg" decoding="async" />
               </a>
               <a href="#" className="social-icon discord">
-                <img src="/assets/dis.svg" alt="Discord" className="icon-svg" />
+                <img src="/assets/dis.svg" alt="Discord" className="icon-svg" decoding="async" />
               </a>
               <a href="#" className="social-icon github">
-                <img src="/assets/git.svg" alt="GitHub" className="icon-svg" />
+                <img src="/assets/git.svg" alt="GitHub" className="icon-svg" decoding="async" />
               </a>
             </div>
           </div>
@@ -125,7 +142,7 @@ export default function Hero() {
             exit={{ opacity: 0, y: 50 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
           >
-            <img src="/assets/up.svg" alt="Up Arrow" className="w-6 h-6" />
+            <img src="/assets/up.svg" alt="Up Arrow" className="w-6 h-6" decoding="async" />
           </motion.button>
         )}
       </AnimatePresence>

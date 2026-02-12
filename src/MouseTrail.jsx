@@ -4,6 +4,15 @@ export default function MouseTrail() {
   const canvasRef = useRef(null);
 
   useEffect(() => {
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const finePointer =
+      typeof window !== "undefined" &&
+      window.matchMedia("(pointer: fine)").matches;
+
+    if (prefersReducedMotion || !finePointer) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 

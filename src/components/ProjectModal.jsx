@@ -1,7 +1,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-import HotelDoc from "./docs/HotelDoc";
+const HotelDoc = React.lazy(() => import("./docs/HotelDoc"));
 import "./docs/Project.css"; // Import the custom styles
 
 export default function ProjectModal({ activeModal, setActiveModal }) {
@@ -54,7 +54,11 @@ export default function ProjectModal({ activeModal, setActiveModal }) {
 
             {/* Modal Content */}
             <div className="p-6">
-              {activeModal === "hotel" && <HotelDoc />}
+              {activeModal === "hotel" && (
+                <React.Suspense fallback={null}>
+                  <HotelDoc />
+                </React.Suspense>
+              )}
               {activeModal === "fga" && (
                 <div className="space-y-6">
                   <p className="text-gray-600 dark:text-gray-300 leading-relaxed">

@@ -114,6 +114,8 @@ export default function Carousel3D({ images = [], size = 260 }) {
               alt={`carousel-${i}`}
               className={`carousel3d-img ${hoveredIndex === i ? "hovered" : ""}`}
               draggable={false}
+              loading="lazy"
+              decoding="async"
             />
           </div>
         ))}
