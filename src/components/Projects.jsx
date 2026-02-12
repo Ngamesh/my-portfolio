@@ -1,6 +1,33 @@
 import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import ProjectModal from "./ProjectModal";
+const ProjectModal = React.lazy(() => import("./ProjectModal"));
+
+const buildSrcSet = (name, widths, ext) =>
+  widths.map((w) => `/assets/${name}-${w}.${ext} ${w}w`).join(", ");
+
+const getImageSources = (name, widths) => ({
+  avif: buildSrcSet(name, widths, "avif"),
+  webp: buildSrcSet(name, widths, "webp"),
+  fallback: `/assets/${name}.png`,
+});
+
+function OptimizedMotionImage({ name, widths, sizes, alt, className, ...motionProps }) {
+  const sources = getImageSources(name, widths);
+  return (
+    <picture>
+      <source type="image/avif" srcSet={sources.avif} sizes={sizes} />
+      <source type="image/webp" srcSet={sources.webp} sizes={sizes} />
+      <motion.img
+        src={sources.fallback}
+        alt={alt}
+        className={className}
+        loading="lazy"
+        decoding="async"
+        {...motionProps}
+      />
+    </picture>
+  );
+}
 
 // =========================
 // Hotel Project Card
@@ -55,9 +82,11 @@ function HotelProjectCard({ images }) {
         const baseScale = 0.7 + ((z + radius) / (2 * radius)) * 0.4;
 
         return (
-          <motion.img
+          <OptimizedMotionImage
             key={index}
-            src={img}
+            name={img.replace("/assets/", "").replace(".png", "")}
+            widths={[240, 480, 800]}
+            sizes="(min-width: 768px) 400px, 180px"
             alt={`Hotel-${index}`}
             className="absolute w-[180px] md:w-[400px] rounded-xl cursor-pointer"
             style={{
@@ -112,9 +141,11 @@ function FGAProjectCard({ images }) {
       {images.map((img, index) => {
         const { xOffset, scale, zIndex } = positions[index];
         return (
-          <motion.img
+          <OptimizedMotionImage
             key={index}
-            src={img}
+            name={img.replace("/assets/", "").replace(".png", "")}
+            widths={[240, 480, 800]}
+            sizes="(min-width: 768px) 200px, 140px"
             alt={`FGA-${index}`}
             className="absolute w-[140px] md:w-[200px] rounded-xl cursor-pointer"
             style={{ scale, zIndex }}
@@ -194,9 +225,11 @@ function NikeCard({ images }) {
       {images.map((img, index) => {
         const { xOffset, yOffset = 0, scale, zIndex } = positions[index];
         return (
-          <motion.img
+          <OptimizedMotionImage
             key={index}
-            src={img}
+            name={img.replace("/assets/", "").replace(".png", "")}
+            widths={[320, 640, 960, 1280]}
+            sizes="(min-width: 1024px) 520px, (min-width: 640px) 280px, 160px"
             alt={`Nike-${index}`}
             className="absolute w-[160px] sm:w-[280px] md:w-[520px] rounded-xl cursor-pointer"
             style={{ scale, zIndex }}
@@ -446,7 +479,9 @@ export default function Projects() {
       </div>
 
       {/* Project Modal */}
-      <ProjectModal activeModal={activeModal} setActiveModal={setActiveModal} />
+      <React.Suspense fallback={null}>
+        <ProjectModal activeModal={activeModal} setActiveModal={setActiveModal} />
+      </React.Suspense>
     </section>
   );
 }

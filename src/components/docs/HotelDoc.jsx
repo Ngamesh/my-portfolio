@@ -1,5 +1,31 @@
 import React from "react";
 
+const buildSrcSet = (name, widths, ext) =>
+  widths.map((w) => `/assets/${name}-${w}.${ext} ${w}w`).join(", ");
+
+const getSources = (name, widths) => ({
+  avif: buildSrcSet(name, widths, "avif"),
+  webp: buildSrcSet(name, widths, "webp"),
+  fallback: `/assets/${name}.png`,
+});
+
+function ResponsivePicture({ name, widths, sizes, alt, className }) {
+  const sources = getSources(name, widths);
+  return (
+    <picture>
+      <source type="image/avif" srcSet={sources.avif} sizes={sizes} />
+      <source type="image/webp" srcSet={sources.webp} sizes={sizes} />
+      <img
+        src={sources.fallback}
+        alt={alt}
+        className={className}
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
+  );
+}
+
 export default function HotelDoc() {
   return (
     <div className="space-y-8">
@@ -15,8 +41,10 @@ export default function HotelDoc() {
           check amenities, and make reservations with ease. The UI is designed to provide an
           immersive and smooth browsing experience, blending modern design with functionality.
         </p>
-        <img
-          src="/assets/simple.png"
+        <ResponsivePicture
+          name="simple"
+          widths={[320, 640, 960]}
+          sizes="(min-width: 1024px) 800px, 100vw"
           alt="Hotel Overview Screenshot"
           className="w-full rounded-lg  mt-2"
         />
@@ -32,8 +60,10 @@ export default function HotelDoc() {
           and easy booking flows. The challenge was to design an intuitive platform that
           reduces friction and enhances the booking experience.
         </p>
-        <img
-          src="/assets/luxury.png"
+        <ResponsivePicture
+          name="luxury"
+          widths={[320, 640, 960]}
+          sizes="(min-width: 1024px) 800px, 100vw"
           alt="Problem Illustration"
           className="w-full rounded-lg  mt-2"
         />
@@ -49,8 +79,10 @@ export default function HotelDoc() {
           <li>Identified key user pain points: complex booking flows, hidden fees, poor filtering</li>
           <li>Focused on mobile-first design for users on-the-go</li>
         </ul>
-        <img
-          src="/assets/food.png"
+        <ResponsivePicture
+          name="food"
+          widths={[320, 640, 960]}
+          sizes="(min-width: 1024px) 800px, 100vw"
           alt="Research Highlights"
           className="w-full rounded-lg  mt-2"
         />
@@ -66,13 +98,17 @@ export default function HotelDoc() {
           interactions before moving into high-fidelity design.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-          <img
-            src="/assets/nike.png"
+          <ResponsivePicture
+            name="nike"
+            widths={[320, 640, 960, 1280]}
+            sizes="(min-width: 768px) 50vw, 100vw"
             alt="Wireframe 1"
             className="w-full rounded-lg "
           />
-          <img
-            src="/assets/price.png"
+          <ResponsivePicture
+            name="price"
+            widths={[240, 480, 800]}
+            sizes="(min-width: 768px) 50vw, 100vw"
             alt="Wireframe 2"
             className="w-full rounded-lg"
           />
@@ -89,13 +125,17 @@ export default function HotelDoc() {
           and color hierarchy. Interactive elements are highlighted for smooth user guidance.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-          <img
-            src="/assets/cardio.png"
+          <ResponsivePicture
+            name="cardio"
+            widths={[240, 480, 800]}
+            sizes="(min-width: 768px) 50vw, 100vw"
             alt="UI Screen 1"
             className="w-full rounded-lg "
           />
-          <img
-            src="/assets/fga.png"
+          <ResponsivePicture
+            name="fga"
+            widths={[240, 480, 800]}
+            sizes="(min-width: 768px) 50vw, 100vw"
             alt="UI Screen 2"
             className="w-full rounded-lg "
           />

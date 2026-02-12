@@ -42,6 +42,8 @@ function MarqueeRow({ icons, direction = "left", baseSpeed = 50 }) {
               alt={tech.alt}
               className="w-auto h-16 object-contain"
               draggable="false"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         ))}
@@ -136,11 +138,15 @@ export default function ResumeSection() {
                 src="/assets/uiux.png"
                 alt="UI/UX"
                 className="w-auto h-48 md:h-69 object-contain  rounded-lg mx-auto md:mx-0"
+                loading="lazy"
+                decoding="async"
               />
               <img
                 src="/assets/line.png"
                 alt="UI/UX line"
                 className="w-auto h-48 md:h-69 object-contain rounded-lg mx-auto md:mx-0"
+                loading="lazy"
+                decoding="async"
               />
             </div>
 
@@ -186,6 +192,8 @@ export default function ResumeSection() {
                 src="./assets/LMU.png"
                 alt="London Metropolitan University"
                 className="w-auto h-40 mt-2.5 object-contain mx-auto md:mx-0"
+                loading="lazy"
+                decoding="async"
               />
               <div className="text-center md:text-left">
                 <h4 className="text-md font-semibold text-gray-800 dark:text-gray-100">
@@ -203,6 +211,8 @@ export default function ResumeSection() {
                 src="./assets/KOI.png"
                 alt="King’s Own Institute"
                 className="w-auto h-40 mt-2.5 object-contain mx-auto md:mx-0"
+                loading="lazy"
+                decoding="async"
               />
               <div className="text-center md:text-left">
                 <h4 className="text-md font-semibold text-gray-800 dark:text-gray-100">

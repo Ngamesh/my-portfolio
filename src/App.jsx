@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import Projects from "./components/Projects";
-import ResumeSection from "./components/ResumeSection";
-import Footer from "./components/Footer";
+const Projects = React.lazy(() => import("./components/Projects"));
+const ResumeSection = React.lazy(() => import("./components/ResumeSection"));
+const Footer = React.lazy(() => import("./components/Footer"));
 import MouseTrail from "./MouseTrail";
 
 export default function App() {
@@ -38,12 +38,18 @@ export default function App() {
       {/* Main Content */}
       <main>
         <Hero />
-        <Projects />
-        <ResumeSection />
+        <React.Suspense fallback={null}>
+          <Projects />
+        </React.Suspense>
+        <React.Suspense fallback={null}>
+          <ResumeSection />
+        </React.Suspense>
       </main>
 
       {/* Footer */}
-      <Footer />
+      <React.Suspense fallback={null}>
+        <Footer />
+      </React.Suspense>
     </HelmetProvider>
   );
 }
