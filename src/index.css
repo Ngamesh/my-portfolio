@@ -1,18 +1,38 @@
-/* =========================
-   TAILWIND IMPORTS (Correct Order for v4)
-========================= */
+/* 
+  ==========================================================================
+  INDEX.CSS - Modular Architecture
+  ==========================================================================
+  1. Tailwind Directives
+  2. Design Tokens (CSS Variables)
+  3. Base & Global Styles
+  4. Typography
+  5. Component Layer (Navbar, Buttons, Cards, etc.)
+  6. Utility Layer
+  ==========================================================================
+*/
+
+/* 1. TAILWIND DIRECTIVES */
 @import "tailwindcss";
 
-/* =========================
-   CSS VARIABLES
-========================= */
+/* Enable class-based dark mode for Tailwind v4 */
+@variant dark (&:where(.dark, .dark *));
+
+/* 2. DESIGN TOKENS (CSS VARIABLES) */
 :root {
   /* Font Families */
   --font-sans: "Avenir Next", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-heading: "Nunito", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
-  /* Colors */
+  /* Colors (Light Mode Defaults) */
+  --color-bg: #f9fafb;
+  --color-text: #000000;
+  --color-text-muted: #340d0d;
+  --color-text-alt: #5d5d5d;
+
+  --color-primary: #000000;
+  --color-accent: #bc1616;
+
   --color-gray-100: oklch(96.7% 0.003 264.542);
   --color-gray-200: oklch(92.8% 0.006 264.531);
   --color-gray-300: oklch(72.193% 0.00008 271.152);
@@ -22,308 +42,238 @@
   --color-gray-700: oklch(43.128% 0.00005 271.152);
   --color-gray-800: #e6e6e6;
 
-  /* Text Sizes & Line Heights */
+  /* Typography Scales */
   --text-sm: 0.875rem;
-  --text-sm--line-height: calc(1.25 / 0.875);
   --text-lg: 1.3rem;
-  --text-lg--line-height: calc(1.75 / 1.125);
   --text-2xl: 1.5rem;
-  --text-2xl--line-height: calc(2 / 1.5);
   --text-3xl: 1.875rem;
-  --text-3xl--line-height: calc(2.25 / 1.875);
   --text-4xl: 2.25rem;
-  --text-4xl--line-height: calc(2.5 / 2.25);
   --text-5xl: 3rem;
-  --text-5xl--line-height: 1;
 
-  /* Font Weights */
-  --font-weight-light: 300;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
-
-  /* Tracking */
-  --tracking-tight: -0.025em;
-  --tracking-wide: 0.025em;
-  --tracking-wider: 0.05em;
-
-  /* Line height */
-  --leading-relaxed: 1.625;
-
-  /* Border Radius */
+  /* Spacing & Borders */
   --radius-md: 0.375rem;
   --radius-xl: 0.75rem;
+  --leading-relaxed: 1.625;
 
-  /* Shadows */
-  --drop-shadow-lg: 0 4px 4px rgb(0 0 0 / 0.15);
-
-  /* Spacing & Containers */
-  --spacing: 0.25rem;
-  --container-3xl: 48rem;
-  --container-6xl: 72rem;
-
-  /* Transition */
-  --default-transition-duration: 150ms;
-  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  /* Effects */
+  --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.1);
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
 }
 
-/* =========================
-   GLOBAL STYLES
-========================= */
+/* Design Tokens (Dark Mode Overrides) */
+.dark {
+  --color-bg: #101010;
+  --color-text: #f9fafb;
+  --color-text-muted: #d1d1d1;
+  --color-text-alt: #d1d1d1;
+}
+
+/* 3. BASE & GLOBAL STYLES */
 html,
 body,
 #root {
   height: 100%;
-  font-family: var(--font-sans);
-  background-color: #f9fafb; /* Light mode bg */
-  color: #000000; /* Light mode text */
   margin: 0;
   padding: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
   scroll-behavior: auto;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color var(--transition-base), color var(--transition-base);
 }
 
-/* Dark mode global background + text color */
-html.dark,
-body.dark,
-html.dark #root {
-  background-color: #101010; /* Black bg in dark mode */
-  color: #f9fafb; /* Light text in dark mode */
+section {
+  padding: 4rem 1rem;
+  transition: all var(--transition-base);
 }
 
-/* =========================
-   HEADINGS (Nunito)
-========================= */
-h1, h2, h3, h4, h5, h6 {
+@media (min-width: 640px) {
+  section {
+    padding: 4rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  section {
+    padding: 4rem 4rem;
+  }
+}
+
+/* 4. TYPOGRAPHY */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
+  color: var(--color-text);
 }
 
 p {
-  text-align: justify;
-  color: #340d0d;
-  /* font-style: italic; */
+  text-align: left;
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 768px) {
+  p {
+    text-align: justify;
+  }
 }
 
 li {
   text-align: justify;
-  color: #5d5d5d;
-  /* font-style: italic; */
+  color: var(--color-text-alt);
 }
 
 a {
   font-size: 17px;
-  color:#ff4343;
-}
-.dark p, .dark li {
-  text-align: justify;
-  color: #d1d1d1;
-  /* font-style: italic; */
+  color: var(--color-text);
+  text-decoration-thickness: 1px;
+  transition: color var(--transition-fast);
 }
 
-
-/* Dark mode headings */
-.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
-  font-family: var(--font-heading);
+.text-sm {
+  font-size: var(--text-sm);
+  line-height: 1.4;
 }
 
+.text-lg {
+  font-size: var(--text-lg);
+  line-height: 1.5;
+}
 
-/* =========================
-   GLASSY NAVBAR
-========================= */
+.text-2xl {
+  font-size: var(--text-2xl);
+  line-height: 1.33;
+}
+
+.text-3xl {
+  font-size: var(--text-3xl);
+  line-height: 1.2;
+}
+
+.text-4xl {
+  font-size: var(--text-4xl);
+  line-height: 1.1;
+}
+
+.text-5xl {
+  font-size: var(--text-5xl);
+  line-height: 1;
+}
+
+/* 5. COMPONENT LAYER */
+
+/* Glassy Containers */
 .glass {
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: var(--radius-xl);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-base);
 }
 
-/* Dark mode navbar glass */
 .dark .glass {
   background-color: rgba(0, 0, 0, 0.45);
   border-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
 }
 
-/* =========================
-   BUTTONS
-========================= */
+/* Primary Buttons */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1.5rem;
-  border-radius: 3px;
-  background-color: #000000; /* Dark gray button for light mode */
-  color: rgb(223, 223, 223);
-  font-weight: var(--font-weight-semibold);
+  border-radius: 8px;
+  font-weight: 600;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-  font-family: var(--font-sans);
+  transition: all var(--transition-fast);
+  background-color: var(--color-text);
+  color: var(--color-bg);
 }
 
 .btn-primary:hover {
-  background-color: #bc1616;
+  background-color: var(--color-accent);
+  color: #fff;
   transform: scale(1.03);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  
 }
 
-/* Dark mode button inversion */
-.dark .btn-primary {
-  background-color: #f9fafb; /* Light button on dark mode */
-  color: #111827; /* Dark text */
-  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.05);
-}
-
-.dark .btn-primary:hover {
-  /* background-color: #fc0202; Slightly darker white */
-  transform: scale(1.03);
-  box-shadow: 0 6px 12px rgba(174, 174, 174, 0.451);
-  color: rgb(0, 0, 0);
-}
-
-/* =========================
-   BUTTON ICON COLOR ADJUSTMENT
-========================= */
-
-/* Default: white plane in light mode */
+/* Button Icon Logic */
 .btn-primary img {
   filter: brightness(0) saturate(100%) invert(100%);
-  transition: filter 0.3s ease;
+  transition: filter var(--transition-base);
 }
 
-/* Dark mode: make plane icon black */
 .dark .btn-primary img {
   filter: brightness(0) saturate(100%) invert(0%);
 }
 
+.dark .btn-primary:hover img {
+  filter: brightness(0) saturate(100%) invert(100%);
+}
 
-/* =========================
-   AVATAR RING
-========================= */
+/* Avatar Components */
 .avatar-ring {
-  border-radius: 9999px;
   overflow: hidden;
   box-shadow: 0 18px 28px rgba(15, 15, 15, 0.12),
-              inset 0 6px 10px rgba(255, 255, 255, 0.02);
+    inset 0 6px 10px rgba(255, 255, 255, 0.02);
 }
 
 .dark .avatar-ring {
   box-shadow: 0 18px 28px rgba(255, 255, 255, 0.05),
-              inset 0 6px 10px rgba(0, 0, 0, 0.05);
+    inset 0 6px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* =========================
-   CARDS
-========================= */
+/* Content Cards */
 .card {
   border-radius: var(--radius-xl);
   box-shadow: 2px 10px 15px rgba(0, 0, 0, 0.1);
-  background-color: white;
+  background-color: #fff;
   color: #111827;
-  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-  font-family: var(--font-sans);
+  transition: var(--transition-base);
 }
 
-/* Dark mode cards */
 .dark .card {
-  background-color: #161616; /* Dark gray card */
+  background-color: #161616;
   color: #f9fafb;
   box-shadow: 0 10px 15px rgba(255, 255, 255, 0.019);
 }
 
-/* =========================
-   DROP SHADOW UTILITY
-========================= */
-.drop-shadow-lg {
-  filter: drop-shadow(0 10px 8px rgba(0,0,0,0.04))
-          drop-shadow(0 4px 3px rgba(0,0,0,0.1));
+.card img {
+  backface-visibility: hidden;
 }
 
-.dark .drop-shadow-lg {
-  filter: drop-shadow(0 10px 8px rgba(255,255,255,0.03))
-          drop-shadow(0 4px 3px rgba(255,255,255,0.05));
+.dark .card img {
+  box-shadow: 0 0px 0px rgba(255, 255, 255, 0.05);
 }
 
-/* =========================
-   SECTION PADDING
-========================= */
-section {
-  padding: 6rem 1rem;
-  font-family: var(--font-sans);
-}
-
-@media (min-width: 640px) {
-  section {
-    padding: 0rem 2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  section {
-    padding: 1rem 4rem;
-  }
-}
-
-/* =========================
-   TEXT SIZES
-========================= */
-.text-sm { font-size: var(--text-sm); line-height: var(--text-sm--line-height); font-family: var(--font-sans); }
-.text-lg { font-size: var(--text-lg); line-height: var(--text-lg--line-height); font-family: var(--font-sans); }
-.text-2xl { font-size: var(--text-2xl); line-height: var(--text-2xl--line-height); font-family: var(--font-sans); }
-.text-3xl { font-size: var(--text-3xl); line-height: var(--text-3xl--line-height); font-family: var(--font-sans); }
-.text-4xl { font-size: var(--text-4xl); line-height: var(--text-4xl--line-height); font-family: var(--font-sans); }
-.text-5xl { font-size: var(--text-5xl); line-height: var(--text-5xl--line-height); font-family: var(--font-sans); }
-
-/* =========================
-   TEXT COLORS
-========================= */
-h1, h2, h3, h4, h5, h6 {
-  color: #000000;
-}
-
-.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6,
-.dark p,
-.dark span,
-.dark a {
-  color: #f9fafb;
-}
-
-.dark a:hover {
-  color: #93c5fd; /* Light blue hover effect */
-}
-
-/* =========================
-   SOCIAL ICONS (NO BORDER, PURE ICONS)
-========================= */
+/* Social Iconography */
 .social-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
   width: 36px;
   height: 36px;
-  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
-  padding: 0; /* no border or extra padding */
+  transition: transform var(--transition-base), filter var(--transition-base);
 }
 
-/* SVG size and transition */
 .social-icon img {
   width: 36px;
   height: 36px;
-  transition: transform 0.3s ease, filter 0.3s ease, drop-shadow 0.3s ease;
+  transition: all var(--transition-base);
 }
 
-/* Hover: scale + light shadow (light mode) */
 .social-icon:hover {
   transform: scale(1.2);
-  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
 }
 
-/* =========================
-   LIGHT MODE: brand colors on hover
-========================= */
+/* Social Hover Colors (Light Mode) */
 .social-icon.instagram:hover img {
   filter: brightness(0) saturate(100%) invert(39%) sepia(94%) saturate(2984%) hue-rotate(315deg) brightness(92%) contrast(95%);
 }
@@ -344,68 +294,42 @@ h1, h2, h3, h4, h5, h6 {
   filter: brightness(0) saturate(100%) invert(6%) sepia(10%) saturate(747%) hue-rotate(202deg) brightness(95%) contrast(92%);
 }
 
-/* =========================
-   DARK MODE DEFAULT COLOR
-   - All icons start as pure white (#f9fafb)
-========================= */
+/* Social Icons (Dark Mode Default) */
 .dark .social-icon img {
   filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
 }
 
-/* =========================
-   DARK MODE: neon glow on hover
-========================= */
-
-/* Instagram neon */
+/* Social Neon Glows (Dark Mode Hover) */
 .dark .social-icon.instagram:hover img {
   filter: brightness(0) saturate(100%) invert(100%) drop-shadow(0 0 6px #f30808) drop-shadow(0 0 14px #f77737);
 }
 
-/* LinkedIn neon */
 .dark .social-icon.linkedin:hover img {
   filter: brightness(0) saturate(100%) invert(100%) drop-shadow(0 0 6px #0a66c2) drop-shadow(0 0 14px #0a66c2);
 }
 
-/* YouTube neon */
 .dark .social-icon.youtube:hover img {
   filter: brightness(0) saturate(100%) invert(100%) drop-shadow(0 0 6px #ff0000) drop-shadow(0 0 14px #ff0000);
 }
 
-/* Discord neon */
 .dark .social-icon.discord:hover img {
   filter: brightness(0) saturate(100%) invert(100%) drop-shadow(0 0 6px #5865f2) drop-shadow(0 0 14px #5865f2);
 }
 
-/* GitHub neon */
 .dark .social-icon.github:hover img {
   filter: brightness(0) saturate(100%) invert(100%) drop-shadow(0 0 6px #ffffff) drop-shadow(0 0 14px #ffffff);
 }
 
+/* 6. UTILITY LAYER */
+.drop-shadow-lg {
+  filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04)) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
+}
 
-/* perspective */
+.dark .drop-shadow-lg {
+  filter: drop-shadow(0 10px 8px rgba(255, 255, 255, 0.03)) drop-shadow(0 4px 3px rgba(255, 255, 255, 0.05));
+}
+
 .perspective-1000px {
   perspective: 1000px;
   -webkit-perspective: 1000px;
 }
-
-.card img {
-
-  backface-visibility: hidden;
-}
-
-.card img:hover {
-  transform: scale(1.25);
-  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.25);
-}
-
-.dark .card img {
-  box-shadow: 0 0px 0px rgba(255, 255, 255, 0.05);
-}
-
-.dark .card img:hover {
-  box-shadow: 0 0px 0px rgba(255, 255, 255, 0.151);
-}
-
-/* ====== WISPY SMOKE TRAIL ====== */
-
-

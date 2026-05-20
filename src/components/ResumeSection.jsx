@@ -8,18 +8,17 @@ function MarqueeRow({ icons, direction = "left", baseSpeed = 50 }) {
   const x = useMotionValue(0);
   const moveLeft = direction === "left";
 
-  // Calculate width of one icon block dynamically
-  const iconWidth = typeof window !== "undefined" ? window.innerWidth / 6 : 100;
-
   // Animation loop
   useAnimationFrame((t, delta) => {
-    const speed = (baseSpeed * delta) / 2000; // pixels per frame
+    const speed = (baseSpeed * delta) / 2000;
+    const itemWidth = typeof window !== 'undefined' && window.innerWidth < 768 ? window.innerWidth / 5 : 200;
+
     x.set(x.get() + (moveLeft ? -speed : speed));
-    // Reset seamlessly when passing half of total icons width
-    if (moveLeft && x.get() <= -iconWidth * icons.length) {
+
+    if (moveLeft && x.get() <= -itemWidth * icons.length) {
       x.set(0);
     } else if (!moveLeft && x.get() >= 0) {
-      x.set(-iconWidth * icons.length);
+      x.set(-itemWidth * icons.length);
     }
   });
 
@@ -27,7 +26,7 @@ function MarqueeRow({ icons, direction = "left", baseSpeed = 50 }) {
   const loopedIcons = [...icons, ...icons, ...icons, ...icons];
 
   return (
-    <div className="overflow-hidden w-full relative">
+    <div className="overflow-hidden w-full relative h-20 sm:h-24 flex items-center">
       <motion.div
         className="flex"
         style={{ x, willChange: "transform" }}
@@ -35,12 +34,12 @@ function MarqueeRow({ icons, direction = "left", baseSpeed = 50 }) {
         {loopedIcons.map((tech, i) => (
           <div
             key={i}
-            className="flex justify-center items-center w-[calc(100%/6)] flex-shrink-0 h-20 md-24"
+            className="flex justify-center items-center w-[20vw] sm:w-[18vw] md:w-[200px] flex-shrink-0 px-2 sm:px-3"
           >
             <img
               src={tech.src}
               alt={tech.alt}
-              className="w-auto h-16 object-contain"
+              className="w-full h-10 sm:h-12 md:h-16 object-contain transition-all duration-300"
               draggable="false"
             />
           </div>
@@ -90,22 +89,22 @@ export default function ResumeSection() {
   ];
 
   return (
-    <section id="resume" className="w-full py-16">
-      <div className="w-[90%] mx-auto px-6 md:px-12 lg:px-24">
+    <section id="resume" className="w-full py-12 sm:py-16 md:py-24 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="w-full">
         {/* ========================= TECH STACK ========================= */}
         <motion.div
-          className="mb-16"
-          initial={{ opacity: 0, y: 40 }}
+          id="skills" className="mb-24 sm:mb-32 md:mb-40 scroll-mt-28"
+          initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true, margin: "-50px" }}
         >
-          <h3 className="text-2xl font-bold mb-6 flex items-center gap-2 text-gray-800 dark:text-gray-100">
+          <h3 className="text-xl sm:text-2xl font-bold mb-10 flex items-center gap-2 text-gray-800 dark:text-gray-100">
             TECH STACK
             <span className="flex-1 border-b border-gray-400 dark:border-gray-600"></span>
           </h3>
 
-          <div className="space-y-6">
+          <div className="space-y-10 sm:space-y-12">
             {rows.map((row, idx) => (
               <MarqueeRow
                 key={idx}
@@ -119,28 +118,28 @@ export default function ResumeSection() {
 
         {/* ========================= EXPERIENCES ========================= */}
         <motion.div
-          className="mb-16"
+          id="experience" className="mb-24 sm:mb-32 md:mb-40 scroll-mt-28"
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <h3 className="text-2xl font-bold mb-6 flex items-center gap-2 text-gray-800 dark:text-gray-100">
+          <h3 className="text-xl sm:text-2xl font-bold mb-10 flex items-center gap-2 text-gray-800 dark:text-gray-100">
             EXPERIENCES
             <span className="flex-1 border-b border-gray-400 dark:border-gray-600"></span>
           </h3>
 
-          <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-            <div className="flex">
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
+            <div className="flex flex-shrink-0 gap-2 max-w-full overflow-hidden">
               <img
                 src="/assets/uiux.png"
                 alt="UI/UX"
-                className="w-auto h-48 md:h-69 object-contain  rounded-lg mx-auto md:mx-0"
+                className="w-auto max-w-[45vw] h-28 sm:h-32 md:h-48 object-contain rounded-lg"
               />
               <img
                 src="/assets/line.png"
                 alt="UI/UX line"
-                className="w-auto h-48 md:h-69 object-contain rounded-lg mx-auto md:mx-0"
+                className="w-auto max-w-[45vw] h-28 sm:h-32 md:h-48 object-contain rounded-lg"
               />
             </div>
 
@@ -148,7 +147,7 @@ export default function ResumeSection() {
               <div className="w-1 bg-gray-300 dark:bg-gray-700 h-full"></div>
             </div>
 
-            <div className="flex-1 text-center md:text-left">
+            <div className="flex-1 text-center md:text-left min-w-0">
               <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
                 DigiHawk
               </h4>
@@ -156,12 +155,14 @@ export default function ResumeSection() {
                 Jan 2021 – Nov 2021
               </p>
               <p className="text-md font-medium text-gray-700 dark:text-gray-300 mt-1">
-                UI/UX Designer
+                UI/UX Developer
               </p>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 max-w-xl leading-relaxed mx-auto md:mx-0">
-                Worked as a UI/UX designer in Kathmandu, Nepal. Focused on UX/UI
-                and backend collaboration. Ensured project deadlines were always
-                met efficiently in a remote-first setup.
+              <p className="text-sm text-left md:text-justify text-gray-600 dark:text-gray-400 mt-2 max-w-xl leading-relaxed mx-auto md:mx-0">
+                At DigiHawk, I focused on designing and building intuitive, responsive interfaces
+                for various digital products. I collaborated closely with technical teams to ensure
+                prototypes were seamlessly integrated and performed well across all platforms.
+                By balancing user experience with technical performance, I helped deliver polished,
+                high-quality designs within a fast-paced, remote-first environment.
               </p>
             </div>
           </div>
@@ -169,26 +170,28 @@ export default function ResumeSection() {
 
         {/* ========================= EDUCATION ========================= */}
         <motion.div
+          id="education"
+          className="scroll-mt-28"
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <h3 className="text-2xl font-bold mb-6 flex items-center gap-2 text-gray-800 dark:text-gray-100">
+          <h3 className="text-xl sm:text-2xl font-bold mb-10 flex items-center gap-2 text-gray-800 dark:text-gray-100">
             EDUCATION
             <span className="flex-1 border-b border-gray-400 dark:border-gray-600"></span>
           </h3>
 
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 gap-12 sm:gap-16">
             {/* Bachelors Degree */}
-            <div className="flex flex-col md:flex-row items-center gap-6 p-0 rounded-xl">
+            <div className="flex flex-col md:flex-row items-center gap-4 sm:gap-6 p-0 rounded-xl">
               <img
                 src="./assets/LMU.png"
                 alt="London Metropolitan University"
-                className="w-auto h-40 mt-2.5 object-contain mx-auto md:mx-0"
+                className="w-auto max-w-full h-20 sm:h-24 object-contain mx-auto md:mx-0"
               />
               <div className="text-center md:text-left">
-                <h4 className="text-md font-semibold text-gray-800 dark:text-gray-100">
+                <h4 className="text-md font-semibold text-gray-800 dark:text-gray-100 leading-tight mb-1">
                   Bachelors (Hons) Degree in IT
                 </h4>
                 <p className="text-sm italic text-gray-500 dark:text-gray-400">
@@ -198,14 +201,14 @@ export default function ResumeSection() {
             </div>
 
             {/* Masters Degree */}
-            <div className="flex flex-col md:flex-row items-center gap-6 p-0 rounded-xl">
+            <div className="flex flex-col md:flex-row items-center gap-4 sm:gap-6 p-0 rounded-xl">
               <img
                 src="./assets/KOI.png"
                 alt="King’s Own Institute"
-                className="w-auto h-40 mt-2.5 object-contain mx-auto md:mx-0"
+                className="w-auto max-w-full h-20 sm:h-24 object-contain mx-auto md:mx-0"
               />
               <div className="text-center md:text-left">
-                <h4 className="text-md font-semibold text-gray-800 dark:text-gray-100">
+                <h4 className="text-md font-semibold text-gray-800 dark:text-gray-100 leading-tight mb-1">
                   Masters Degree in IT
                 </h4>
                 <p className="text-sm italic text-gray-500 dark:text-gray-400">

@@ -5,7 +5,7 @@ import Hero from "./components/Hero";
 import Projects from "./components/Projects";
 import ResumeSection from "./components/ResumeSection";
 import Footer from "./components/Footer";
-import MouseTrail from "./MouseTrail";
+
 
 export default function App() {
   // Load dark mode preference on first render
@@ -29,8 +29,7 @@ export default function App() {
         />
       </Helmet>
 
-      {/* Mouse Trail Effect - Disabled on Mobile */}
-      <MouseTrail />
+
 
       {/* Navbar */}
       <Navbar />
