@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   ExternalLink,
@@ -8,9 +8,9 @@ import {
   Layout,
   Target,
   Search,
-  Filter,
   CreditCard,
   Zap,
+  ArrowLeft,
   ArrowRight,
   TrendingUp,
   Users,
@@ -25,17 +25,77 @@ const Section = ({ children, className = "", innerClassName = "" }) => (
   </section>
 );
 
-const FeatureCard = ({ icon: Icon, title, description }) => (
+const hotelPalette = [
+  { hex: "#FC3C3C", label: "Primary Red" },
+  { hex: "#010101", label: "Deep Black" },
+  { hex: "#FAFAFA", label: "Soft White" },
+  { hex: "#777777", label: "Muted Text" }
+];
+
+const FeatureCard = ({ icon: Icon, title, description, imageSrc, imageAlt, imageHoverScale = false, imageNoChrome = false, imageCompact = false }) => (
   <div className="p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 group">
     <div className="w-12 h-12 rounded-xl bg-[#bc1616]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
       <Icon className="text-[#bc1616]" size={24} />
     </div>
     <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">{title}</h3>
     <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{description}</p>
+    {imageSrc && imageHoverScale && (
+      <div className="group/suite relative mt-6 overflow-hidden rounded-xl bg-white shadow-[0_10px_20px_-10px_rgba(0,0,0,0.2)] transition-shadow duration-500 ease-out [container-type:inline-size] hover:shadow-[0_8px_30px_rgba(0,0,0,0.18)] md:mx-auto md:w-[72%] md:max-w-[540px] xl:w-full xl:max-w-none">
+        <div className="relative aspect-[4/3] overflow-hidden">
+          <img
+            src={imageSrc}
+            alt={imageAlt}
+            className="absolute inset-0 h-full w-full origin-center scale-100 transform-gpu object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform group-hover/suite:scale-[1.08]"
+          />
+        </div>
+        <div className="absolute inset-x-0 bottom-0 z-10 flex w-full items-center justify-between gap-[4cqw] bg-gradient-to-t from-black/90 via-black/50 to-transparent px-[5cqw] pb-[6cqw] pt-[16cqw]">
+          <p className="mb-0 whitespace-nowrap text-[7cqw] font-light uppercase tracking-normal !text-white [text-shadow:1px_1px_3px_rgba(0,0,0,0.8)]">Single Suite</p>
+          <span className="whitespace-nowrap text-[4cqw] font-normal text-[#fc3c3c] opacity-0 transition-[opacity,color] duration-500 ease-out group-hover/suite:opacity-100">
+            View
+          </span>
+        </div>
+      </div>
+    )}
+    {imageSrc && !imageHoverScale && (
+      <img
+        src={imageSrc}
+        alt={imageAlt}
+        className={`mt-6 block ${imageCompact ? "-mr-8 ml-auto w-3/4 max-w-[260px]" : "-mx-8 w-[calc(100%+4rem)] max-w-none"} ${imageNoChrome ? "" : "border-y border-white/10 shadow-lg"}`}
+      />
+    )}
   </div>
 );
 
 export default function HotelDoc() {
+  const journeyStages = [
+    { label: "Discover", icon: Compass, firstScreenIndex: 0 },
+    { label: "Evaluate", icon: Search, firstScreenIndex: 3 },
+    { label: "Decide", icon: Target, firstScreenIndex: 6 },
+    { label: "Convert", icon: CreditCard, firstScreenIndex: 8 }
+  ];
+  const journeyScreens = [
+    { label: "Landing page", stage: "Discover", image: "/assets/landing-page.avif" },
+    { label: "Explore hotel", stage: "Discover", image: "/assets/explore-hotel.avif" },
+    { label: "Amenities", stage: "Discover", image: "/assets/amenities.avif" },
+    { label: "Rooms listing", stage: "Evaluate", image: "/assets/rooms-listing.avif" },
+    { label: "Explore rooms", stage: "Evaluate", image: "/assets/explore-rooms.avif" },
+    { label: "Room detail", stage: "Evaluate", image: "/assets/room-detail.avif" },
+    { label: "Date selection", stage: "Decide", image: "/assets/date-selection.avif" },
+    { label: "Availability check", stage: "Decide", image: "/assets/availability-check.avif" },
+    { label: "Booking form", stage: "Convert", image: "/assets/booking-form.avif" },
+    { label: "Confirm booking", stage: "Convert", image: "/assets/confirm-booking.avif" }
+  ];
+  const [activeJourneyIndex, setActiveJourneyIndex] = useState(0);
+  const activeJourneyStage = journeyScreens[activeJourneyIndex].stage;
+
+  const goToPreviousJourneyStep = () => {
+    setActiveJourneyIndex((current) => Math.max(current - 1, 0));
+  };
+
+  const goToNextJourneyStep = () => {
+    setActiveJourneyIndex((current) => Math.min(current + 1, journeyScreens.length - 1));
+  };
+
   return (
     <div className="w-full mx-auto overflow-x-hidden">
 
@@ -47,12 +107,9 @@ export default function HotelDoc() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-[#bc1616]/10 text-[#bc1616] text-sm font-semibold tracking-wider uppercase mb-6">
-              Hospitality & Leisure
-            </span>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-              Grand Luxury <br />
-              <span className="text-[#bc1616] italic">Booking Experience</span>
+              Lakeside Hotel <br />
+              <span className="text-[#bc1616]">Experience</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-xl leading-relaxed">
               A premium, multi-page hospitality platform designed to elevate the digital presence of luxury hotels in Pokhara, Lakeside. Focusing on seamless booking flows and immersive visual storytelling.
@@ -110,7 +167,7 @@ export default function HotelDoc() {
               alt="Project Hero Mockup"
               className="w-full rounded-2xl transition-transform duration-700 group-hover:scale-[1.02]"
             />
-            <div className="absolute -bottom-12 -right-6 w-[28%] hidden md:block group-hover:translate-y-2 transition-transform duration-700">
+            <div className="absolute -bottom-6 -right-2 w-[22%] group-hover:translate-y-2 transition-transform duration-700">
               <img
                 src="/assets/hotel-mobile.avif"
                 alt="Mobile Preview"
@@ -157,25 +214,34 @@ export default function HotelDoc() {
       {/* 3. PROBLEM STATEMENT */}
       <Section>
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 italic">The Friction Points</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">The Friction Points</h2>
           <p className="text-gray-600 dark:text-gray-400">Identifying and solving key UX challenges in the traditional hospitality digital experience.</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid gap-6 xl:grid-cols-3 xl:gap-8">
           <FeatureCard
             icon={Smartphone}
             title="Mobile Friction"
             description="Traditional booking forms often fail on mobile. I implemented a responsive-first reservation system that feels native to touch devices."
+            imageSrc="/assets/hotel-mob.avif"
+            imageAlt="Hotel mobile booking interface"
+            imageNoChrome
+            imageCompact
           />
           <FeatureCard
             icon={Layout}
             title="Info Overload"
             description="Hotels often overwhelm users with data. I used a clean grid system and progressive disclosure to keep the focus on the experience."
+            imageSrc="/assets/image-slider.avif"
+            imageAlt="Hotel image slider interface"
           />
           <FeatureCard
             icon={Zap}
             title="Interaction Lag"
             description="Slow transitions kill the premium feel. I utilized optimized asset delivery and lightweight animations to ensure instant feedback."
+            imageSrc="/assets/hotel-slider-first.avif"
+            imageAlt="Single suite slider preview"
+            imageHoverScale
           />
         </div>
       </Section>
@@ -221,10 +287,10 @@ export default function HotelDoc() {
           <div className="space-y-8">
             <h2 className="text-3xl md:text-4xl font-bold leading-tight">Research & <br /> Visual Inspiration</h2>
             <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-              Instead of generic research, I analyzed top-tier hospitality platforms like Airbnb, Booking.com, and luxury resort sites to identify patterns that evoke trust and desire.
+              Inspired by Six Senses Hotels & Resorts, Sofitel Sydney Darling Harbour, and other premium hospitality brands, the visual direction blends immersive room imagery, elegant resort storytelling, spa and dining highlights, and a direct booking experience designed to feel refined, trustworthy, and effortlessly luxurious.
             </p>
             <div className="flex flex-wrap gap-3">
-              {["Minimalism", "High-Contrast", "Visual Breathing Room", "Serene Palette"].map((tag, i) => (
+              {["Luxury Hospitality", "Direct Booking", "Room Showcase", "Spa & Dining", "Resort Storytelling"].map((tag, i) => (
                 <span key={i} className="px-4 py-2 rounded-lg bg-gray-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-widest text-gray-500">
                   {tag}
                 </span>
@@ -234,13 +300,10 @@ export default function HotelDoc() {
           <div className="relative h-[400px] md:h-[500px] perspective-1000px">
             {/* Creative Moodboard Collage */}
             <div className="absolute top-0 left-0 w-2/3 h-2/3 bg-gray-200 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl rotate-[-5deg] z-10 border border-white/10">
-              <img src="/assets/luxury.png" alt="Inspiration 1" className="w-full h-full object-cover" />
+              <img src="/assets/six-senses.avif" alt="Six Senses visual inspiration" className="w-full h-full object-cover" />
             </div>
             <div className="absolute bottom-0 right-0 w-2/3 h-2/3 bg-gray-300 dark:bg-gray-700 rounded-2xl overflow-hidden shadow-xl rotate-[5deg] z-20 border border-white/10">
-              <img src="/assets/food.png" alt="Inspiration 2" className="w-full h-full object-cover" />
-            </div>
-            <div className="absolute top-1/4 right-1/4 w-1/2 h-1/2 bg-[#bc1616]/20 backdrop-blur-md border border-white/20 rounded-2xl z-30 p-6 flex items-center justify-center text-center shadow-2xl">
-              <p className="font-heading font-bold text-xl md:text-2xl italic tracking-tighter text-[#bc1616] drop-shadow-sm leading-tight">Luxury is <br /> in the details.</p>
+              <img src="/assets/sofitel.avif" alt="Sofitel visual inspiration" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>
@@ -249,29 +312,106 @@ export default function HotelDoc() {
       {/* 6. USER FLOW */}
       <Section>
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 italic">The User Journey</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">The User Journey</h2>
           <p className="text-gray-500 uppercase tracking-widest text-xs font-mono">Seamless Navigation Flow</p>
         </div>
 
-        <div className="w-full overflow-x-auto pb-8 custom-scrollbar">
-          <div className="flex items-center justify-between min-w-[800px] relative px-10">
+        <div className="w-full overflow-visible pt-6 pb-6">
+          <div className="grid grid-cols-4 items-start gap-2 sm:gap-4 md:gap-6 relative px-1 sm:px-4 md:px-10">
             {/* Animated Connector Line */}
-            <div className="absolute top-1/2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#bc1616]/30 to-transparent -translate-y-1/2 z-0" />
+            <div className="absolute left-4 right-4 sm:left-8 sm:right-8 md:left-10 md:right-10 top-6 sm:top-7 md:top-8 h-[2px] bg-gradient-to-r from-transparent via-[#bc1616]/30 to-transparent z-0" />
 
-            {[
-              { label: "Landing", icon: Layout },
-              { label: "Search", icon: Search },
-              { label: "Details", icon: Smartphone },
-              { label: "Form", icon: CreditCard },
-              { label: "Confirm", icon: CheckCircle2 }
-            ].map((step, i) => (
-              <div key={i} className="relative z-10 flex flex-col items-center group">
-                <div className="w-16 h-16 rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-white/10 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:border-[#bc1616] transition-all duration-300">
-                  <step.icon className="text-gray-400 group-hover:text-[#bc1616] transition-colors" size={24} />
-                </div>
-                <span className="mt-4 text-xs font-bold uppercase tracking-widest text-gray-500 group-hover:text-gray-900 dark:group-hover:text-white transition-colors tracking-tighter">{step.label}</span>
-              </div>
-            ))}
+            {journeyStages.map((step) => {
+              const isActive = activeJourneyStage === step.label;
+
+              return (
+                <button
+                  key={step.label}
+                  type="button"
+                  onClick={() => setActiveJourneyIndex(step.firstScreenIndex)}
+                  className="relative z-10 flex flex-col items-center group hover:z-20"
+                  aria-label={`Show ${step.label} journey stage`}
+                >
+                  <span className={`w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 origin-center rounded-xl sm:rounded-2xl bg-white dark:bg-gray-900 border flex items-center justify-center shadow-lg transition-all duration-300 ${isActive ? "scale-110 border-[#bc1616]" : "border-gray-200 dark:border-white/10 group-hover:border-[#bc1616]"}`}>
+                    <step.icon className={`h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 transition-colors ${isActive ? "text-[#bc1616]" : "text-gray-400 group-hover:text-[#bc1616]"}`} />
+                  </span>
+                  <span className={`mt-3 sm:mt-4 max-w-full text-center text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-normal sm:tracking-wider transition-colors ${isActive ? "text-[#bc1616]" : "text-gray-500 group-hover:text-gray-900 dark:group-hover:text-white"}`}>
+                  {step.label}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="relative mx-auto w-full max-w-5xl overflow-visible px-0">
+          <div className="relative">
+            <div className="invisible mx-auto w-[52%] max-w-[190px] sm:w-[42%] sm:max-w-[250px] md:w-[24%] md:max-w-[230px] lg:w-[22%] lg:max-w-[240px]">
+              <img
+                src={journeyScreens[activeJourneyIndex].image}
+                alt=""
+                className="block h-auto w-full"
+                aria-hidden="true"
+              />
+            </div>
+
+            {journeyScreens.map((step, index) => {
+              const offset = index - activeJourneyIndex;
+              const isActive = offset === 0;
+              const isVisible = Math.abs(offset) <= 1;
+
+              return (
+                <motion.div
+                  key={step.label}
+                  className="absolute left-1/2 top-0 w-[52%] max-w-[190px] origin-top sm:w-[42%] sm:max-w-[250px] md:w-[24%] md:max-w-[230px] lg:w-[22%] lg:max-w-[240px]"
+                  animate={{
+                    x: `calc(-50% + ${offset * 58}%)`,
+                    scale: isActive ? 1 : 0.82,
+                    opacity: isVisible ? (isActive ? 1 : 0.32) : 0,
+                    zIndex: isActive ? 20 : 10
+                  }}
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  aria-hidden={!isActive}
+                >
+                  <div className="overflow-hidden rounded-3xl bg-transparent">
+                    <img
+                      src={step.image}
+                      alt={`${step.label} screen`}
+                      className="block h-auto w-full"
+                    />
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <div className="mx-auto mt-4 flex w-full max-w-[430px] items-center justify-center gap-4">
+            <button
+              type="button"
+              onClick={goToPreviousJourneyStep}
+              disabled={activeJourneyIndex === 0}
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm transition-all hover:border-[#bc1616] hover:text-[#bc1616] disabled:pointer-events-none disabled:opacity-35 dark:border-white/10 dark:bg-gray-900 dark:text-gray-200"
+              aria-label="Previous journey screen"
+            >
+              <ArrowLeft className="h-5 w-5" />
+            </button>
+
+            <div
+              className="w-[180px] text-center text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-300 sm:w-[220px]"
+              aria-live="polite"
+            >
+              {journeyScreens[activeJourneyIndex].label}
+            </div>
+
+            <button
+              type="button"
+              onClick={goToNextJourneyStep}
+              disabled={activeJourneyIndex === journeyScreens.length - 1}
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm transition-all hover:border-[#bc1616] hover:text-[#bc1616] disabled:pointer-events-none disabled:opacity-35 dark:border-white/10 dark:bg-gray-900 dark:text-gray-200"
+              aria-label="Next journey screen"
+            >
+              <ArrowRight className="h-5 w-5" />
+            </button>
           </div>
         </div>
       </Section>
@@ -314,7 +454,7 @@ export default function HotelDoc() {
       <Section>
         <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
           <div className="max-w-2xl text-left">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 italic uppercase tracking-tighter">Design System</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase tracking-tighter">Design System</h2>
             <p className="text-gray-600 dark:text-gray-400 text-lg">Built upon a foundation of consistency, accessibility, and modern aesthetics.</p>
           </div>
           <div className="flex gap-8 px-6 py-4 rounded-2xl bg-gray-50 dark:bg-white/5 border border-white/10">
@@ -334,21 +474,30 @@ export default function HotelDoc() {
             <div className="flex justify-between items-start z-10">
               <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">COLOR PALETTE</span>
               <div className="flex gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#bc1616] shadow-lg shadow-[#bc1616]/20" />
-                <div className="w-10 h-10 rounded-full bg-black dark:bg-white shadow-lg" />
-                <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-800 shadow-md" />
+                {hotelPalette.map((color) => (
+                  <div key={color.hex} className="flex flex-col items-center gap-2">
+                    <div
+                      className="w-10 h-10 rounded-full border border-black/10 dark:border-white/20 shadow-lg"
+                      style={{ backgroundColor: color.hex }}
+                      aria-label={`${color.label} ${color.hex}`}
+                    />
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                      {color.hex}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
             <div className="space-y-2 z-10 text-left">
-              <h4 className="text-2xl font-bold italic">Luxury Primary</h4>
-              <p className="text-sm text-gray-500">Focused on high-contrast and refined readability.</p>
+              <h4 className="text-2xl font-bold">Hotel Brand Palette</h4>
+              <p className="text-sm text-gray-500">Pulled from the original hotel-booking interface.</p>
             </div>
-            <div className="absolute -right-10 -bottom-10 w-48 h-48 border border-[#bc1616]/10 rounded-full group-hover:scale-110 transition-transform duration-700" />
+            <div className="absolute -right-10 -bottom-10 w-48 h-48 border border-[#fc3c3c]/10 rounded-full group-hover:scale-110 transition-transform duration-700" />
           </div>
 
           <div className="h-64 rounded-2xl bg-[#bc1616] p-8 flex flex-col justify-between text-white shadow-xl shadow-[#bc1616]/20 group overflow-hidden relative">
             <Layout size={32} className="relative z-10 group-hover:rotate-12 transition-transform duration-500" />
-            <h4 className="text-xl font-bold relative z-10 italic text-left leading-tight">12-Column <br /> Grid System</h4>
+            <h4 className="text-xl font-bold relative z-10 text-left leading-tight">12-Column <br /> Grid System</h4>
             <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'linear-gradient(90deg, white 1px, transparent 1px)', backgroundSize: '12.5% 100%' }} />
           </div>
 
@@ -371,16 +520,16 @@ export default function HotelDoc() {
         <div className="relative z-10 grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           <div className="space-y-8 text-left">
             <span className="text-[#bc1616] font-mono tracking-widest uppercase text-xs mb-4 block">The Engineering Phase</span>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight italic text-gray-900 dark:text-white uppercase tracking-tighter">Modular <br /> Architecture</h2>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 dark:text-white uppercase tracking-tighter">Modular <br /> Architecture</h2>
             <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-              Leveraging React and a component-based approach, I built a scalable UI library that allows for rapid page construction without compromising on performance or design fidelity.
+              The hotel booking project was structured as a responsive multi-page Bootstrap 4 and jQuery build, with reusable room sections, service galleries, availability checks, and a centralized reservation modal that could support stays, tours, and event bookings.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
               {[
-                { icon: CheckCircle2, title: "Clean SCSS", desc: "Maintainable architecture" },
-                { icon: CheckCircle2, title: "Asset Opt", desc: "Fast lazy-loading" },
-                { icon: CheckCircle2, title: "Smooth Scroll", desc: "AOS implementation" },
-                { icon: CheckCircle2, title: "Form Val", desc: "Dynamic feedback" }
+                { icon: CheckCircle2, title: "Room Discovery", desc: "Suite and hall cards" },
+                { icon: CheckCircle2, title: "Availability Flow", desc: "Date and guest checks" },
+                { icon: CheckCircle2, title: "Owl Carousel", desc: "Smooth room galleries" },
+                { icon: CheckCircle2, title: "Booking Modal", desc: "Validation and success states" }
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-4 p-4 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10">
                   <item.icon size={18} className="text-[#bc1616] mt-1 shrink-0" />
@@ -399,36 +548,42 @@ export default function HotelDoc() {
                 <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
                 <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
                 <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
-                <span className="text-[10px] text-gray-500 ml-4 font-mono italic tracking-widest uppercase">RoomCard.jsx</span>
+                  <span className="text-[10px] text-gray-500 ml-4 font-mono italic tracking-widest uppercase">booking-flow.js</span>
               </div>
               <div className="p-6 md:p-8 font-mono text-[10px] md:text-[12px] text-gray-300 leading-relaxed overflow-x-auto whitespace-pre custom-scrollbar">
-                {`const RoomCard = ({ title, image, price }) => {
-  return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      whileHover={{ y: -15 }}
-      className="room-card group"
-    >
-      <div className="overflow-hidden rounded-2xl shadow-xl">
-        <img src={image} className="group-hover:scale-110 transition" />
-        <div className="price-tag">\${price}/Night</div>
-      </div>
-      <div className="mt-6 flex justify-between items-center">
-        <h3 className="text-xl font-bold">{title}</h3>
-        <Button size="sm" variant="outline">
-           Book Now
-        </Button>
-      </div>
-    </motion.div>
-  );
-};`}
+                {`const bookingTypes = ["stay", "tour", "event"];
+
+$(".room-slider").owlCarousel({
+  items: 1,
+  loop: true,
+  nav: true,
+  autoplay: true
+});
+
+$(".check-availability").on("click", function () {
+  const guests = $("#guests").val();
+  const checkIn = $("#check-in").val();
+
+  if (!checkIn || !guests) {
+    showValidation("Please select a date and guests.");
+    return;
+  }
+
+  $("#reservationModal").modal("show");
+});
+
+$("#reservationForm").on("submit", function (event) {
+  event.preventDefault();
+  showProcessingState();
+  showSuccessConfirmation();
+});`}
               </div>
             </div>
             <div className="absolute -top-10 -right-5 p-6 rounded-2xl glass shadow-2xl hidden md:block border border-white/20 backdrop-blur-xl">
               <div className="flex items-center gap-4">
                 <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
                 <div className="space-y-1">
-                  <span className="text-[10px] font-black text-gray-800 dark:text-gray-200 tracking-widest uppercase block">Frontend Health</span>
+                  <span className="text-[10px] font-black text-black dark:text-gray-200 tracking-widest uppercase block">Frontend Health</span>
                   <div className="flex gap-1 h-1.5 w-24 md:w-32 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
                     <div className="w-[98%] bg-green-500 h-full" />
                   </div>
@@ -444,7 +599,7 @@ export default function HotelDoc() {
       {/* 10. KEY FEATURES SHOWCASE */}
       <Section>
         <div className="text-center max-w-2xl mx-auto mb-24">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 italic tracking-tighter text-gray-900 dark:text-white uppercase">Signature Features</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tighter text-gray-900 dark:text-white uppercase">Signature Features</h2>
           <div className="w-24 h-1.5 bg-[#bc1616] mx-auto rounded-full shadow-sm shadow-[#bc1616]/20" />
         </div>
 
@@ -452,22 +607,22 @@ export default function HotelDoc() {
           {/* Feature 1 */}
           <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
             <div className="flex-1 space-y-8 text-left">
-              <span className="text-[#bc1616] font-bold text-xs tracking-[0.3em] uppercase block">Smart Selection</span>
-              <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">Intuitive Filtering <br /> System</h3>
+              <span className="text-[#bc1616] font-bold text-xs tracking-[0.3em] uppercase block">Room Discovery</span>
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">Suites & Halls <br /> Showcase</h3>
               <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-                Finding the right room should be effortless. I designed a multi-criteria filter that updates in real-time, allowing users to find their perfect stay based on amenities, price, and group size.
+                The hotel-booking project presents rooms and event spaces through an interactive carousel, with image-led suite cards, clear category names, and hover links that guide visitors into the room details page.
               </p>
               <div className="flex gap-4 md:gap-6 pt-4 justify-start">
                 <div className="flex items-center gap-2 md:gap-3 px-4 py-2.5 md:px-5 md:py-3 rounded-xl bg-gray-100 dark:bg-white/5 text-xs md:text-sm font-bold">
-                  <Filter size={18} className="text-[#bc1616]" /> Dynamic Sorting
+                  <Layout size={18} className="text-[#bc1616]" /> Suite Cards
                 </div>
                 <div className="flex items-center gap-2 md:gap-3 px-4 py-2.5 md:px-5 md:py-3 rounded-xl bg-gray-100 dark:bg-white/5 text-xs md:text-sm font-bold">
-                  <Search size={18} className="text-[#bc1616]" /> Fast Indexing
+                  <ArrowRight size={18} className="text-[#bc1616]" /> Hover View Links
                 </div>
               </div>
             </div>
             <div className="flex-1 relative group w-full">
-              <img src="/assets/simple.png" alt="Filtering UI" className="rounded-3xl group-hover:rotate-2 transition-transform duration-700 w-full" />
+              <img src="/assets/image-slider.avif" alt="Suites and halls showcase" className="w-full rounded-3xl shadow-2xl group-hover:rotate-2 transition-transform duration-700" />
             </div>
           </div>
 
@@ -475,21 +630,40 @@ export default function HotelDoc() {
           <div className="flex flex-col md:flex-row-reverse items-center gap-12 lg:gap-20">
             <div className="flex-1 space-y-8 text-left">
               <span className="text-[#bc1616] font-bold text-xs tracking-[0.3em] uppercase block">Safe & Swift</span>
-              <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight uppercase tracking-tighter">Secure Booking <br /> Funnel</h3>
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight uppercase tracking-tighter">Reservation <br /> Funnel</h3>
               <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-                The checkout process is the most critical part of the user journey. I simplified the reservation flow into a single, cohesive interface that builds trust through transparency and clear visual feedback.
+                The booking flow uses an availability check, a reusable reservation modal, and clear form validation. Guests can choose between stay, tour, and event bookings, then receive a processing state and success confirmation after submitting.
               </p>
               <div className="flex gap-4 md:gap-6 pt-4 justify-start">
                 <div className="flex items-center gap-2 md:gap-3 px-4 py-2.5 md:px-5 md:py-3 rounded-xl bg-gray-100 dark:bg-white/5 text-xs md:text-sm font-bold">
-                  <CreditCard size={18} className="text-[#bc1616]" /> Multi-Payment
+                  <CreditCard size={18} className="text-[#bc1616]" /> Booking Types
                 </div>
                 <div className="flex items-center gap-3 px-4 py-2.5 md:px-5 md:py-3 rounded-xl bg-gray-100 dark:bg-white/5 text-xs md:text-sm font-bold">
-                  <Zap size={18} className="text-[#bc1616]" /> Instant Confirm
+                  <Zap size={18} className="text-[#bc1616]" /> Success Modal
                 </div>
               </div>
             </div>
             <div className="flex-1 relative group w-full">
-              <img src="/assets/luxury.png" alt="Booking UI" className="rounded-3xl group-hover:-rotate-2 transition-transform duration-700 w-full" />
+              <div className="relative mx-auto flex w-full max-w-xl flex-col items-center pb-6 pt-2 sm:pb-10">
+                <img
+                  src="/assets/check.avif"
+                  alt="Availability check screen"
+                  className="relative z-20 w-[82%] max-w-[430px] rounded-2xl shadow-2xl ring-1 ring-black/5 transition-transform duration-700 group-hover:-translate-y-1 dark:ring-white/10"
+                />
+                <div className="-mt-8 flex w-full items-start justify-center gap-4 sm:-mt-10 sm:gap-6">
+                  {[
+                    { src: "/assets/processing.avif", alt: "Booking processing screen", className: "rotate-[-3deg] group-hover:-translate-x-1" },
+                    { src: "/assets/success.avif", alt: "Booking success screen", className: "rotate-[3deg] group-hover:translate-x-1" }
+                  ].map((screen) => (
+                  <img
+                    key={screen.src}
+                    src={screen.src}
+                    alt={screen.alt}
+                    className={`relative z-10 w-[38%] max-w-[210px] rounded-2xl shadow-2xl ring-1 ring-black/5 transition-transform duration-700 dark:ring-white/10 ${screen.className}`}
+                  />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -498,7 +672,7 @@ export default function HotelDoc() {
       {/* 11. CHALLENGES & SOLUTIONS */}
       <Section>
         <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 italic uppercase tracking-tighter">The Hurdles</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase tracking-tighter">The Hurdles</h2>
           <p className="text-gray-500 uppercase tracking-widest text-xs font-mono tracking-[0.4em]">Problem Solving in Real-Time</p>
         </div>
 
@@ -508,7 +682,7 @@ export default function HotelDoc() {
             { q: "Maintaining 60FPS with heavy imagery?", a: "Used modern image formats (AVIF) and optimized lazy-loading techniques to ensure smooth scroll performance." },
             { q: "Creating a truly responsive booking flow?", a: "Designed a bottom-sheet inspired modal for mobile users that makes selection feel like a native app experience." }
           ].map((item, i) => (
-            <div key={i} className="p-6 md:p-8 rounded-2xl bg-white dark:bg-gray-900 border border-gray-100 dark:border-white/10 flex flex-col md:flex-row gap-6 md:gap-8 items-start group hover:border-[#bc1616]/50 transition-colors">
+            <div key={i} className="p-6 md:p-8 rounded-2xl bg-white dark:bg-[#101010] border border-gray-100 dark:border-[#fc3c3c]/15 flex flex-col md:flex-row gap-6 md:gap-8 items-start group hover:border-[#fc3c3c]/50 transition-colors">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#bc1616]/10 flex items-center justify-center text-[#bc1616] font-bold">0{i + 1}</div>
               <div className="text-left">
                 <h4 className="text-xl font-bold mb-3 tracking-tight">{item.q}</h4>
@@ -523,7 +697,7 @@ export default function HotelDoc() {
       <Section className="border-t border-black/5 dark:border-white/10">
         <div className="grid md:grid-cols-12 gap-12 md:gap-16">
           <div className="md:col-span-4 text-left">
-            <h2 className="text-3xl md:text-5xl font-bold leading-tight italic tracking-tighter uppercase">Final <br /> Thoughts</h2>
+            <h2 className="text-3xl md:text-5xl font-bold leading-tight tracking-tighter uppercase">Final <br /> Thoughts</h2>
           </div>
           <div className="md:col-span-8 grid sm:grid-cols-2 gap-12 md:gap-16">
             <div className="space-y-6 text-left">
@@ -547,48 +721,39 @@ export default function HotelDoc() {
       </Section>
 
       {/* 13. FINAL SHOWCASE */}
-      <Section className="text-center pt-32 pb-48 relative overflow-hidden">
-        <div>
-          <h2 className="text-5xl md:text-9xl font-black mb-12 tracking-tighter uppercase">THE <br /> <span className="text-[#bc1616] italic">MASTERPIECE</span></h2>
+      <section className="relative w-full overflow-visible pb-48 pt-32 text-center">
+        <div className="mx-auto max-w-7xl px-6 md:px-12">
+          <h2 className="text-5xl md:text-9xl font-black mb-12 tracking-tighter uppercase">THE <br /> <span className="text-[#bc1616]">MASTERPIECE</span></h2>
           <p className="text-lg md:text-xl text-gray-500 mb-16 max-w-2xl mx-auto font-medium">
             A harmonious blend of high-end aesthetics and modern frontend performance.
           </p>
+        </div>
 
-          <div className="relative mt-24 md:mt-32 scale-100 md:scale-110">
-            <div className="flex justify-center items-end gap-6 md:gap-16 relative z-10">
-              {/* Mobile */}
-              <motion.div
-                whileHover={{ y: -30 }}
-                transition={{ type: "spring", stiffness: 200 }}
-                className="w-1/3 md:w-1/5 rounded-[2.5rem] border-[8px] md:border-[10px] border-gray-900 overflow-hidden shadow-2xl translate-y-16 relative group"
-              >
-                <img src="/assets/luxury.png" alt="Mobile Showcase" className="w-full" />
-                <div className="absolute inset-0 bg-[#bc1616]/10 group-hover:opacity-0 transition-opacity" />
-              </motion.div>
-              {/* Desktop */}
-              <motion.div
-                whileHover={{ y: -15, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 100 }}
-                className="w-full md:w-[70%] rounded-3xl border-[10px] md:border-[15px] border-gray-900 overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] relative group"
-              >
-                <img src="/assets/simple.png" alt="Desktop Showcase" className="w-full" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#bc1616]/20 via-transparent to-transparent opacity-60 group-hover:opacity-0 transition-opacity" />
-              </motion.div>
-            </div>
-
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] bg-[#bc1616]/[0.03] blur-[150px] -z-10 rounded-full" />
-            <div className="absolute top-0 left-1/4 w-[1px] h-64 bg-gradient-to-b from-[#bc1616]/40 to-transparent" />
-            <div className="absolute bottom-0 right-1/4 w-[1px] h-64 bg-gradient-to-t from-[#bc1616]/40 to-transparent" />
+        <div className="relative mt-24 md:mt-32">
+          <div className="absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 overflow-hidden">
+            <div className="absolute -inset-4 bg-[url('/assets/event.avif')] bg-cover bg-center opacity-55 blur-md" />
           </div>
-
-          <div className="mt-32 md:mt-48">
-            <button className="btn-primary flex items-center gap-6 px-12 py-5 md:px-16 md:py-6 text-xl md:text-2xl rounded-full hover:px-20 transition-all duration-700 shadow-2xl shadow-[#bc1616]/20 group">
-              Experience the Live Build <ArrowRight size={28} className="group-hover:translate-x-3 transition-transform duration-500" />
-            </button>
-            <p className="mt-8 text-gray-500 font-mono text-[10px] uppercase tracking-[0.5em]">Crafted with passion • Built for excellence</p>
+          <div className="relative z-10 mx-auto grid w-full max-w-6xl grid-cols-[minmax(0,1.32fr)_minmax(0,1.03fr)] items-end justify-center gap-4 sm:gap-6 md:gap-10">
+            <img
+              src="/assets/hotel.avif"
+              alt="Hotel masterpiece full page"
+              className="h-auto w-full"
+            />
+            <img
+              src="/assets/room.avif"
+              alt="Room masterpiece full page"
+              className="h-auto w-full"
+            />
           </div>
         </div>
-      </Section>
+
+        <div className="mt-32 md:mt-48">
+          <button className="btn-primary flex items-center gap-6 px-12 py-5 md:px-16 md:py-6 text-xl md:text-2xl rounded-full hover:px-20 transition-all duration-700 shadow-2xl shadow-[#bc1616]/20 group">
+            Experience the Live Build <ArrowRight size={28} className="group-hover:translate-x-3 transition-transform duration-500" />
+          </button>
+          <p className="mt-8 text-gray-500 font-mono text-[10px] uppercase tracking-[0.5em]">Crafted with passion • Built for excellence</p>
+        </div>
+      </section>
 
     </div>
   );

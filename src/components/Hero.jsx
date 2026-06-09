@@ -80,18 +80,17 @@ export default function Hero() {
               Hi, I am Ng.
             </h3>
             <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-5 sm:mb-6 text-red dark:text-gray-100 font-nunito tracking-tight drop-shadow-sm">
-              UI/UX Developer.
+              Design Engineer.
             </h3>
             <p className="text-[15px] sm:text-base text-left md:text-justify text-gray-600 dark:text-gray-300 leading-relaxed md:leading-relaxed">
-              I'm a passionate software developer with hands-on experience in
-              building responsive, user-focused applications across web and mobile
-              platforms. I specialize in front-end development with React, Angular,
-              and Flutter, while also crafting robust back-end services using
-              Node.js and Go. With a strong eye for design and usability, I enjoy
-              creating seamless digital experiences through clean code, intuitive
-              UI/UX, and performance-optimized solutions. Whether it's prototyping,
-              debugging, or deploying, I thrive in agile environments where
-              continuous learning and collaboration drive innovation.
+              I'm a design engineer with hands-on experience building responsive,
+              user-focused applications across web and mobile platforms. I bridge
+              product design and front-end development with React, Angular, and
+              Flutter, turning ideas into polished, accessible, and performance-minded
+              digital experiences. With a strong eye for interaction details,
+              usability, and clean implementation, I enjoy moving from prototype to
+              production in collaborative environments where thoughtful design and
+              engineering work together.
             </p>
 
             {/* Button */}
@@ -159,7 +158,7 @@ export default function Hero() {
         {showScroll && (
           <motion.button
             onClick={scrollToTop}
-            className="fixed bottom-6 right-6 bg-glass dark:bg-glass text-white p-3 rounded-full shadow-lg hover:opacity-80 z-50"
+            className="fixed bottom-6 right-6 bg-glass dark:bg-glass text-white p-3 rounded-full hover:opacity-80 z-50 back-to-top-btn"
             title="Scroll to top"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -168,7 +167,7 @@ export default function Hero() {
             whileTap={{ scale: 0.9 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
           >
-            <img src="/assets/up.svg" alt="Up Arrow" className="w-6 h-6" />
+            <img src="/assets/up.svg" alt="Up Arrow" className="w-6 h-6 dark:invert" />
           </motion.button>
         )}
       </AnimatePresence>

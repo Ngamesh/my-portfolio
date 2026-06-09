@@ -1,5 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { FaMoon, FaSun } from 'react-icons/fa';
+import {
+  WiCloud,
+  WiDayCloudy,
+  WiDaySunny,
+  WiFog,
+  WiMoonAltWaxingCrescent4,
+  WiNightAltCloudy,
+  WiNightAltRain,
+  WiNightAltSnow,
+  WiNightAltThunderstorm,
+  WiRain,
+  WiSnow,
+  WiThunderstorm
+} from 'react-icons/wi';
 
 const navItems = [
   { id: 'projects', label: 'Projects' },
@@ -8,6 +22,122 @@ const navItems = [
   { id: 'education', label: 'Education' },
   { id: 'contact', label: 'Contact' }
 ];
+
+const getWeatherIcon = (code, isDay) => {
+  if (code === 0) return isDay ? WiDaySunny : WiMoonAltWaxingCrescent4;
+  if ([1, 2].includes(code)) return isDay ? WiDayCloudy : WiNightAltCloudy;
+  if (code === 3) return WiCloud;
+  if ([45, 48].includes(code)) return WiFog;
+  if ([51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82].includes(code)) return isDay ? WiRain : WiNightAltRain;
+  if ([71, 73, 75, 77, 85, 86].includes(code)) return isDay ? WiSnow : WiNightAltSnow;
+  if ([95, 96, 99].includes(code)) return isDay ? WiThunderstorm : WiNightAltThunderstorm;
+  return isDay ? WiDayCloudy : WiNightAltCloudy;
+};
+
+const fallbackWeatherLocation = {
+  latitude: -33.8688,
+  longitude: 151.2093,
+  label: 'Sydney, Australia'
+};
+
+function WeatherBadge() {
+  const [weather, setWeather] = useState({
+    status: 'loading',
+    temperature: null,
+    code: null,
+    isDay: true,
+    location: 'Current location'
+  });
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadWeather = async ({ latitude, longitude, locationLabel, reverseGeocode = true }) => {
+      try {
+        const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code,is_day&timezone=auto`;
+        const locationUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
+        const [weatherResponse, locationResponse] = await Promise.all([
+          fetch(weatherUrl),
+          reverseGeocode ? fetch(locationUrl) : Promise.resolve(null)
+        ]);
+
+        if (!weatherResponse.ok) throw new Error('Weather request failed');
+
+        const weatherData = await weatherResponse.json();
+        let location = locationLabel;
+
+        if (reverseGeocode && locationResponse?.ok) {
+          const locationData = await locationResponse.json();
+          const city = locationData.city || locationData.locality || locationData.principalSubdivision;
+          const country = locationData.countryName;
+          location = [city, country].filter(Boolean).join(', ') || locationLabel;
+        }
+
+        if (!cancelled) {
+          setWeather({
+            status: 'ready',
+            temperature: Math.round(weatherData.current.temperature_2m),
+            code: weatherData.current.weather_code,
+            isDay: weatherData.current.is_day === 1,
+            location
+          });
+        }
+      } catch {
+        if (!cancelled) {
+          setWeather({
+            status: 'unavailable',
+            temperature: null,
+            code: null,
+            isDay: true,
+            location: 'Weather unavailable'
+          });
+        }
+      }
+    };
+
+    const loadFallbackWeather = () => {
+      loadWeather({
+        ...fallbackWeatherLocation,
+        locationLabel: fallbackWeatherLocation.label,
+        reverseGeocode: false
+      });
+    };
+
+    if (!navigator.geolocation) {
+      loadFallbackWeather();
+    } else {
+      navigator.geolocation.getCurrentPosition(
+        ({ coords }) => {
+          loadWeather({
+            latitude: coords.latitude,
+            longitude: coords.longitude,
+            locationLabel: 'Current location'
+          });
+        },
+        loadFallbackWeather,
+        { enableHighAccuracy: false, maximumAge: 600000, timeout: 10000 }
+      );
+    }
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const WeatherIcon = getWeatherIcon(weather.code, weather.isDay);
+  const label = weather.status === 'ready' ? `${weather.temperature}°C` : '--°C';
+
+  return (
+    <div
+      className="flex items-center gap-1.5 rounded-md px-2 py-1 text-sm font-semibold text-black transition-colors hover:bg-black/5 dark:text-white dark:hover:bg-white/5"
+      title={weather.location}
+      aria-label={`Current weather for ${weather.location}: ${label}`}
+    >
+      <WeatherIcon className="text-2xl leading-none text-[#bc1616]" />
+      <span className="tabular-nums">{label}</span>
+    </div>
+  );
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -150,6 +280,7 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-2 md:gap-4">
+            <WeatherBadge />
             <button onClick={toggleDark} aria-label="Toggle dark mode" className="p-2 rounded-md transition-colors">
               {dark ? <FaSun className="text-white" /> : <FaMoon className="text-black" />}
             </button>

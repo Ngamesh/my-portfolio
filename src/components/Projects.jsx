@@ -32,6 +32,7 @@ export default function Projects() {
                 value="all"
                 checked={filter === "all"}
                 onChange={handleFilterChange}
+                className="accent-[var(--color-accent)]"
               />{" "}
               All
             </label>
@@ -42,6 +43,7 @@ export default function Projects() {
                 value="website"
                 checked={filter === "website"}
                 onChange={handleFilterChange}
+                className="accent-[var(--color-accent)]"
               />{" "}
               Website
             </label>
@@ -52,6 +54,7 @@ export default function Projects() {
                 value="mobile"
                 checked={filter === "mobile"}
                 onChange={handleFilterChange}
+                className="accent-[var(--color-accent)]"
               />{" "}
               Mobile App
             </label>

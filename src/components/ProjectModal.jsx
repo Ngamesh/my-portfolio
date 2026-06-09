@@ -52,14 +52,17 @@ export default function ProjectModal({ activeModal, setActiveModal }) {
     <AnimatePresence>
       {activeModal && (
         <motion.div
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm flex justify-center items-center z-[99990]"
+          className="fixed inset-0 bg-black/15 flex justify-center items-center z-[99990]"
+          onClick={closeModal}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
           <motion.div
             className="glass rounded-2xl w-11/12 md:w-[90%] lg:w-[85%] max-w-[1400px]
-                       max-h-[90vh] overflow-y-auto overscroll-contain relative text-left custom-scrollbar"
+                       max-h-[90vh] overflow-y-auto overscroll-contain relative text-left custom-scrollbar
+                       !bg-white/58 dark:!bg-black/52 !backdrop-blur-2xl border border-white/45 dark:border-white/15 shadow-[0_24px_80px_rgba(0,0,0,0.28)]"
+            onClick={(event) => event.stopPropagation()}
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 50, opacity: 0 }}

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Code, ChevronDown } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence, useAnimationControls } from "framer-motion";
+import { Code, ChevronsDown } from "lucide-react";
 
 const otherProjects = [
     {
@@ -56,6 +56,30 @@ const otherProjects = [
 
 export default function ViewMore({ filter }) {
     const [isOpen, setIsOpen] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
+    const idleControls = useAnimationControls();
+    const revealVariants = {
+        hidden: { opacity: 0, y: 40 },
+        show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+    };
+
+    useEffect(() => {
+        if (isOpen) {
+            idleControls.start({ y: 0, scale: 1, transition: { duration: 0.2 } });
+            return;
+        }
+
+        if (isHovered) {
+            idleControls.stop();
+            return;
+        }
+
+        idleControls.start({
+            y: [0, -10, 0],
+            scale: [1, 1.12, 1],
+            transition: { duration: 1.4, repeat: Infinity, ease: "easeInOut" },
+        });
+    }, [idleControls, isHovered, isOpen]);
 
     const filteredProjects = otherProjects.filter(project =>
         filter === "all" || project.category === filter
@@ -64,7 +88,33 @@ export default function ViewMore({ filter }) {
     if (filteredProjects.length === 0) return null;
 
     return (
-        <div>
+        <div className="mb-16 sm:mb-24 md:mb-32">
+
+            {/* Toggle Button with Chevron */}
+            <motion.div
+                className={`flex justify-center mt-4 ${isOpen ? "mb-10" : ""}`}
+                variants={revealVariants}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "0px 0px -220px 0px" }}
+            >
+                <motion.button
+                    onClick={() => setIsOpen(!isOpen)}
+                    onHoverStart={() => setIsHovered(true)}
+                    onHoverEnd={() => setIsHovered(false)}
+                    className="group flex flex-col items-center gap-2 text-black dark:text-white hover:text-red-500 transition-colors duration-300"
+                    animate={idleControls}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    <span className="text-xs font-bold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        {isOpen ? "Collapse" : "Expand"}
+                    </span>
+                    <ChevronsDown
+                        size={32}
+                        className={`transition-all duration-300 transform ${isOpen ? "rotate-180 text-red-500" : "rotate-0"}`}
+                    />
+                </motion.button>
+            </motion.div>
 
             {/* Collapsible Content */}
             <AnimatePresence>
@@ -73,7 +123,8 @@ export default function ViewMore({ filter }) {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                        transition={{ duration: 0.35, ease: "easeInOut" }}
+                        className="overflow-hidden"
                     >
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 px-0 sm:px-4 pb-10">
                             {filteredProjects.map((project, index) => (
@@ -139,24 +190,6 @@ export default function ViewMore({ filter }) {
                     </motion.div>
                 )}
             </AnimatePresence>
-
-            {/* Toggle Button with Chevron */}
-            <div className="flex justify-center mt-4">
-                <motion.button
-                    onClick={() => setIsOpen(!isOpen)}
-                    className="group flex flex-col items-center gap-2 text-gray-500 hover:text-red-500 transition-colors duration-300"
-                    whileHover={{ y: 5 }}
-                >
-                    <span className="text-xs font-bold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        {isOpen ? "Collapse" : "Expand"}
-                    </span>
-                    <ChevronDown
-                        size={32}
-                        className={`transition-transform duration-500 ${isOpen ? "rotate-180 text-red-500" : "rotate-0"
-                            }`}
-                    />
-                </motion.button>
-            </div>
         </div>
     );
 }
