@@ -15,18 +15,18 @@ export default function SparkSection({ onOpenModal }) {
                 whileInView="show"
                 viewport={{ once: true, margin: "-100px" }}
             >
-                <h5 className="leading-relaxed tracking-wide text-xl sm:text-2xl font-semibold text-gray-700 dark:text-gray-100 drop-shadow-lg">
+                <h5 className="leading-snug text-xl max-[639px]:text-lg sm:text-2xl font-semibold text-gray-700 dark:text-gray-100 drop-shadow-lg">
                     <span className="font-light">Share the</span>
                     <span className="font-bold"> SPARK </span>
                 </h5>
-                <div className="leading-relaxed tracking-wide text-base text-gray-600 dark:text-gray-300 mt-3">
+                <div className="text-justify leading-relaxed max-[639px]:leading-6 text-base max-[639px]:text-sm text-gray-600 dark:text-gray-300 mt-3">
                     <a>
                         A robust <strong>Admin Dashboard</strong> built with <strong>Flutter</strong> and <strong>Supabase</strong> for managing
                         mentorship programs and platform events. Implemented with <strong>Clean Architecture</strong> (DDD), it features
                         real-time data synchronization and complex administrative grids.
                     </a>
                 </div>
-                <ul className="leading-relaxed tracking-wide text-sm text-gray-600 dark:text-gray-300 mt-3 list-disc list-outside pl-5">
+                <ul className="leading-relaxed max-[639px]:leading-5 text-sm max-[639px]:text-xs text-gray-600 dark:text-gray-300 mt-3 list-disc list-outside pl-5">
                     <li>Cross-platform dashboard with Responsive Data Tables</li>
                     <li>Real-time state management using Riverpod</li>
                     <li>Hybrid Cloud integration (Supabase + Firebase)</li>

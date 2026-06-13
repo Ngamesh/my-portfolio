@@ -126,7 +126,7 @@ export default function ResumeSection() {
       <div className="w-full">
         {/* ========================= TECH STACK ========================= */}
         <div id="skills" className="mb-24 sm:mb-32 md:mb-40 scroll-mt-28">
-          <h3 className="text-xl sm:text-2xl font-bold mb-10 flex items-center gap-2 text-gray-800 dark:text-gray-100">
+          <h3 className="text-xl max-[639px]:text-lg sm:text-2xl font-bold mb-10 max-[639px]:mb-8 flex items-center gap-2 text-gray-800 dark:text-gray-100">
             TECH STACK
             <span className="flex-1 border-b border-gray-400 dark:border-gray-600"></span>
           </h3>
@@ -145,10 +145,10 @@ export default function ResumeSection() {
               >
                 <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 px-4 sm:px-6 pt-5 pb-3">
                   <div>
-                    <h4 className="text-base sm:text-lg font-bold tracking-wider uppercase text-gray-800 dark:text-gray-100">
+                    <h4 className="text-base max-[639px]:text-sm sm:text-lg font-bold uppercase text-gray-800 dark:text-gray-100">
                       {section.title}
                     </h4>
-                    <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
+                    <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1 max-[639px]:leading-5">
                       {section.summary}
                     </p>
                   </div>
@@ -167,7 +167,7 @@ export default function ResumeSection() {
 
         {/* ========================= EXPERIENCES ========================= */}
         <div id="experience" className="mb-24 sm:mb-32 md:mb-40 scroll-mt-28">
-          <h3 className="text-xl sm:text-2xl font-bold mb-10 flex items-center gap-2 text-gray-800 dark:text-gray-100">
+          <h3 className="text-xl max-[639px]:text-lg sm:text-2xl font-bold mb-10 max-[639px]:mb-8 flex items-center gap-2 text-gray-800 dark:text-gray-100">
             EXPERIENCES
             <span className="flex-1 border-b border-gray-400 dark:border-gray-600"></span>
           </h3>
@@ -189,23 +189,23 @@ export default function ResumeSection() {
               </div>
 
               <div className="flex-1 text-center md:text-left min-w-0">
-                <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
+                <h4 className="text-lg max-[639px]:text-base font-semibold text-gray-800 dark:text-gray-100">
                   DigiHawk
                 </h4>
-                <p className="text-sm italic text-gray-500 dark:text-gray-400">
+                <p className="text-sm max-[639px]:text-xs italic text-gray-500 dark:text-gray-400">
                   Jan 2021 – Nov 2021
                 </p>
-                <p className="text-md font-medium text-gray-700 dark:text-gray-300 mt-1">
+                <p className="text-base max-[639px]:text-sm font-medium text-gray-700 dark:text-gray-300 mt-1">
                   Front-End Developer
                 </p>
-                <p className="text-sm text-left md:text-justify text-gray-600 dark:text-gray-400 mt-2 max-w-xl leading-relaxed mx-auto md:mx-0">
+                <p className="text-sm text-justify text-gray-600 dark:text-gray-400 mt-2 max-w-xl leading-relaxed max-[639px]:leading-6 mx-auto md:mx-0">
                   Contributed to the development of responsive web applications and user interfaces
                   in a collaborative, remote-first environment. Worked closely with designers and
                   development teams to transform design concepts into functional, user-friendly
                   digital experiences while maintaining performance, accessibility, and cross-browser
                   compatibility.
                 </p>
-                <ul className="text-sm text-left text-gray-600 dark:text-gray-400 mt-3 max-w-xl leading-relaxed mx-auto md:mx-0 list-disc list-outside pl-5">
+                <ul className="text-sm max-[639px]:text-[13px] text-left text-gray-600 dark:text-gray-400 mt-3 max-w-xl leading-relaxed max-[639px]:leading-5 mx-auto md:mx-0 list-disc list-outside pl-5">
                   <li>Developed responsive web interfaces using modern frontend technologies.</li>
                   <li>Converted UI/UX designs and wireframes into interactive, production-ready web pages.</li>
                   <li>Collaborated with designers and backend developers to implement new features.</li>
@@ -231,23 +231,23 @@ export default function ResumeSection() {
               </div>
 
               <div className="flex-1 text-center md:text-left min-w-0">
-                <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
+                <h4 className="text-lg max-[639px]:text-base font-semibold text-gray-800 dark:text-gray-100">
                   Personal Projects & Continuous Learning
                 </h4>
-                <p className="text-sm italic text-gray-500 dark:text-gray-400">
+                <p className="text-sm max-[639px]:text-xs italic text-gray-500 dark:text-gray-400">
                   Sep 2024 – Present
                 </p>
-                <p className="text-md font-medium text-gray-700 dark:text-gray-300 mt-1">
+                <p className="text-base max-[639px]:text-sm font-medium text-gray-700 dark:text-gray-300 mt-1">
                   Design Engineer
                 </p>
-                <p className="text-sm text-left md:text-justify text-gray-600 dark:text-gray-400 mt-2 max-w-xl leading-relaxed mx-auto md:mx-0">
+                <p className="text-sm text-justify text-gray-600 dark:text-gray-400 mt-2 max-w-xl leading-relaxed max-[639px]:leading-6 mx-auto md:mx-0">
                   Focused on bridging design and engineering through self-directed learning, design
                   challenges, and personal projects. Combined user-centered design principles with
                   front-end implementation to create polished, responsive, and accessible digital
                   products while improving interaction details, visual systems, and modern development
                   workflows.
                 </p>
-                <ul className="text-sm text-left text-gray-600 dark:text-gray-400 mt-3 max-w-xl leading-relaxed mx-auto md:mx-0 list-disc list-outside pl-5">
+                <ul className="text-sm max-[639px]:text-[13px] text-left text-gray-600 dark:text-gray-400 mt-3 max-w-xl leading-relaxed max-[639px]:leading-5 mx-auto md:mx-0 list-disc list-outside pl-5">
                   <li>Designed and developed web and mobile application concepts using Figma and modern front-end tools.</li>
                   <li>Created wireframes, user flows, mockups, and interactive prototypes, including a fitness tracking application concept.</li>
                   <li>Translated design concepts into responsive, production-minded interfaces.</li>
@@ -269,7 +269,7 @@ export default function ResumeSection() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <h3 className="text-xl sm:text-2xl font-bold mb-10 flex items-center gap-2 text-gray-800 dark:text-gray-100">
+          <h3 className="text-xl max-[639px]:text-lg sm:text-2xl font-bold mb-10 max-[639px]:mb-8 flex items-center gap-2 text-gray-800 dark:text-gray-100">
             EDUCATION
             <span className="flex-1 border-b border-gray-400 dark:border-gray-600"></span>
           </h3>
@@ -294,23 +294,23 @@ export default function ResumeSection() {
 
                 <div className="relative flex flex-grow flex-col bg-gray-50/70 p-5 sm:p-6 dark:bg-white/[0.035]">
                   <div className="relative">
-                    <div className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#bc1616]">
+                    <div className="mb-3 flex items-center gap-2 text-xs font-bold uppercase text-[#bc1616]">
                       <GraduationCap className="h-4 w-4" />
                       Education
                     </div>
-                    <h4 className="text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-100 leading-tight text-left">
+                    <h4 className="text-lg max-[639px]:text-base sm:text-xl font-bold text-gray-800 dark:text-gray-100 leading-tight text-left">
                       {item.degree}
                     </h4>
-                    <p className="mt-2 text-sm font-semibold text-gray-600 dark:text-gray-300 text-left">
+                    <p className="mt-2 text-sm max-[639px]:text-xs font-semibold text-gray-600 dark:text-gray-300 text-left">
                       {item.institution}
                     </p>
-                    <div className="mt-4 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                    <div className="mt-4 flex items-center gap-2 text-sm max-[639px]:text-xs text-gray-500 dark:text-gray-400">
                       <CalendarDays className="h-4 w-4 text-[#bc1616]" />
                       <span>{item.dates}</span>
                     </div>
                   </div>
 
-                  <p className="relative mt-5 text-sm text-left text-gray-600 dark:text-gray-400 leading-relaxed">
+                  <p className="relative mt-5 text-sm text-justify text-gray-600 dark:text-gray-400 leading-relaxed max-[639px]:leading-6">
                     {item.focus}
                   </p>
                 </div>

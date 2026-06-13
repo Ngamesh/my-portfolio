@@ -20,18 +20,18 @@ export default function FGASection({ onOpenModal }) {
                 whileInView="show"
                 viewport={{ once: true, margin: "-100px" }}
             >
-                <h5 className="text-xl sm:text-2xl font-semibold text-gray-700 dark:text-gray-100 drop-shadow-lg leading-relaxed tracking-wide">
+                <h5 className="text-xl max-[639px]:text-lg sm:text-2xl font-semibold text-gray-700 dark:text-gray-100 drop-shadow-lg leading-snug">
                     <span className="font-bold">FGA </span>
                     <span className="font-light">– Fitness Gym App</span>
                 </h5>
-                <div className="tracking-wide text-base text-gray-600 dark:text-gray-300 mt-3 leading-relaxed">
+                <div className="text-justify text-base max-[639px]:text-sm text-gray-600 dark:text-gray-300 mt-3 leading-relaxed max-[639px]:leading-6">
                     <a>
                         A high-performance <strong>Flutter</strong> mobile application designed for comprehensive gym management.
                         Translated from complex <strong>Adobe XD</strong> designs, it features workout discovery, nutritional tracking (Loose Fat, Shredd),
                         and gamified fitness scoring for an engaging user experience.
                     </a>
                 </div>
-                <ul className="tracking-wide text-sm text-gray-600 dark:text-gray-300 mt-3 list-disc list-outside pl-5 leading-relaxed">
+                <ul className="text-sm max-[639px]:text-[13px] text-gray-600 dark:text-gray-300 mt-3 list-disc list-outside pl-5 leading-relaxed max-[639px]:leading-5">
                     <li>Native 60FPS performance on iOS and Android</li>
                     <li>Advanced UI patterns using Flutter Stack and Pinned layouts</li>
                     <li>Integrated media tutorials with Chewie and Video Player</li>

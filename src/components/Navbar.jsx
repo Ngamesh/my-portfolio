@@ -144,6 +144,17 @@ export default function Navbar() {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
+    if (sessionStorage.getItem('scrollToTopAfterReload') !== 'true') return;
+
+    sessionStorage.removeItem('scrollToTopAfterReload');
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'auto';
+    }
+  }, []);
+
+  useEffect(() => {
     // Check initial theme on mount to sync the icon
     const isDark = localStorage.getItem('theme') === 'dark' || document.documentElement.classList.contains('dark');
     setDark(isDark);
@@ -221,6 +232,46 @@ export default function Navbar() {
     audio.play().catch(err => console.log("Audio play failed:", err));
   }
 
+  function scrollToTopSmoothly(onComplete) {
+    const start = window.pageYOffset;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (start <= 2 || reduceMotion) {
+      window.scrollTo(0, 0);
+      onComplete();
+      return;
+    }
+
+    const duration = 800;
+    let startTime = null;
+
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const ease = 0.5 - Math.cos(progress * Math.PI) / 2;
+      window.scrollTo(0, start * (1 - ease));
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        onComplete();
+      }
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  function handleBrandClick() {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    setIsMenuOpen(false);
+    sessionStorage.setItem('scrollToTopAfterReload', 'true');
+    scrollToTopSmoothly(() => window.location.reload());
+  }
+
   function scrollToId(id) {
     const el = document.getElementById(id);
     if (!el) return;
@@ -243,12 +294,12 @@ export default function Navbar() {
 
   return (
     <nav className={`fixed left-0 right-0 z-[9999] top-3 sm:top-4 mx-auto max-w-[1200px] px-3 sm:px-4 transition-all duration-300 ${scrolled ? 'opacity-100' : 'opacity-95'}`}>
-      <div className={`glass flex flex-col rounded-xl overflow-hidden transition-all duration-300 ${scrolled ? 'shadow-lg' : ''}`}>
+      <div className={`glass flex flex-col overflow-hidden rounded-xl text-black transition-all duration-300 dark:text-white ${scrolled ? 'shadow-lg' : ''}`}>
         <div className="flex items-center justify-between gap-3 p-3">
           <div className="flex items-center gap-4">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-md md:hidden hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              className="p-2 rounded-md text-black hover:bg-gray-100 transition-[background-color] md:hidden dark:text-white dark:hover:bg-gray-800"
               aria-label="Toggle menu"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -260,8 +311,8 @@ export default function Navbar() {
               </svg>
             </button>
             <button
-              onClick={() => window.location.reload()}
-              className="text-sm font-semibold tracking-wide uppercase hover:text-red-500 transition-colors cursor-pointer"
+              onClick={handleBrandClick}
+              className="text-sm font-bold uppercase text-black cursor-pointer dark:text-white"
             >
               Ngamesh
             </button>
@@ -272,7 +323,7 @@ export default function Navbar() {
               <button 
                 key={item.id} 
                 onClick={() => scrollToId(item.id)} 
-                className={`hover:text-red-500 transition-colors duration-200 font-medium ${activeSection === item.id ? 'text-red-500' : ''}`}
+                className={`font-medium text-black transition-colors duration-200 hover:text-red-500 dark:text-white ${activeSection === item.id ? '!text-red-500' : ''}`}
               >
                 {item.label}
               </button>
@@ -287,7 +338,7 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={e => { e.preventDefault(); scrollToId('contact'); }}
-              className="text-sm hidden md:inline-block hover:text-red-500 font-medium transition-all hover:underline"
+              className="hidden text-sm font-medium !text-black transition-all hover:!text-red-500 hover:underline dark:!text-white md:inline-block"
             >
               Hire Me
             </a>
@@ -296,14 +347,14 @@ export default function Navbar() {
 
         {/* Mobile Menu Overlay */}
         <div
-          className={`md:hidden flex flex-col bg-white/10 backdrop-blur-md transition-all duration-300 ease-in-out border-t border-white/10 ${isMenuOpen ? 'max-h-64 opacity-100 py-4' : 'max-h-0 opacity-0 overflow-hidden'
+          className={`md:hidden flex flex-col bg-white/10 backdrop-blur-md transition-all duration-300 ease-in-out border-t border-white/10 ${isMenuOpen ? 'max-h-[calc(100dvh-6rem)] opacity-100 py-4 overflow-y-auto overscroll-contain' : 'max-h-0 opacity-0 overflow-hidden'
             }`}
         >
           {navItems.map(item => (
             <button
               key={item.id}
               onClick={() => scrollToId(item.id)}
-              className={`py-3 px-5 sm:px-6 text-left text-sm font-medium hover:bg-white/5 transition-colors ${activeSection === item.id ? 'text-red-500' : ''}`}
+              className={`shrink-0 py-3 px-5 text-left text-sm font-medium text-black transition-colors hover:bg-white/5 dark:text-white sm:px-6 ${activeSection === item.id ? '!text-red-500' : ''}`}
             >
               {item.label}
             </button>
@@ -311,7 +362,7 @@ export default function Navbar() {
           <a
             href="#contact"
             onClick={e => { e.preventDefault(); scrollToId('contact'); }}
-            className="py-3 px-5 sm:px-6 text-left text-sm font-bold text-red-500 hover:bg-white/5 transition-colors"
+            className="shrink-0 py-3 px-5 text-left text-sm font-bold !text-red-500 transition-colors hover:bg-white/5 dark:!text-white sm:px-6"
           >
             Hire Me
           </a>

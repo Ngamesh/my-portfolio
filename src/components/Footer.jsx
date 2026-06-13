@@ -39,14 +39,14 @@ export default function Footer() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-2 text-black dark:text-white tracking-tight">
+            <h2 className="text-4xl max-[639px]:text-3xl sm:text-5xl md:text-6xl font-extrabold mb-2 text-black dark:text-white">
               Have an idea?
             </h2>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-8 text-[#bc1616] tracking-tight">
+            <h2 className="text-3xl max-[639px]:text-2xl sm:text-4xl md:text-5xl font-extrabold mb-8 max-[639px]:mb-6 text-[#bc1616]">
               Let's build together.
             </h2>
 
-            <form onSubmit={handleContact} className="space-y-8 mt-8">
+            <form onSubmit={handleContact} className="space-y-8 max-[639px]:space-y-6 mt-8 max-[639px]:mt-6">
               <div className="relative">
                 <input
                   type="email"
@@ -54,7 +54,7 @@ export default function Footer() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="block w-full bg-transparent border-0 border-b-2 border-gray-300 dark:border-gray-700 py-2 px-0 text-inherit placeholder-gray-900 dark:placeholder-gray-400 outline-none focus:ring-0 focus:border-[#bc1616] transition-colors"
+                  className="block w-full bg-transparent border-0 border-b-2 border-gray-300 dark:border-gray-700 py-2 px-0 text-base max-[639px]:text-sm placeholder-gray-900 dark:placeholder-gray-400 outline-none focus:ring-0 focus:border-[#bc1616] transition-colors"
                   placeholder="Your Email"
                 />
               </div>
@@ -66,7 +66,7 @@ export default function Footer() {
                   onChange={handleChange}
                   required
                   rows="1"
-                  className="block w-full bg-transparent border-0 border-b-2 border-gray-300 dark:border-gray-700 py-2 px-0 text-inherit placeholder-gray-900 dark:placeholder-gray-400 outline-none focus:ring-0 focus:border-[#bc1616] transition-colors resize-none overflow-hidden"
+                  className="block w-full bg-transparent border-0 border-b-2 border-gray-300 dark:border-gray-700 py-2 px-0 text-base max-[639px]:text-sm placeholder-gray-900 dark:placeholder-gray-400 outline-none focus:ring-0 focus:border-[#bc1616] transition-colors resize-none overflow-hidden"
                   placeholder="Message"
                   onInput={(e) => {
                     e.target.style.height = "auto";
@@ -97,10 +97,10 @@ export default function Footer() {
             viewport={{ once: true }}
           >
             <div>
-              <h3 className="text-lg font-semibold text-black dark:text-white mb-4 uppercase tracking-wider">
+              <h3 className="text-lg max-[639px]:text-base font-semibold text-black dark:text-white mb-4 max-[639px]:mb-3 uppercase">
                 Stay Updated
               </h3>
-              <p className="text-gray-500 dark:text-gray-400 mb-6 leading-relaxed">
+              <p className="text-base max-[639px]:text-sm text-gray-500 dark:text-gray-400 mb-6 max-[639px]:mb-5 leading-relaxed max-[639px]:leading-6">
                 Subscribe to my newsletter for the latest articles, design resources, and project updates.
               </p>
               <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -110,7 +110,7 @@ export default function Footer() {
                     value={subscribeEmail}
                     onChange={(e) => setSubscribeEmail(e.target.value)}
                     required
-                    className="w-full bg-gray-100 dark:bg-[#1a1a1a] border border-transparent focus:border-[#bc1616] rounded-lg px-4 py-3 text-black dark:text-white outline-none transition-all"
+                    className="w-full bg-gray-100 dark:bg-[#1a1a1a] border border-transparent focus:border-[#bc1616] rounded-lg px-4 py-3 text-base max-[639px]:text-sm text-black dark:text-white outline-none transition-all"
                     placeholder="Email address"
                   />
                 </div>
@@ -126,23 +126,23 @@ export default function Footer() {
             </div>
 
             <div className="mt-16 md:mt-10">
-              <h3 className="text-lg font-semibold text-black dark:text-white mb-6 uppercase tracking-wider">
+              <h3 className="text-lg max-[639px]:text-base font-semibold text-black dark:text-white mb-6 max-[639px]:mb-5 uppercase">
                 Get Connected
               </h3>
               <div className="flex gap-4 sm:gap-6 justify-start">
-                <motion.a href="#" className="social-icon instagram scale-100 sm:scale-115" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.9 }}>
+                <motion.a href="https://instagram.com/ngameshb" aria-label="Instagram" target="_blank" rel="noreferrer" className="social-icon instagram scale-100 sm:scale-115" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.9 }}>
                   <img src="/assets/insta.svg" alt="Instagram" className="icon-svg" />
                 </motion.a>
-                <motion.a href="#" className="social-icon linkedin scale-100 sm:scale-115" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.9 }}>
+                <motion.a href="https://linkedin.com/in/ngamesh" aria-label="LinkedIn" target="_blank" rel="noreferrer" className="social-icon linkedin scale-100 sm:scale-115" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.9 }}>
                   <img src="/assets/lin.svg" alt="LinkedIn" className="icon-svg" />
                 </motion.a>
-                <motion.a href="#" className="social-icon youtube scale-100 sm:scale-115" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.9 }}>
+                <motion.a href="https://youtube.com/@ngamesh" aria-label="YouTube" target="_blank" rel="noreferrer" className="social-icon youtube scale-100 sm:scale-115" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.9 }}>
                   <img src="/assets/yt.svg" alt="YouTube" className="icon-svg" />
                 </motion.a>
-                <motion.a href="#" className="social-icon discord scale-100 sm:scale-115" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.9 }}>
-                  <img src="/assets/dis.svg" alt="Discord" className="icon-svg" />
+                <motion.a href="https://facebook.com/ngameshb" aria-label="Facebook" target="_blank" rel="noreferrer" className="social-icon facebook scale-100 sm:scale-115" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.9 }}>
+                  <img src="/assets/fb.svg" alt="Facebook" className="icon-svg" />
                 </motion.a>
-                <motion.a href="#" className="social-icon github scale-100 sm:scale-115" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.9 }}>
+                <motion.a href="https://github.com/ngamesh" aria-label="GitHub" target="_blank" rel="noreferrer" className="social-icon github scale-100 sm:scale-115" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.9 }}>
                   <img src="/assets/git.svg" alt="GitHub" className="icon-svg" />
                 </motion.a>
               </div>

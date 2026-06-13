@@ -44,7 +44,7 @@
 
   /* Typography Scales */
   --text-sm: 0.875rem;
-  --text-lg: 1.3rem;
+  --text-lg: 1.125rem;
   --text-2xl: 1.5rem;
   --text-3xl: 1.875rem;
   --text-4xl: 2.25rem;
@@ -109,29 +109,55 @@ h5,
 h6 {
   font-family: var(--font-heading);
   color: var(--color-text);
+  letter-spacing: 0;
+  line-height: 1.12;
+  text-wrap: balance;
 }
 
 p {
-  text-align: left;
+  text-align: justify;
+  text-align-last: left;
   color: var(--color-text-muted);
+  letter-spacing: 0;
+  line-height: 1.65;
 }
 
-@media (min-width: 768px) {
-  p {
-    text-align: justify;
-  }
+.text-justify {
+  text-align: justify;
+  text-align-last: left;
 }
 
 li {
-  text-align: justify;
+  text-align: left;
   color: var(--color-text-alt);
+  letter-spacing: 0;
+  line-height: 1.6;
 }
 
 a {
-  font-size: 17px;
+  font-size: inherit;
   color: var(--color-text);
+  letter-spacing: 0;
   text-decoration-thickness: 1px;
   transition: color var(--transition-fast);
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+  letter-spacing: 0;
+}
+
+@media (max-width: 639px) {
+  p {
+    line-height: 1.58;
+  }
+
+  li {
+    line-height: 1.5;
+  }
 }
 
 .text-sm {
@@ -286,8 +312,8 @@ a {
   filter: invert(16%) sepia(98%) saturate(7264%) hue-rotate(356deg) brightness(100%) contrast(95%);
 }
 
-.social-icon.discord:hover img {
-  filter: invert(47%) sepia(82%) saturate(1720%) hue-rotate(222deg) brightness(92%) contrast(98%);
+.social-icon.facebook:hover img {
+  filter: invert(35%) sepia(91%) saturate(1550%) hue-rotate(196deg) brightness(93%) contrast(95%);
 }
 
 .social-icon.github:hover img {
@@ -312,8 +338,8 @@ a {
   filter: brightness(0) saturate(100%) invert(100%) drop-shadow(0 0 6px #ff0000) drop-shadow(0 0 14px #ff0000);
 }
 
-.dark .social-icon.discord:hover img {
-  filter: brightness(0) saturate(100%) invert(100%) drop-shadow(0 0 6px #5865f2) drop-shadow(0 0 14px #5865f2);
+.dark .social-icon.facebook:hover img {
+  filter: brightness(0) saturate(100%) invert(100%) drop-shadow(0 0 6px #1877f2) drop-shadow(0 0 14px #1877f2);
 }
 
 .dark .social-icon.github:hover img {

@@ -53,6 +53,74 @@
   box-shadow: 0 10px 30px rgba(255, 255, 255, 0.07);
 }
 
+.modal-header h2 {
+  line-height: 1.2;
+}
+
+/* ===========================
+   Project Documentation Typography
+=========================== */
+.project-doc,
+.project-case-study {
+  letter-spacing: 0;
+}
+
+.project-doc section {
+  padding: 0.375rem 0;
+}
+
+.project-doc h3 {
+  font-size: clamp(1rem, 0.92rem + 0.35vw, 1.25rem);
+  line-height: 1.25;
+}
+
+.project-doc p {
+  font-size: clamp(0.875rem, 0.84rem + 0.18vw, 1rem);
+  line-height: 1.65;
+  text-align: justify;
+  text-align-last: left;
+}
+
+.project-doc li {
+  font-size: clamp(0.875rem, 0.84rem + 0.18vw, 1rem);
+  line-height: 1.65;
+  text-align: left;
+}
+
+.project-doc ul {
+  line-height: 1.65;
+}
+
+.project-case-study p {
+  text-align: justify;
+  text-align-last: left;
+}
+
+.project-case-study li {
+  text-align: left;
+}
+
+.project-case-study .font-mono,
+.project-doc .font-mono {
+  line-height: 1.5;
+}
+
+@media (max-width: 639px) {
+  .modal-header {
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    margin: 0.75rem;
+  }
+
+  .project-doc p,
+  .project-doc li,
+  .project-case-study p,
+  .project-case-study li {
+    line-height: 1.55;
+  }
+}
+
 /* ===========================
    Close Button Styling
 =========================== */

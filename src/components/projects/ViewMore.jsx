@@ -106,7 +106,7 @@ export default function ViewMore({ filter }) {
                     animate={idleControls}
                     whileTap={{ scale: 0.95 }}
                 >
-                    <span className="text-xs font-bold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="text-xs font-bold uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         {isOpen ? "Collapse" : "Expand"}
                     </span>
                     <ChevronsDown
@@ -146,14 +146,14 @@ export default function ViewMore({ filter }) {
 
                                     {/* Project Details */}
                                     <div className="p-5 sm:p-6 flex flex-col flex-grow min-w-0">
-                                        <h5 className="text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-100 mb-2 break-words">
+                                        <h5 className="text-lg max-[639px]:text-base sm:text-xl font-bold text-gray-800 dark:text-gray-100 mb-2 break-words">
                                             {project.title}
                                         </h5>
-                                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 text-left md:text-justify">
+                                        <p className="text-sm max-[639px]:text-xs text-gray-600 dark:text-gray-400 mb-4 text-justify leading-relaxed max-[639px]:leading-5">
                                             {project.description}
                                         </p>
 
-                                        <ul className="text-xs text-gray-500 dark:text-gray-400 space-y-2 mb-6 flex-grow">
+                                        <ul className="text-xs max-[639px]:text-[11px] text-gray-500 dark:text-gray-400 space-y-2 mb-6 flex-grow max-[639px]:leading-5">
                                             {project.bullets.map((bullet, i) => (
                                                 <li key={i} className="flex gap-2">
                                                     <span className="text-red-500">•</span>
@@ -167,7 +167,7 @@ export default function ViewMore({ filter }) {
                                             {project.tech.map((tech, i) => (
                                                 <span
                                                     key={i}
-                                                    className="px-2 py-1 text-[10px] uppercase font-bold tracking-wider bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 rounded"
+                                                    className="px-2 py-1 text-[10px] uppercase font-bold bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 rounded"
                                                 >
                                                     {tech}
                                                 </span>

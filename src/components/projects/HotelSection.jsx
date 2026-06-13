@@ -21,18 +21,18 @@ export default function HotelSection({ onOpenModal }) {
                 whileInView="show"
                 viewport={{ once: true, margin: "-100px" }}
             >
-                <h5 className="text-xl sm:text-2xl font-semibold text-gray-700 dark:text-gray-100 drop-shadow-lg leading-relaxed tracking-wide">
+                <h5 className="text-xl max-[639px]:text-lg sm:text-2xl font-semibold text-gray-700 dark:text-gray-100 drop-shadow-lg leading-snug">
                     <span className="font-bold">Hotel </span>
                     <span className="font-light">– Luxury Booking Platform</span>
                 </h5>
-                <div className="text-left sm:text-center text-base text-gray-600 dark:text-gray-300 mt-3 leading-relaxed tracking-wide max-w-2xl mx-auto">
+                <div className="text-justify text-base max-[639px]:text-sm text-gray-600 dark:text-gray-300 mt-3 leading-relaxed max-[639px]:leading-6 max-w-2xl mx-auto">
                     <a>
                         Developed a premium multi-page booking platform for a luxury hotel in
                         <strong> Pokhara, Lakeside</strong>. Built with <strong>Bootstrap 4</strong> and <strong>jQuery</strong>, the platform
                         delivers a high-fidelity experience with integrated room discovery, service galleries, and a centralized reservation system.
                     </a>
                 </div>
-                <ul className="tracking-wide text-sm text-gray-600 dark:text-gray-300 mt-3 list-disc list-outside text-left max-w-2xl mx-auto pl-5">
+                <ul className="text-sm max-[639px]:text-[13px] text-gray-600 dark:text-gray-300 mt-3 list-disc list-outside text-left max-w-2xl mx-auto pl-5 leading-relaxed max-[639px]:leading-5">
                     <li>Real-time availability checker and booking modal flow</li>
                     <li>Smooth room transitions using Owl Carousel</li>
                     <li>Guided browsing experience with AOS (Animate on Scroll)</li>

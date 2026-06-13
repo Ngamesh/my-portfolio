@@ -76,13 +76,13 @@ export default function Hero() {
         {/* Left: intro card */}
         <div className="md:col-span-1 lg:col-span-2 flex justify-center md:justify-start w-full order-2 md:order-1">
           <div className="p-0 sm:p-0 md:p-0 w-full max-w-4xl">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 text-black dark:text-gray-100 font-nunito tracking-tight">
+            <h3 className="text-2xl max-[639px]:text-xl sm:text-3xl md:text-4xl font-extrabold mb-4 max-[639px]:mb-3 text-black dark:text-gray-100 font-nunito">
               Hi, I am Ng.
             </h3>
-            <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-5 sm:mb-6 text-red dark:text-gray-100 font-nunito tracking-tight drop-shadow-sm">
+            <h3 className="text-3xl max-[639px]:text-2xl sm:text-4xl md:text-5xl font-extrabold mb-5 max-[639px]:mb-4 sm:mb-6 text-red dark:text-gray-100 font-nunito drop-shadow-sm">
               Design Engineer.
             </h3>
-            <p className="text-[15px] sm:text-base text-left md:text-justify text-gray-600 dark:text-gray-300 leading-relaxed md:leading-relaxed">
+            <p className="text-[15px] max-[639px]:text-sm sm:text-base text-justify text-gray-600 dark:text-gray-300 leading-relaxed max-[639px]:leading-6">
               I'm a design engineer with hands-on experience building responsive,
               user-focused applications across web and mobile platforms. I bridge
               product design and front-end development with React, Angular, and
@@ -96,7 +96,7 @@ export default function Hero() {
             {/* Button */}
             <div className="mt-8 sm:mt-10 flex justify-start">
               <motion.button 
-                className="btn-primary text-base sm:text-xl px-6 sm:px-8 py-3.5 sm:py-4 flex items-center gap-3 whitespace-nowrap shadow-lg"
+                className="btn-primary text-base max-[639px]:text-sm sm:text-xl px-6 max-[639px]:px-5 sm:px-8 py-3.5 max-[639px]:py-3 sm:py-4 flex items-center gap-3 max-[639px]:gap-2.5 whitespace-nowrap shadow-lg"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -111,19 +111,19 @@ export default function Hero() {
 
             {/* Social icons */}
             <div className="flex gap-3 sm:gap-4 mt-6 sm:mt-8 justify-start">
-              <motion.a href="#" className="social-icon instagram scale-100 sm:scale-110" whileHover={{ scale: 1.2, y: -5 }} whileTap={{ scale: 0.9 }}>
+              <motion.a href="https://instagram.com/ngameshb" aria-label="Instagram" target="_blank" rel="noreferrer" className="social-icon instagram scale-100 sm:scale-110" whileHover={{ scale: 1.2, y: -5 }} whileTap={{ scale: 0.9 }}>
                 <img src="/assets/insta.svg" alt="Instagram" className="icon-svg" />
               </motion.a>
-              <motion.a href="#" className="social-icon linkedin scale-100 sm:scale-110" whileHover={{ scale: 1.2, y: -5 }} whileTap={{ scale: 0.9 }}>
+              <motion.a href="https://linkedin.com/in/ngamesh" aria-label="LinkedIn" target="_blank" rel="noreferrer" className="social-icon linkedin scale-100 sm:scale-110" whileHover={{ scale: 1.2, y: -5 }} whileTap={{ scale: 0.9 }}>
                 <img src="/assets/lin.svg" alt="LinkedIn" className="icon-svg" />
               </motion.a>
-              <motion.a href="#" className="social-icon youtube scale-100 sm:scale-110" whileHover={{ scale: 1.2, y: -5 }} whileTap={{ scale: 0.9 }}>
+              <motion.a href="https://youtube.com/@ngamesh" aria-label="YouTube" target="_blank" rel="noreferrer" className="social-icon youtube scale-100 sm:scale-110" whileHover={{ scale: 1.2, y: -5 }} whileTap={{ scale: 0.9 }}>
                 <img src="/assets/yt.svg" alt="YouTube" className="icon-svg" />
               </motion.a>
-              <motion.a href="#" className="social-icon discord scale-100 sm:scale-110" whileHover={{ scale: 1.2, y: -5 }} whileTap={{ scale: 0.9 }}>
-                <img src="/assets/dis.svg" alt="Discord" className="icon-svg" />
+              <motion.a href="https://facebook.com/ngameshb" aria-label="Facebook" target="_blank" rel="noreferrer" className="social-icon facebook scale-100 sm:scale-110" whileHover={{ scale: 1.2, y: -5 }} whileTap={{ scale: 0.9 }}>
+                <img src="/assets/fb.svg" alt="Facebook" className="icon-svg" />
               </motion.a>
-              <motion.a href="#" className="social-icon github scale-100 sm:scale-110" whileHover={{ scale: 1.2, y: -5 }} whileTap={{ scale: 0.9 }}>
+              <motion.a href="https://github.com/ngamesh" aria-label="GitHub" target="_blank" rel="noreferrer" className="social-icon github scale-100 sm:scale-110" whileHover={{ scale: 1.2, y: -5 }} whileTap={{ scale: 0.9 }}>
                 <img src="/assets/git.svg" alt="GitHub" className="icon-svg" />
               </motion.a>
             </div>
@@ -145,10 +145,10 @@ export default function Hero() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-widest drop-shadow-md text-gray-600 dark:text-gray-200 uppercase text-center break-words mt-2 mb-1">
+            <h2 className="text-3xl max-[639px]:text-2xl sm:text-4xl md:text-5xl font-extrabold drop-shadow-md text-gray-600 dark:text-gray-200 uppercase text-center break-words mt-2 mb-1">
               NGAMESH
             </h2>
-            <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400 text-center tracking-wider">Raj Bhandari</p>
+            <p className="text-sm max-[639px]:text-xs sm:text-base text-gray-500 dark:text-gray-400 text-center">Raj Bhandari</p>
           </div>
         </div>
       </section>

@@ -70,7 +70,7 @@ export default function ProjectModal({ activeModal, setActiveModal }) {
           >
             {/* Modal Header: Navbar-style */}
             <div className="modal-header">
-              <h2 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100 truncate pr-4">
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100 truncate pr-4">
                 {getTitle()}
               </h2>
               <div className="flex items-center gap-4">
@@ -88,7 +88,7 @@ export default function ProjectModal({ activeModal, setActiveModal }) {
             </div>
 
             {/* Modal Content */}
-            <div className={`${activeModal === "hotel" ? "p-0" : "p-6"} pt-0`}>
+            <div className={`${activeModal === "hotel" ? "project-case-study p-0" : "project-doc p-5 sm:p-6"} pt-0`}>
               {activeModal === "hotel" && <HotelDoc />}
               {activeModal === "fga" && <FGADoc />}
               {activeModal === "spark" && <SparkDoc />}

@@ -23,8 +23,8 @@ export default function Projects() {
       <div className="w-full">
         {/* Project Header & Filter */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 sm:mb-12 gap-5">
-          <h4 className="text-xl sm:text-2xl font-bold tracking-wider uppercase">MY PROJECTS</h4>
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-500 w-full sm:w-auto">
+          <h4 className="text-xl max-[639px]:text-lg sm:text-2xl font-bold uppercase">MY PROJECTS</h4>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm max-[639px]:text-xs text-gray-500 w-full sm:w-auto">
             <label className="flex items-center gap-1 cursor-pointer">
               <input
                 type="radio"
