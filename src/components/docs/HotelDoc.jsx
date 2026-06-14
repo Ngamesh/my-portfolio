@@ -146,10 +146,10 @@ export default function HotelDoc() {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="flex flex-wrap gap-4 pt-4"
           >
-            <a href="#" className="btn-primary group text-sm md:text-base">
+            <a href="https://hotel-booking.vercel.app/" target="_blank" rel="noreferrer" className="btn-primary group text-sm md:text-base">
               Live Demo <ExternalLink size={18} className="group-hover:translate-x-1 transition-transform" />
             </a>
-            <a href="#" className="flex items-center gap-3 px-5 py-3 rounded-lg border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/5 transition-all text-sm md:text-base">
+            <a href="https://github.com/Ngamesh/Hotel-booking" target="_blank" rel="noreferrer" className="flex items-center gap-3 px-5 py-3 rounded-lg border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/5 transition-all text-sm md:text-base">
               <Github size={20} /> <span className="font-semibold">View Source Code</span>
             </a>
           </motion.div>
