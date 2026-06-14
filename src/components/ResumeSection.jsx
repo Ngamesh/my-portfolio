@@ -116,7 +116,7 @@ export default function ResumeSection() {
       logo: "/assets/koi.avif",
       institution: "King's Own Institute",
       degree: "Masters Degree in IT",
-      dates: "Nov 2022 - Nov 2024",
+      dates: "Nov 2022 - July 2024",
       focus: "Advanced practical knowledge across modern IT systems, project delivery, applied technology, and professional practice."
     }
   ];
@@ -193,7 +193,7 @@ export default function ResumeSection() {
                   DigiHawk
                 </h4>
                 <p className="text-sm max-[639px]:text-xs italic text-gray-500 dark:text-gray-400">
-                  Jan 2021 – Nov 2021
+                  April 2021 – May 2021
                 </p>
                 <p className="text-base max-[639px]:text-sm font-medium text-gray-700 dark:text-gray-300 mt-1">
                   Front-End Developer
