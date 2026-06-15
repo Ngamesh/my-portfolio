@@ -88,7 +88,7 @@ export default function ProjectModal({ activeModal, setActiveModal }) {
             </div>
 
             {/* Modal Content */}
-            <div className={`${activeModal === "hotel" ? "project-case-study p-0" : "project-doc p-5 sm:p-6"} pt-0`}>
+            <div className="project-case-study p-0 pt-0">
               {activeModal === "hotel" && <HotelDoc />}
               {activeModal === "fga" && <FGADoc />}
               {activeModal === "spark" && <SparkDoc />}

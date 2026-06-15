@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence, useAnimationControls } from "framer-motion";
-import { Code, ChevronsDown } from "lucide-react";
+import { ChevronsDown, Github } from "lucide-react";
 
 const otherProjects = [
     {
@@ -8,6 +8,7 @@ const otherProjects = [
         category: "website",
         description: "A text-based language translation system for converting German sentences into English using seq2seq neural machine translation.",
         image: "/assets/german-english.avif",
+        sourceUrl: "https://github.com/Ngamesh/german-to-english-translator",
         tech: ["Python", "PyTorch", "spaCy"],
         bullets: [
             "Implemented seq2seq model with Bahdanau attention using PyTorch.",
@@ -21,6 +22,7 @@ const otherProjects = [
         category: "website",
         description: "A secure web application for message encoding and decoding using custom encryption logic.",
         image: "/assets/encrypted-text.avif",
+        sourceUrl: "https://github.com/Ngamesh/text-encryption-system",
         tech: ["PHP", "JavaScript", "HTML", "CSS"],
         bullets: [
             "Built a web-based text encryption and decryption system.",
@@ -33,6 +35,7 @@ const otherProjects = [
         category: "mobile",
         description: "A mobile application providing real-time and forecasted weather data via API integration.",
         image: "/assets/weather.avif",
+        sourceUrl: "https://github.com/Ngamesh/Weather-App",
         tech: ["JavaScript"],
         bullets: [
             "Integrated weather API to fetch live weather data.",
@@ -45,6 +48,7 @@ const otherProjects = [
         category: "mobile",
         description: "A mobile application that identifies fruits and vegetables using machine learning to help users recognize unknown varieties.",
         image: "/assets/fruitag.png",
+        sourceUrl: "https://github.com/Ngamesh/Fruit-tag",
         tech: ["Dart", "Flutter"],
         bullets: [
             "Identifies fruits and vegetables from camera, gallery, or URL inputs using machine learning models.",
@@ -175,14 +179,17 @@ export default function ViewMore({ filter }) {
                                         </div>
 
                                         {/* View Source Code Button */}
-                                        <motion.button
-                                            className="flex items-center justify-center gap-2 w-full px-3 py-3 rounded-lg bg-black dark:bg-white text-white dark:text-black font-semibold text-xs sm:text-sm transition-all hover:bg-gray-800 dark:hover:bg-gray-200"
+                                        <motion.a
+                                            href={project.sourceUrl}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="flex items-center justify-center gap-2 w-full px-3 py-3 rounded-lg bg-black dark:bg-white !text-white dark:!text-black no-underline font-semibold text-xs sm:text-sm transition-all hover:bg-gray-800 dark:hover:bg-gray-200"
                                             whileHover={{ scale: 1.02 }}
                                             whileTap={{ scale: 0.98 }}
                                         >
-                                            <Code size={16} />
+                                            <Github size={16} />
                                             VIEW SOURCE CODE
-                                        </motion.button>
+                                        </motion.a>
                                     </div>
                                 </motion.div>
                             ))}

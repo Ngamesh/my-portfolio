@@ -746,9 +746,9 @@ $("#reservationForm").on("submit", function (event) {
         </div>
 
         <div className="mt-16 sm:mt-24 md:mt-48">
-          <button className="btn-primary flex items-center gap-3 sm:gap-4 md:gap-6 px-6 py-3.5 sm:px-8 sm:py-4 md:px-16 md:py-6 text-sm sm:text-base md:text-2xl rounded-full hover:px-8 sm:hover:px-10 md:hover:px-20 transition-all duration-700 shadow-2xl shadow-[#bc1616]/20 group">
+          <a href="https://hotel-booking.vercel.app/" target="_blank" rel="noreferrer" className="btn-primary flex items-center gap-3 sm:gap-4 md:gap-6 px-6 py-3.5 sm:px-8 sm:py-4 md:px-16 md:py-6 text-sm sm:text-base md:text-2xl rounded-full hover:px-8 sm:hover:px-10 md:hover:px-20 transition-all duration-700 shadow-2xl shadow-[#bc1616]/20 group">
             Experience the Live Build <ArrowRight size={22} className="group-hover:translate-x-2 md:group-hover:translate-x-3 transition-transform duration-500" />
-          </button>
+          </a>
           <p className="mt-6 sm:mt-8 text-gray-500 font-mono text-[10px] sm:text-[10px] uppercase">Crafted with passion • Built for excellence</p>
         </div>
       </section>
