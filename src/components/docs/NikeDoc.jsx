@@ -15,7 +15,7 @@ export default function NikeDoc() {
         secondaryImage="/assets/price.png"
         secondaryImageAlt="Nike pricing cards"
         links={[
-          { label: "Live Demo", href: "https://nike-commercial-website-ui.vercel.app/", type: "primary" },
+          { label: "Live Demo", href: "https://nike-commercial-ui-main.vercel.app/", type: "primary" },
           { label: "View Source Code", href: "https://github.com/Ngamesh/Nike-commercial-UI", type: "source" },
         ]}
       />
