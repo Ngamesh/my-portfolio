@@ -56,7 +56,7 @@ export default function Footer() {
       if (!verification.valid) {
         const message = verification.suggestion
           ? `Email not verified. Did you mean ${verification.suggestion}?`
-          : "Please enter an existing, deliverable email address.";
+          : "Please enter an existing email.";
         showNotification(message);
         return;
       }
@@ -87,7 +87,7 @@ export default function Footer() {
       if (!verification.valid) {
         const message = verification.suggestion
           ? `Email not verified. Did you mean ${verification.suggestion}?`
-          : "Please enter an existing, deliverable email address.";
+          : "Please enter an existing email.";
         showNotification(message);
         return;
       }
