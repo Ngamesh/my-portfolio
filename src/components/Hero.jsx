@@ -121,7 +121,7 @@ export default function Hero() {
                 rel="noreferrer"
                 onClick={handleGetConnected}
                 aria-label="Email Ngamesh using Gmail"
-                className="btn-primary motion-primary-action hero-primary-action border border-transparent text-xs sm:text-xl font-semibold px-3 sm:px-8 py-3 sm:py-4 flex items-center gap-2 sm:gap-3 whitespace-nowrap shadow-lg"
+                className="btn-primary motion-primary-action hero-action border border-transparent font-semibold flex items-center whitespace-nowrap shadow-lg"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
@@ -130,19 +130,19 @@ export default function Hero() {
                 <img
                   src="/assets/plane.svg"
                   alt="Plane Icon"
-                  className="w-5 h-5 sm:w-6 sm:h-6 inline-block"
+                  className="hero-action-icon inline-block"
                 />
               </motion.a>
               <motion.a
                 href="/assets/ngamesh-resume.pdf"
                 download="Ngamesh-Resume.pdf"
-                className="flex items-center gap-2 sm:gap-3 whitespace-nowrap rounded-lg border border-gray-800 dark:border-gray-200 bg-transparent text-xs sm:text-xl font-semibold text-gray-800 dark:text-gray-100 px-3 sm:px-8 py-3 sm:py-4 transition-colors duration-300 hover:border-gray-800 hover:bg-gray-200 hover:text-gray-900"
+                className="hero-action flex items-center whitespace-nowrap rounded-lg border border-gray-800 dark:border-gray-200 bg-transparent font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-300 hover:border-gray-800 hover:bg-gray-200 hover:text-gray-900"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               >
                 DOWNLOAD RESUME
-                <Download aria-hidden="true" className="w-5 h-5 sm:w-6 sm:h-6" />
+                <Download aria-hidden="true" className="hero-action-icon" />
               </motion.a>
             </div>
 

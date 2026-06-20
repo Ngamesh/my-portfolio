@@ -237,13 +237,32 @@ select {
   transform: none;
 }
 
-.btn-primary.hero-primary-action {
-  padding-block: 0.75rem;
+.hero-action,
+.btn-primary.hero-action {
+  gap: 0.5rem;
+  padding: 0.875rem 0.75rem;
+  font-size: 0.8125rem;
+  line-height: 1.125rem;
 }
 
-@media (min-width: 640px) {
-  .btn-primary.hero-primary-action {
-    padding-block: 1rem;
+.hero-action-icon {
+  width: 1.3125rem;
+  height: 1.3125rem;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .hero-action,
+  .btn-primary.hero-action {
+    gap: 0.625rem;
+    padding: 0.875rem 1.75rem;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+  }
+
+  .hero-action-icon {
+    width: 1.375rem;
+    height: 1.375rem;
   }
 }
 
