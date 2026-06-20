@@ -2,27 +2,78 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Footer() {
-  const [formData, setFormData] = useState({ email: "", message: "" });
+  const [formData, setFormData] = useState({ email: "", message: "", website: "" });
   const [subscribeEmail, setSubscribeEmail] = useState("");
+  const [isContactSubmitting, setIsContactSubmitting] = useState(false);
+  const [isSubscribeSubmitting, setIsSubscribeSubmitting] = useState(false);
   const [notification, setNotification] = useState(null);
+
+  const emailEndpoint = "https://formsubmit.co/ajax/ngamesh15@gmail.com";
 
   const showNotification = (message) => {
     setNotification(message);
     setTimeout(() => setNotification(null), 3000);
   };
 
-  const handleContact = (e) => {
-    e.preventDefault();
-    console.log("Contact:", formData);
-    showNotification("Message sent successfully!");
-    setFormData({ email: "", message: "" });
+  const sendEmailNotification = async (payload) => {
+    const response = await fetch(emailEndpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await response.json();
+    if (!response.ok || result.success === "false" || result.success === false) {
+      throw new Error(result.message || "Unable to send form submission");
+    }
   };
 
-  const handleSubscribe = (e) => {
+  const handleContact = async (e) => {
     e.preventDefault();
-    console.log("Subscribe:", subscribeEmail);
-    showNotification("Thank you for subscribing!");
-    setSubscribeEmail("");
+    if (formData.website) return;
+
+    setIsContactSubmitting(true);
+    try {
+      await sendEmailNotification({
+        _subject: "New portfolio project enquiry",
+        _template: "table",
+        _captcha: "false",
+        _replyto: formData.email,
+        submission: "Have an idea? contact form",
+        email: formData.email,
+        message: formData.message,
+      });
+      showNotification("Message sent successfully!");
+      setFormData({ email: "", message: "", website: "" });
+    } catch {
+      showNotification("Message could not be sent. Please try again.");
+    } finally {
+      setIsContactSubmitting(false);
+    }
+  };
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    setIsSubscribeSubmitting(true);
+    try {
+      await sendEmailNotification({
+        _subject: "New portfolio subscriber",
+        _template: "table",
+        _captcha: "false",
+        submission: "Newsletter subscription",
+        email: subscribeEmail,
+        message: `${subscribeEmail} subscribed to portfolio updates.`,
+      });
+      showNotification("Thank you for subscribing!");
+      setSubscribeEmail("");
+    } catch {
+      showNotification("Subscription could not be completed. Please try again.");
+    } finally {
+      setIsSubscribeSubmitting(false);
+    }
   };
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -47,6 +98,16 @@ export default function Footer() {
             </h2>
 
             <form onSubmit={handleContact} className="space-y-8 max-[639px]:space-y-6 mt-8 max-[639px]:mt-6">
+              <input
+                type="text"
+                name="website"
+                value={formData.website}
+                onChange={handleChange}
+                tabIndex="-1"
+                autoComplete="off"
+                className="hidden"
+                aria-hidden="true"
+              />
               <div className="relative">
                 <input
                   type="email"
@@ -78,11 +139,12 @@ export default function Footer() {
               <div className="pt-4">
                 <motion.button
                   type="submit"
-                  className="btn-primary w-full sm:w-auto flex justify-center items-center py-3 px-6 rounded-lg"
+                  disabled={isContactSubmitting}
+                  className="btn-primary w-full sm:w-auto flex justify-center items-center py-3 px-6 rounded-lg disabled:cursor-not-allowed disabled:opacity-60"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Send Message
+                  {isContactSubmitting ? "Sending..." : "Send Message"}
                 </motion.button>
               </div>
             </form>
@@ -116,11 +178,12 @@ export default function Footer() {
                 </div>
                 <motion.button
                   type="submit"
-                  className="btn-primary w-full sm:w-auto flex justify-center items-center py-3 px-6 rounded-lg whitespace-nowrap"
+                  disabled={isSubscribeSubmitting}
+                  className="btn-primary w-full sm:w-auto flex justify-center items-center py-3 px-6 rounded-lg whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-60"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Subscribe
+                  {isSubscribeSubmitting ? "Subscribing..." : "Subscribe"}
                 </motion.button>
               </form>
             </div>

@@ -336,8 +336,9 @@ export default function Navbar() {
               {dark ? <FaSun className="text-white" /> : <FaMoon className="text-black" />}
             </button>
             <a
-              href="#contact"
-              onClick={e => { e.preventDefault(); scrollToId('contact'); }}
+              href="/assets/ngamesh-resume.pdf"
+              download="Ngamesh-Resume.pdf"
+              aria-label="Download Ngamesh's resume"
               className="hidden text-sm font-medium !text-black transition-all hover:!text-red-500 hover:underline dark:!text-white md:inline-block"
             >
               Hire Me
@@ -360,8 +361,10 @@ export default function Navbar() {
             </button>
           ))}
           <a
-            href="#contact"
-            onClick={e => { e.preventDefault(); scrollToId('contact'); }}
+            href="/assets/ngamesh-resume.pdf"
+            download="Ngamesh-Resume.pdf"
+            aria-label="Download Ngamesh's resume"
+            onClick={() => setIsMenuOpen(false)}
             className="shrink-0 py-3 px-5 text-left text-sm font-bold !text-red-500 transition-colors hover:bg-white/5 dark:!text-white sm:px-6"
           >
             Hire Me

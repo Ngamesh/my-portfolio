@@ -6,7 +6,9 @@ export default function Hero() {
   const [showScroll, setShowScroll] = useState(false);
   const [isColoring, setIsColoring] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [isEmailCopied, setIsEmailCopied] = useState(false);
   const colorTimeoutRef = React.useRef(null);
+  const emailNoticeRef = React.useRef(null);
 
   useEffect(() => {
     const checkTouch = () => {
@@ -61,9 +63,31 @@ export default function Hero() {
     }, 3000);
   };
 
+  const handleGetConnected = async () => {
+    const email = "ngamesh15@gmail.com";
+
+    try {
+      await navigator.clipboard.writeText(email);
+    } catch {
+      const textarea = document.createElement("textarea");
+      textarea.value = email;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      textarea.remove();
+    }
+
+    setIsEmailCopied(true);
+    if (emailNoticeRef.current) clearTimeout(emailNoticeRef.current);
+    emailNoticeRef.current = setTimeout(() => setIsEmailCopied(false), 2500);
+  };
+
   useEffect(() => {
     return () => {
       if (colorTimeoutRef.current) clearTimeout(colorTimeoutRef.current);
+      if (emailNoticeRef.current) clearTimeout(emailNoticeRef.current);
     };
   }, []);
 
@@ -91,8 +115,13 @@ export default function Hero() {
 
             {/* Buttons */}
             <div className="mt-8 sm:mt-10 flex items-center justify-start gap-3 sm:gap-4">
-              <motion.button 
-                className="btn-primary motion-primary-action border border-transparent text-xs sm:text-xl font-semibold px-3 sm:px-8 py-3 sm:py-4 flex items-center gap-2 sm:gap-3 whitespace-nowrap shadow-lg"
+              <motion.a
+                href="/gmail-redirect.html"
+                target="_blank"
+                rel="noreferrer"
+                onClick={handleGetConnected}
+                aria-label="Email Ngamesh using Gmail"
+                className="btn-primary motion-primary-action hero-primary-action border border-transparent text-xs sm:text-xl font-semibold px-3 sm:px-8 py-3 sm:py-4 flex items-center gap-2 sm:gap-3 whitespace-nowrap shadow-lg"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
@@ -103,7 +132,7 @@ export default function Hero() {
                   alt="Plane Icon"
                   className="w-5 h-5 sm:w-6 sm:h-6 inline-block"
                 />
-              </motion.button>
+              </motion.a>
               <motion.a
                 href="/assets/ngamesh-resume.pdf"
                 download="Ngamesh-Resume.pdf"
@@ -116,6 +145,21 @@ export default function Hero() {
                 <Download aria-hidden="true" className="w-5 h-5 sm:w-6 sm:h-6" />
               </motion.a>
             </div>
+
+            <AnimatePresence>
+              {isEmailCopied && (
+                <motion.div
+                  role="status"
+                  aria-live="polite"
+                  className="fixed bottom-6 left-1/2 z-50 rounded-lg bg-gray-900 px-4 py-3 text-sm font-medium text-white shadow-xl"
+                  initial={{ opacity: 0, x: "-50%", y: 12 }}
+                  animate={{ opacity: 1, x: "-50%", y: 0 }}
+                  exit={{ opacity: 0, x: "-50%", y: 12 }}
+                >
+                  Email copied. Gmail opened in a new tab.
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             {/* Social icons */}
             <div className="flex gap-3 sm:gap-4 mt-6 sm:mt-8 justify-start">

@@ -237,6 +237,16 @@ select {
   transform: none;
 }
 
+.btn-primary.hero-primary-action {
+  padding-block: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .btn-primary.hero-primary-action {
+    padding-block: 1rem;
+  }
+}
+
 .source-code-action {
   background-color: #000;
   color: #fff !important;
