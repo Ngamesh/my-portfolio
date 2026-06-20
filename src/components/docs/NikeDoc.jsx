@@ -10,6 +10,7 @@ export default function NikeDoc() {
         description="A high-impact commercial landing page concept for exclusive Nike product launches, designed around bold campaign visuals, urgency-led marketing, and smooth product discovery."
         role="Frontend Developer & UI Designer"
         technologies={["HTML", "CSS", "Bootstrap 4", "jQuery"]}
+        metadataClassName="flex flex-col gap-6"
         primaryImage="/assets/nike.png"
         primaryImageAlt="Nike landing page interface"
         secondaryImage="/assets/price.png"

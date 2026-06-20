@@ -116,7 +116,7 @@ export default function ResumeSection() {
       logo: "/assets/koi.avif",
       institution: "King's Own Institute",
       degree: "Masters Degree in IT",
-      dates: "Nov 2022 - July 2024",
+      dates: "Oct 2022 - July 2024",
       focus: "Advanced practical knowledge across modern IT systems, project delivery, applied technology, and professional practice."
     }
   ];
@@ -192,25 +192,27 @@ export default function ResumeSection() {
                 <h4 className="text-lg max-[639px]:text-base font-semibold text-gray-800 dark:text-gray-100">
                   DigiHawk
                 </h4>
-                <p className="text-sm max-[639px]:text-xs italic text-gray-500 dark:text-gray-400">
-                  April 2021 – May 2021
-                </p>
                 <p className="text-base max-[639px]:text-sm font-medium text-gray-700 dark:text-gray-300 mt-1">
                   Front-End Developer
                 </p>
-                <p className="text-sm text-justify text-gray-600 dark:text-gray-400 mt-2 max-w-xl leading-relaxed max-[639px]:leading-6 mx-auto md:mx-0">
-                  Contributed to the development of responsive web applications and user interfaces
-                  in a collaborative, remote-first environment. Worked closely with designers and
-                  development teams to transform design concepts into functional, user-friendly
-                  digital experiences while maintaining performance, accessibility, and cross-browser
-                  compatibility.
+                <p className="text-sm max-[639px]:text-xs italic text-gray-500 dark:text-gray-400">
+                  April 2021 – May 2022
                 </p>
-                <ul className="text-sm max-[639px]:text-[13px] text-left text-gray-600 dark:text-gray-400 mt-3 max-w-xl leading-relaxed max-[639px]:leading-5 mx-auto md:mx-0 list-disc list-outside pl-5">
-                  <li>Developed responsive web interfaces using modern frontend technologies.</li>
-                  <li>Converted UI/UX designs and wireframes into interactive, production-ready web pages.</li>
-                  <li>Collaborated with designers and backend developers to implement new features.</li>
-                  <li>Improved website usability, responsiveness, and overall user experience.</li>
-                  <li>Participated in testing, debugging, cross-browser compatibility, and ongoing maintenance of web applications.</li>
+                <p className="text-sm text-justify text-gray-600 dark:text-gray-400 mt-2 max-w-xl leading-relaxed max-[639px]:leading-6 mx-auto md:mx-0">
+                  Contributed to the development of responsive web applications and interactive user
+                  interfaces in a collaborative development environment. Worked closely with designers
+                  and developers to transform design concepts into functional, accessible, and
+                  user-friendly digital experiences.
+                </p>
+                <p className="mt-3 text-sm font-semibold text-left text-gray-700 dark:text-gray-300 max-w-xl mx-auto md:mx-0">
+                  Key Contributions
+                </p>
+                <ul className="text-sm max-[639px]:text-[13px] text-left text-gray-600 dark:text-gray-400 mt-2 max-w-xl leading-relaxed max-[639px]:leading-5 mx-auto md:mx-0 list-disc list-outside pl-5">
+                  <li>Developed responsive web interfaces using HTML, CSS, JavaScript, and modern frontend development practices.</li>
+                  <li>Converted UI/UX designs and wireframes into production-ready web pages and reusable UI components.</li>
+                  <li>Collaborated with designers and backend developers to implement new features and improve application functionality.</li>
+                  <li>Improved website usability, accessibility, responsiveness, and cross-browser compatibility.</li>
+                  <li>Participated in testing, debugging, maintenance, and performance optimization of web applications.</li>
                 </ul>
               </div>
             </motion.div>
@@ -234,26 +236,28 @@ export default function ResumeSection() {
                 <h4 className="text-lg max-[639px]:text-base font-semibold text-gray-800 dark:text-gray-100">
                   Personal Projects & Continuous Learning
                 </h4>
-                <p className="text-sm max-[639px]:text-xs italic text-gray-500 dark:text-gray-400">
-                  Sep 2024 – Present
-                </p>
                 <p className="text-base max-[639px]:text-sm font-medium text-gray-700 dark:text-gray-300 mt-1">
-                  Design Engineer
+                  Frontend Developer (Personal Projects)
+                </p>
+                <p className="text-sm max-[639px]:text-xs italic text-gray-500 dark:text-gray-400">
+                  Feb 2023 – Present
                 </p>
                 <p className="text-sm text-justify text-gray-600 dark:text-gray-400 mt-2 max-w-xl leading-relaxed max-[639px]:leading-6 mx-auto md:mx-0">
-                  Focused on bridging design and engineering through self-directed learning, design
-                  challenges, and personal projects. Combined user-centered design principles with
-                  front-end implementation to create polished, responsive, and accessible digital
-                  products while improving interaction details, visual systems, and modern development
-                  workflows.
+                  Continuously expanding frontend development expertise through self-directed learning
+                  and hands-on project development. Building modern web applications while strengthening
+                  skills in React, JavaScript, responsive design, performance optimization, and
+                  component-based architecture.
                 </p>
-                <ul className="text-sm max-[639px]:text-[13px] text-left text-gray-600 dark:text-gray-400 mt-3 max-w-xl leading-relaxed max-[639px]:leading-5 mx-auto md:mx-0 list-disc list-outside pl-5">
-                  <li>Designed and developed web and mobile application concepts using Figma and modern front-end tools.</li>
-                  <li>Created wireframes, user flows, mockups, and interactive prototypes, including a fitness tracking application concept.</li>
-                  <li>Translated design concepts into responsive, production-minded interfaces.</li>
-                  <li>Refined interaction details, component patterns, and visual consistency across projects.</li>
-                  <li>Applied accessibility, responsive design, and usability best practices.</li>
-                  <li>Continuously enhanced design engineering skills through online courses, design communities, and hands-on development.</li>
+                <p className="mt-3 text-sm font-semibold text-left text-gray-700 dark:text-gray-300 max-w-xl mx-auto md:mx-0">
+                  Key Contributions
+                </p>
+                <ul className="text-sm max-[639px]:text-[13px] text-left text-gray-600 dark:text-gray-400 mt-2 max-w-xl leading-relaxed max-[639px]:leading-5 mx-auto md:mx-0 list-disc list-outside pl-5">
+                  <li>Developed responsive web applications using React.js, JavaScript, HTML, and CSS.</li>
+                  <li>Built reusable components and interactive user interfaces following modern frontend development practices.</li>
+                  <li>Implemented API integrations, dynamic content, and data-driven functionality.</li>
+                  <li>Tested and debugged applications across devices, screen sizes, and modern browsers.</li>
+                  <li>Applied accessibility, responsive design, and performance optimization best practices.</li>
+                  <li>Maintained projects using Git, GitHub, and modern development workflows.</li>
                 </ul>
               </div>
             </motion.div>

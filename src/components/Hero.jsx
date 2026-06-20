@@ -80,17 +80,16 @@ export default function Hero() {
               Hi, I am Ng.
             </h3>
             <h3 className="text-3xl max-[639px]:text-2xl sm:text-4xl md:text-5xl font-extrabold mb-5 max-[639px]:mb-4 sm:mb-6 text-red dark:text-gray-100 font-nunito drop-shadow-sm">
-              Design Engineer.
+              Frontend Developer.
             </h3>
             <p className="text-[15px] max-[639px]:text-sm sm:text-base text-justify text-gray-600 dark:text-gray-300 leading-relaxed max-[639px]:leading-6">
-              I'm a design engineer with hands-on experience building responsive,
-              user-focused applications across web and mobile platforms. I bridge
-              product design and front-end development with React, Angular, and
-              Flutter, turning ideas into polished, accessible, and performance-minded
-              digital experiences. With a strong eye for interaction details,
-              usability, and clean implementation, I enjoy moving from prototype to
-              production in collaborative environments where thoughtful design and
-              engineering work together.
+              Frontend Developer with experience developing responsive web applications
+              and interactive user interfaces using React.js, JavaScript, HTML5, CSS3,
+              and modern frontend technologies. Skilled in building reusable components,
+              integrating REST APIs, implementing responsive design, and optimizing
+              application performance. Experienced in collaborating within Agile teams
+              to deliver scalable, accessible, and user-focused digital products through
+              testing, debugging, and continuous improvement.
             </p>
 
             {/* Button */}

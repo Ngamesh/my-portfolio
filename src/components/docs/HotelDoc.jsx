@@ -85,6 +85,30 @@ export default function HotelDoc() {
     { label: "Booking form", stage: "Convert", image: "/assets/booking-form.avif" },
     { label: "Confirm booking", stage: "Convert", image: "/assets/confirm-booking.avif" }
   ];
+  const technicalHighlights = [
+    { icon: Layout, title: "Frontend Stack", description: "HTML5, CSS3, Bootstrap 4, JavaScript, jQuery, Owl Carousel, and AOS." },
+    { icon: Smartphone, title: "Responsive Implementation", description: "Mobile-first grids, flexible media, adaptive navigation, and breakpoint-specific booking layouts." },
+    { icon: Zap, title: "Performance", description: "AVIF assets, constrained media dimensions, lightweight transforms, and reduced animation overhead." },
+    { icon: CheckCircle2, title: "Accessibility", description: "Semantic structure, descriptive alternative text, visible feedback, readable contrast, and touch-friendly controls." },
+    { icon: Users, title: "Reusable Architecture", description: "Shared cards, galleries, page sections, modal patterns, and styling conventions across 10+ pages." },
+    { icon: Compass, title: "Interactive UI", description: "Room carousels, hover feedback, scroll reveals, availability checks, and reservation state transitions." },
+    { icon: Target, title: "Cross-Browser Support", description: "Responsive and interaction testing across current desktop and mobile browser environments." },
+    { icon: CreditCard, title: "Form Validation", description: "Required-field checks, inline guidance, processing feedback, and success confirmation states." },
+    { icon: TrendingUp, title: "Mobile-First Delivery", description: "Prioritized content order, compact controls, efficient touch flows, and reduced booking friction." }
+  ];
+  const architectureLayers = [
+    { title: "Presentation Layer", description: "Shared semantic HTML and Bootstrap grid patterns kept navigation, room content, and page structure familiar throughout the journey." },
+    { title: "Interaction Layer", description: "Focused jQuery handlers gave galleries, availability inputs, and modal controls consistent behavior without scattering one-off scripts." },
+    { title: "Booking Workflow", description: "One validation and state flow guided guests from availability through processing and confirmation with clear feedback at each step." },
+    { title: "Media & Motion", description: "AVIF imagery, Owl Carousel, AOS, and transform-based animation preserved the premium atmosphere while keeping interactions responsive." }
+  ];
+  const projectMetrics = [
+    { value: "10+", label: "Responsive Pages" },
+    { value: "3", label: "Booking Types" },
+    { value: "Mobile-First", label: "Design" },
+    { value: "Cross-Browser", label: "Tested" },
+    { value: "60FPS", label: "UI Performance" }
+  ];
   const [activeJourneyIndex, setActiveJourneyIndex] = useState(0);
   const activeJourneyStage = journeyScreens[activeJourneyIndex].stage;
 
@@ -111,20 +135,34 @@ export default function HotelDoc() {
               Lakeside Hotel <br />
               <span className="text-[#bc1616]">Experience</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-xl leading-relaxed">
-              A premium, multi-page hospitality platform designed to elevate the digital presence of luxury hotels in Pokhara, Lakeside. Focusing on seamless booking flows and immersive visual storytelling.
+            <p className="text-[15px] sm:text-[17px] md:text-[19px] text-gray-600 dark:text-gray-400 max-w-xl leading-relaxed">
+              A responsive hotel booking frontend that guides guests from room discovery to reservation through intuitive navigation and a streamlined booking workflow. Built with HTML5, CSS3, Bootstrap 4, JavaScript, and jQuery, it delivers accessible, performance-focused interactions across desktop and mobile.
             </p>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="grid max-w-xl grid-cols-2 gap-2 sm:grid-cols-3"
+          >
+            {projectMetrics.map((metric) => (
+              <div key={metric.label} className="rounded-lg border border-gray-200/80 bg-white/70 px-3 py-2 dark:border-white/10 dark:bg-white/[0.04]">
+                <p className="break-words text-base font-bold !text-gray-900 dark:!text-gray-100 md:text-lg">{metric.value}</p>
+                <p className="mt-1 text-[9px] font-bold uppercase !text-gray-500 dark:!text-gray-400 sm:text-[10px]">{metric.label}</p>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35, duration: 0.8 }}
             className="flex flex-wrap gap-6 md:gap-12"
           >
             <div>
               <p className="text-xs font-bold uppercase text-gray-400 mb-2">Role</p>
-              <p className="font-semibold text-sm md:text-base">Frontend Developer & UI/UX Designer</p>
+              <p className="font-semibold text-sm md:text-base">Frontend Developer</p>
             </div>
             <div>
               <p className="text-xs font-bold uppercase text-gray-400 mb-2">Technologies</p>
@@ -135,6 +173,8 @@ export default function HotelDoc() {
                 <span className="text-sm font-medium text-gray-300">•</span>
                 <span className="text-sm font-medium">JavaScript</span>
                 <span className="text-sm font-medium text-gray-300">•</span>
+                <span className="text-sm font-medium">Bootstrap 4</span>
+                <span className="text-sm font-medium text-gray-300">•</span>
                 <span className="text-sm font-medium">jQuery</span>
               </div>
             </div>
@@ -144,14 +184,21 @@ export default function HotelDoc() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="flex flex-wrap gap-4 pt-4"
+            className="flex flex-wrap gap-4"
           >
-            <a href="https://hotel-booking.vercel.app/" target="_blank" rel="noreferrer" className="btn-primary group text-sm md:text-base">
+            <a href="https://hotel-booking.vercel.app/" target="_blank" rel="noreferrer" className="btn-primary group text-sm shadow-lg md:text-base">
               Live Demo <ExternalLink size={18} className="group-hover:translate-x-1 transition-transform" />
             </a>
-            <a href="https://github.com/Ngamesh/Hotel-booking" target="_blank" rel="noreferrer" className="flex items-center gap-3 px-5 py-3 rounded-lg border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/5 transition-all text-sm md:text-base">
-              <Github size={20} /> <span className="font-semibold">View Source Code</span>
-            </a>
+            <motion.a
+              href="https://github.com/Ngamesh/Hotel-booking"
+              target="_blank"
+              rel="noreferrer"
+              className="group flex items-center gap-3 px-5 py-3 rounded-lg border border-gray-500 bg-gray-200/70 dark:border-white/30 dark:bg-white/[0.03] hover:bg-gray-50 dark:hover:bg-white/5 transition-colors duration-200 text-sm md:text-base"
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+            >
+              <Github size={20} /> <span className="font-semibold">GitHub Repository</span> <ExternalLink size={15} className="transition-transform group-hover:translate-x-1" />
+            </motion.a>
           </motion.div>
         </div>
 
@@ -188,23 +235,14 @@ export default function HotelDoc() {
           <div className="relative z-10 w-full p-6 md:p-12 lg:p-16 flex justify-center">
             <div className="max-w-4xl bg-black/20 backdrop-blur-lg py-5 px-5 sm:py-6 sm:px-8 md:py-8 md:px-10 rounded-2xl border border-white/10 shadow-2xl">
               <div className="space-y-4">
+                <span className="block text-xs font-bold uppercase text-[#fc3c3c]">Project Overview</span>
                 <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight !text-gray-50 dark:!text-white">Crafting a Digital <br /> Sanctuary</h2>
                 <p className="!text-gray-200 dark:!text-gray-200 text-base leading-relaxed">
-                  The project was born from the need to bridge the gap between traditional hospitality and modern digital expectations. For luxury hotels, the website is the "first room" a guest enters.
+                  The business goal was simple: help a lakeside hotel present its rooms and services with the confidence of a premium brand, then turn that interest into direct bookings. For guests, the experience needed to feel calm, trustworthy, and easy to navigate from the first image to the final confirmation.
                 </p>
                 <p className="!text-gray-200 dark:!text-gray-200 text-base leading-relaxed">
-                  I focused on creating an interface that feels as serene as a lakeside resort, while maintaining high conversion rates through a simplified booking funnel and clear information hierarchy.
+                  I owned the frontend implementation across more than ten responsive pages. Reusable page patterns and consistent navigation kept the experience familiar, Bootstrap grids adapted the content across devices, and JavaScript and jQuery brought galleries, availability checks, validation, and booking feedback to life. Optimized imagery and restrained motion kept the premium atmosphere without asking users to wait for it.
                 </p>
-                <div className="grid grid-cols-2 gap-5 sm:gap-8 pt-2">
-                  <div>
-                    <p className="text-2xl sm:text-3xl font-bold text-[#bc1616]">10+</p>
-                    <p className="text-[10px] sm:text-sm !text-gray-300 dark:!text-gray-300 uppercase font-bold">Custom Pages</p>
-                  </div>
-                  <div>
-                    <p className="text-2xl sm:text-3xl font-bold text-[#bc1616]">60FPS</p>
-                    <p className="text-[10px] sm:text-sm !text-gray-300 dark:!text-gray-300 uppercase font-bold">Smooth UI</p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -215,14 +253,14 @@ export default function HotelDoc() {
       <Section>
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 md:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">The Friction Points</h2>
-          <p className="mx-auto max-w-2xl !text-center [text-align-last:center] text-gray-600 dark:text-gray-400">Identifying and solving key UX challenges in the traditional hospitality digital experience.</p>
+          <p className="mx-auto max-w-2xl !text-center [text-align-last:center] text-gray-600 dark:text-gray-400">The key challenge was removing the small moments of friction that make guests hesitate, abandon a search, or lose confidence before booking.</p>
         </div>
 
         <div className="grid gap-6 xl:grid-cols-3 xl:gap-8">
           <FeatureCard
             icon={Smartphone}
             title="Mobile Friction"
-            description="Traditional booking forms often fail on mobile. I implemented a responsive-first reservation system that feels native to touch devices."
+            description="A guest checking dates on a phone should not need to zoom, hunt for controls, or fight a desktop form. I used responsive Bootstrap layouts, touch-friendly targets, and a focused modal flow so booking remained comfortable at every breakpoint."
             imageSrc="/assets/hotel-mob.avif"
             imageAlt="Hotel mobile booking interface"
             imageNoChrome
@@ -231,14 +269,14 @@ export default function HotelDoc() {
           <FeatureCard
             icon={Layout}
             title="Info Overload"
-            description="Hotels often overwhelm users with data. I used a clean grid system and progressive disclosure to keep the focus on the experience."
+            description="Guests needed to compare rooms, amenities, dining, and events without decoding a wall of content. Reusable cards, semantic grouping, and progressive disclosure made choices easier to scan while also reducing duplicated markup."
             imageSrc="/assets/image-slider.avif"
             imageAlt="Hotel image slider interface"
           />
           <FeatureCard
             icon={Zap}
             title="Interaction Lag"
-            description="Slow transitions kill the premium feel. I utilized optimized asset delivery and lightweight animations to ensure instant feedback."
+            description="A luxury experience quickly loses credibility when galleries stutter or content shifts. AVIF assets, constrained media dimensions, CSS transforms, and lightweight event-driven animation kept the interface stable, responsive, and pleasant to explore."
             imageSrc="/assets/hotel-slider-first.avif"
             imageAlt="Single suite slider preview"
             imageHoverScale
@@ -252,9 +290,9 @@ export default function HotelDoc() {
           <div className="order-2 md:order-1">
             <div className="grid gap-7 sm:gap-9 md:gap-12">
               {[
-                { title: "Immersive Storytelling", desc: "Using high-resolution imagery and parallax to sell the experience.", icon: Compass },
-                { title: "Conversion Optimized", desc: "Simplifying the reservation form to just three essential steps.", icon: TrendingUp },
-                { title: "Reusable Architecture", desc: "Building a component-based system for easy scalability.", icon: Users }
+                { title: "Responsive Experience", desc: "Let guests explore rooms and complete a reservation comfortably on any screen through mobile-first layouts, flexible media, and breakpoint-aware navigation.", icon: Smartphone },
+                { title: "Conversion-Ready Flow", desc: "Reduce uncertainty by connecting discovery, availability, validation, processing feedback, and confirmation in one understandable journey.", icon: TrendingUp },
+                { title: "Maintainable Architecture", desc: "Make future rooms, services, and pages easier to add by reusing sections, card patterns, modal behavior, and shared styling.", icon: Users }
               ].map((goal, i) => (
                 <div key={i} className="flex gap-4 sm:gap-6 group">
                   <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-gray-200 dark:border-white/20 flex items-center justify-center text-[#bc1616] group-hover:bg-[#bc1616] group-hover:text-white transition-all duration-300">
@@ -271,7 +309,7 @@ export default function HotelDoc() {
           <div className="order-1 md:order-2 space-y-5 sm:space-y-6 md:space-y-8">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight uppercase text-gray-900 dark:text-white">Strategic <br /> Vision</h2>
             <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg leading-relaxed">
-              The goal wasn't just to build a website, but to create a digital product that communicates luxury through every pixel and interaction.
+              I wanted the booking experience to feel as considered as the hotel itself: calm when guests were browsing, clear when they were comparing options, and reassuring when they were ready to book. The frontend therefore had to balance visual richness with fast feedback, accessible navigation, responsive behavior, and a structure that could grow with new rooms and services.
             </p>
             <div className="pt-3 sm:pt-5 md:pt-8">
               <Target className="text-[#bc1616] mb-4" size={34} />
@@ -287,7 +325,7 @@ export default function HotelDoc() {
           <div className="space-y-5 sm:space-y-6 md:space-y-8">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">Research & <br /> Visual Inspiration</h2>
             <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg leading-relaxed">
-              Inspired by Six Senses Hotels & Resorts, Sofitel Sydney Darling Harbour, and other premium hospitality brands, the visual direction blends immersive room imagery, elegant resort storytelling, spa and dining highlights, and a direct booking experience designed to feel refined, trustworthy, and effortlessly luxurious.
+              I studied hospitality platforms such as Six Senses and Sofitel to understand where premium experiences build trust and where they create hesitation. Image-led room discovery helped guests imagine the stay, persistent booking actions reduced dead ends, and concise content hierarchy made comparison easier. I translated those findings into responsive galleries, deliberate media ratios, clearer interaction feedback, and a booking sequence that asks for information only when it becomes relevant.
             </p>
             <div className="flex flex-wrap gap-3">
               {["Luxury Hospitality", "Direct Booking", "Room Showcase", "Spa & Dining", "Resort Storytelling"].map((tag, i) => (
@@ -313,7 +351,10 @@ export default function HotelDoc() {
       <Section>
         <div className="text-center mb-10 sm:mb-12 md:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">The User Journey</h2>
-          <p className="text-gray-500 uppercase text-xs font-mono">Seamless Navigation Flow</p>
+          <p className="text-gray-500 uppercase text-xs font-mono">Implemented Booking Workflow</p>
+          <p className="mx-auto mt-4 max-w-2xl !text-center [text-align-last:center] text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            The journey maps implemented screens and interaction states from discovery through conversion. JavaScript coordinates gallery navigation, availability input, form validation, processing feedback, and booking confirmation while each screen remains responsive and keyboard-accessible.
+          </p>
         </div>
 
         <div className="w-full overflow-visible pt-6 pb-6">
@@ -436,13 +477,13 @@ export default function HotelDoc() {
           <div className="order-1 md:order-2 space-y-5 sm:space-y-6 md:space-y-8">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">From Sketch <br /> to Screen</h2>
             <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg leading-relaxed">
-              Every layout was meticulously planned. I started with low-fidelity wireframes to finalize the information hierarchy before moving into high-fidelity design and frontend implementation.
+              Wireframes became an implementation blueprint for semantic page regions, reusable cards, grid behavior, and interaction states. Before styling high-fidelity screens, I defined breakpoint changes, content priority, form behavior, and shared layout patterns so the frontend could scale consistently across the multi-page experience.
             </p>
             <div className="p-5 sm:p-6 md:p-8 rounded-2xl border border-[#bc1616]/10 bg-[#bc1616]/[0.02] backdrop-blur-sm">
               <h4 className="font-bold mb-2 flex items-center gap-2">
                 <Zap size={18} className="text-[#bc1616]" /> Iterative Thinking
               </h4>
-              <p className="text-sm text-gray-500 leading-relaxed italic">"Adjusted the booking form layout 3 times based on mobile usability testing to reduce input friction and maximize conversion."</p>
+              <p className="text-sm text-gray-500 leading-relaxed italic">"I iterated on the reservation layout across mobile breakpoints, simplifying field order, increasing touch targets, and validating error and success states before finalizing the interaction."</p>
             </div>
           </div>
         </div>
@@ -453,7 +494,7 @@ export default function HotelDoc() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-8 mb-10 sm:mb-12 md:mb-16">
           <div className="max-w-2xl text-left">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 uppercase">Design System</h2>
-            <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg">Built upon a foundation of consistency, accessibility, and modern aesthetics.</p>
+            <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg">Implemented as reusable typography, color, spacing, grid, control, and interaction patterns to keep the frontend consistent, accessible, and maintainable.</p>
           </div>
           <div className="flex gap-5 sm:gap-8 px-5 sm:px-6 py-4 rounded-2xl bg-gray-50 dark:bg-white/5 border border-white/10">
             <div className="flex flex-col items-center">
@@ -488,7 +529,7 @@ export default function HotelDoc() {
             </div>
             <div className="space-y-2 z-10 text-left mt-8 sm:mt-0">
               <h4 className="text-xl sm:text-2xl font-bold">Hotel Brand Palette</h4>
-              <p className="text-sm text-gray-500">Pulled from the original hotel-booking interface.</p>
+              <p className="text-sm text-gray-500">Applied through shared CSS tokens and consistent contrast states across the booking interface.</p>
             </div>
             <div className="absolute -right-10 -bottom-10 w-48 h-48 border border-[#fc3c3c]/10 rounded-full group-hover:scale-110 transition-transform duration-700" />
           </div>
@@ -513,21 +554,42 @@ export default function HotelDoc() {
         </div>
       </Section>
 
-      {/* 9. FRONTEND DEVELOPMENT */}
+      {/* 9. TECHNICAL HIGHLIGHTS */}
+      <Section className="bg-gray-50/70 dark:!bg-white/[0.02]">
+        <div className="mb-10 max-w-3xl text-left sm:mb-14 md:mb-16">
+          <span className="mb-3 block text-xs font-bold uppercase text-[#bc1616]">Frontend Delivery</span>
+          <h2 className="mb-5 text-2xl font-bold uppercase text-gray-900 dark:text-white sm:text-3xl md:text-5xl">Technical Highlights</h2>
+          <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400 md:text-lg">
+            Behind the polished surface is a set of practical frontend decisions made to keep the journey fast, inclusive, and dependable. Responsive layout engineering, reusable architecture, accessible interaction, performance-conscious media, and clear booking states work together so guests can focus on choosing a stay rather than figuring out the interface.
+          </p>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {technicalHighlights.map((highlight) => (
+            <div key={highlight.title} className="rounded-lg border border-gray-200 bg-white p-5 dark:border-white/10 dark:bg-white/[0.04] sm:p-6">
+              <highlight.icon className="mb-4 text-[#bc1616]" size={24} />
+              <h3 className="mb-2 text-base font-bold text-gray-900 dark:text-white">{highlight.title}</h3>
+              <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">{highlight.description}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* 10. FRONTEND DEVELOPMENT */}
       <Section className="relative overflow-hidden bg-white/5 backdrop-blur-sm dark:!bg-[#0a0a0a] dark:!text-white">
         <div className="relative z-10 grid min-w-0 lg:grid-cols-2 gap-10 md:gap-16 lg:gap-20 items-center">
           <div className="min-w-0 space-y-5 sm:space-y-6 md:space-y-8 text-left">
             <span className="text-[#bc1616] font-mono uppercase text-xs mb-4 block">The Engineering Phase</span>
-            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 dark:text-white uppercase">Modular <br /> Architecture</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 dark:text-white uppercase">Frontend <br /> Engineering</h2>
             <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg leading-relaxed">
-              The hotel booking project was structured as a responsive multi-page Bootstrap 4 and jQuery build, with reusable room sections, service galleries, availability checks, and a centralized reservation modal that could support stays, tours, and event bookings.
+              I built the experience as a responsive multi-page frontend using semantic HTML, Bootstrap 4, modular CSS conventions, JavaScript, and jQuery. Rather than solving each page in isolation, I reused room sections, galleries, navigation patterns, and modal behavior so the product felt consistent and future updates stayed manageable. Centralized event handling gave availability checks, validation, processing, and confirmation the same predictable behavior wherever they appeared.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
               {[
-                { icon: CheckCircle2, title: "Room Discovery", desc: "Suite and hall cards" },
-                { icon: CheckCircle2, title: "Availability Flow", desc: "Date and guest checks" },
-                { icon: CheckCircle2, title: "Owl Carousel", desc: "Smooth room galleries" },
-                { icon: CheckCircle2, title: "Booking Modal", desc: "Validation and success states" }
+                { icon: CheckCircle2, title: "Reusable UI Patterns", desc: "Shared sections and cards" },
+                { icon: CheckCircle2, title: "Responsive Layout", desc: "Bootstrap grid and CSS" },
+                { icon: CheckCircle2, title: "Interaction Logic", desc: "jQuery event handling" },
+                { icon: CheckCircle2, title: "Validated Booking", desc: "Error and success states" }
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-4 p-4 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10">
                   <item.icon size={18} className="text-[#bc1616] mt-1 shrink-0" />
@@ -594,7 +656,30 @@ $("#reservationForm").on("submit", function (event) {
         <div className="absolute inset-0 opacity-0 dark:opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
       </Section>
 
-      {/* 10. KEY FEATURES SHOWCASE */}
+      {/* 11. TECHNICAL ARCHITECTURE */}
+      <Section>
+        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-16">
+          <div className="text-left">
+            <span className="mb-3 block text-xs font-bold uppercase text-[#bc1616]">Maintainable Structure</span>
+            <h2 className="mb-5 text-2xl font-bold uppercase text-gray-900 dark:text-white sm:text-3xl md:text-5xl">Technical Architecture</h2>
+            <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400 md:text-lg">
+              The project was structured around four frontend layers to improve maintainability, scalability, and future migration to modern frameworks such as React.
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {architectureLayers.map((layer, index) => (
+              <div key={layer.title} className="rounded-lg border border-gray-200 p-5 text-left dark:border-white/10 sm:p-6">
+                <span className="mb-4 block font-mono text-xs font-bold text-[#bc1616]">0{index + 1}</span>
+                <h3 className="mb-2 text-base font-bold text-gray-900 dark:text-white">{layer.title}</h3>
+                <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">{layer.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* 12. KEY FEATURES SHOWCASE */}
       <Section>
         <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-16 md:mb-24">
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-5 sm:mb-6 text-gray-900 dark:text-white uppercase">Signature Features</h2>
@@ -608,14 +693,14 @@ $("#reservationForm").on("submit", function (event) {
               <span className="text-[#bc1616] font-bold text-xs uppercase block">Room Discovery</span>
               <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">Suites & Halls <br /> Showcase</h3>
               <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg leading-relaxed">
-                The hotel-booking project presents rooms and event spaces through an interactive carousel, with image-led suite cards, clear category names, and hover links that guide visitors into the room details page.
+                Reusable suite and hall cards keep room data, imagery, category labels, and actions consistent across listings. Owl Carousel provides responsive navigation, while constrained image dimensions and transform-based hover feedback prevent layout shifts and keep interaction smooth on image-heavy pages.
               </p>
               <div className="flex flex-wrap gap-3 md:gap-6 pt-2 sm:pt-4 justify-start">
                 <div className="flex items-center gap-2 md:gap-3 px-4 py-2.5 md:px-5 md:py-3 rounded-xl bg-gray-100 dark:bg-white/5 text-xs md:text-sm font-bold">
-                  <Layout size={18} className="text-[#bc1616]" /> Suite Cards
+                  <Layout size={18} className="text-[#bc1616]" /> Reusable Suite Cards
                 </div>
                 <div className="flex items-center gap-2 md:gap-3 px-4 py-2.5 md:px-5 md:py-3 rounded-xl bg-gray-100 dark:bg-white/5 text-xs md:text-sm font-bold">
-                  <ArrowRight size={18} className="text-[#bc1616]" /> Hover View Links
+                  <ArrowRight size={18} className="text-[#bc1616]" /> JavaScript Navigation
                 </div>
               </div>
             </div>
@@ -630,14 +715,14 @@ $("#reservationForm").on("submit", function (event) {
               <span className="text-[#bc1616] font-bold text-xs uppercase block">Safe & Swift</span>
               <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight uppercase">Reservation <br /> Funnel</h3>
               <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg leading-relaxed">
-                The booking flow uses an availability check, a reusable reservation modal, and clear form validation. Guests can choose between stay, tour, and event bookings, then receive a processing state and success confirmation after submitting.
+                The reservation workflow connects availability inputs to a reusable Bootstrap modal and validates required data before submission. jQuery event handlers coordinate stay, tour, and event booking modes, surface actionable errors, prevent duplicate submission, and transition the interface through processing and success states.
               </p>
               <div className="flex flex-wrap gap-3 md:gap-6 pt-2 sm:pt-4 justify-start">
                 <div className="flex items-center gap-2 md:gap-3 px-4 py-2.5 md:px-5 md:py-3 rounded-xl bg-gray-100 dark:bg-white/5 text-xs md:text-sm font-bold">
-                  <CreditCard size={18} className="text-[#bc1616]" /> Booking Types
+                  <CreditCard size={18} className="text-[#bc1616]" /> Validated Booking Types
                 </div>
                 <div className="flex items-center gap-3 px-4 py-2.5 md:px-5 md:py-3 rounded-xl bg-gray-100 dark:bg-white/5 text-xs md:text-sm font-bold">
-                  <Zap size={18} className="text-[#bc1616]" /> Success Modal
+                  <Zap size={18} className="text-[#bc1616]" /> Submission States
                 </div>
               </div>
             </div>
@@ -667,18 +752,19 @@ $("#reservationForm").on("submit", function (event) {
         </div>
       </Section>
 
-      {/* 11. CHALLENGES & SOLUTIONS */}
+      {/* 13. CHALLENGES & SOLUTIONS */}
       <Section>
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14 md:mb-20">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 uppercase">The Hurdles</h2>
-          <p className="text-gray-500 uppercase text-[10px] sm:text-xs font-mono">Problem Solving in Real-Time</p>
+          <p className="text-gray-500 uppercase text-[10px] sm:text-xs font-mono">Frontend Problems, Tested Solutions</p>
         </div>
 
         <div className="max-w-4xl mx-auto space-y-6">
           {[
-            { q: "Managing information-heavy layouts?", a: "Implemented a card-based grid system with progressive disclosure to keep the UI clean while providing all necessary data." },
-            { q: "Maintaining 60FPS with heavy imagery?", a: "Used modern image formats (AVIF) and optimized lazy-loading techniques to ensure smooth scroll performance." },
-            { q: "Creating a truly responsive booking flow?", a: "Designed a bottom-sheet inspired modal for mobile users that makes selection feel like a native app experience." }
+            { q: "How did I keep 10+ pages consistent and maintainable?", a: "I reused navigation, card, gallery, content-section, and modal patterns; organized shared CSS conventions; and separated interaction logic from page markup so changes could be applied without duplicating behavior." },
+            { q: "How did I protect performance on image-heavy pages?", a: "I delivered imagery in AVIF, constrained media dimensions to reduce layout shift, used transform-based motion, limited animation scope, and prepared below-the-fold media for lazy loading to preserve smooth scrolling." },
+            { q: "How did I make the booking flow responsive and reliable?", a: "I reordered content at mobile breakpoints, enlarged touch targets, centralized field checks, prevented invalid submission, and exposed clear error, processing, and success feedback within the reusable modal workflow." },
+            { q: "How did I support accessibility and cross-browser behavior?", a: "I used semantic HTML, descriptive alternative text, associated form labels, readable contrast, visible interaction feedback, and responsive testing across current desktop and mobile browsers to catch layout and event-handling differences." }
           ].map((item, i) => (
             <div key={i} className="p-6 md:p-8 rounded-2xl bg-white dark:bg-[#101010] border border-gray-100 dark:border-[#fc3c3c]/15 flex flex-col md:flex-row gap-6 md:gap-8 items-start group hover:border-[#fc3c3c]/50 transition-colors">
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#bc1616]/10 flex items-center justify-center text-[#bc1616] font-bold">0{i + 1}</div>
@@ -691,27 +777,30 @@ $("#reservationForm").on("submit", function (event) {
         </div>
       </Section>
 
-      {/* 12. REFLECTION & OUTCOME */}
+      {/* 14. REFLECTION & OUTCOME */}
       <Section className="border-t border-black/5 dark:border-white/10">
         <div className="grid md:grid-cols-12 gap-8 sm:gap-10 md:gap-16">
           <div className="md:col-span-4 text-left">
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight uppercase">Final <br /> Thoughts</h2>
+            <p className="mt-5 text-sm leading-relaxed text-gray-600 dark:text-gray-400 md:text-base">
+              This project taught me to judge frontend decisions by both code quality and the confidence they give the person using the product.
+            </p>
           </div>
           <div className="md:col-span-8 grid sm:grid-cols-2 gap-8 sm:gap-10 md:gap-16">
             <div className="space-y-4 sm:space-y-6 text-left">
               <h4 className="text-lg sm:text-xl font-bold flex items-center gap-3">
-                <Target className="text-[#bc1616]" size={20} /> Interaction Design
+                <Target className="text-[#bc1616]" size={20} /> Frontend Implementation
               </h4>
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed italic text-sm md:text-base">
-                "I learned how subtle animations can drastically change the perceived quality of a product. Motion isn't just decoration; it's a powerful tool for guidance and feedback."
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-sm md:text-base">
+                I learned that the strongest interactions are often the quietest ones. Clear state, accessible feedback, and restrained motion helped guests understand what changed and what to do next without distracting them from the booking decision.
               </p>
             </div>
             <div className="space-y-4 sm:space-y-6 text-left">
               <h4 className="text-lg sm:text-xl font-bold flex items-center gap-3">
                 <Zap className="text-[#bc1616]" size={20} /> Technical Growth
               </h4>
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed italic text-sm md:text-base">
-                "Building a 10+ page site required a very disciplined approach to component architecture and CSS organization. It taught me the value of scalability from day one."
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-sm md:text-base">
+                Building more than ten responsive pages strengthened how I approach reusable architecture, CSS organization, event handling, form validation, performance optimization, accessibility, and cross-browser testing. Most importantly, I came away seeing maintainability as part of the user experience: a well-structured frontend is easier to improve as real needs evolve.
               </p>
             </div>
           </div>
@@ -721,9 +810,9 @@ $("#reservationForm").on("submit", function (event) {
       {/* 13. FINAL SHOWCASE */}
       <section className="relative w-full overflow-visible pb-24 pt-16 sm:pb-32 sm:pt-24 md:pb-48 md:pt-32 text-center">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-12">
-          <h2 className="text-4xl sm:text-5xl md:text-9xl font-black mb-6 sm:mb-8 md:mb-12 uppercase">THE <br /> <span className="text-[#bc1616]">MASTERPIECE</span></h2>
+          <h2 className="text-4xl sm:text-5xl md:text-9xl font-black mb-6 sm:mb-8 md:mb-12 uppercase">PROJECT <br /> <span className="text-[#bc1616]">OUTCOME</span></h2>
           <p className="text-base md:text-xl text-gray-500 mb-10 sm:mb-12 md:mb-16 max-w-2xl mx-auto font-medium">
-            A harmonious blend of high-end aesthetics and modern frontend performance.
+            A responsive hotel booking platform that combines premium hospitality storytelling with performant frontend engineering, accessible interactions, maintainable interface patterns, and a streamlined journey from room discovery to reservation.
           </p>
         </div>
 
@@ -749,7 +838,7 @@ $("#reservationForm").on("submit", function (event) {
           <a href="https://hotel-booking.vercel.app/" target="_blank" rel="noreferrer" className="btn-primary flex items-center gap-3 sm:gap-4 md:gap-6 px-6 py-3.5 sm:px-8 sm:py-4 md:px-16 md:py-6 text-sm sm:text-base md:text-2xl rounded-full hover:px-8 sm:hover:px-10 md:hover:px-20 transition-all duration-700 shadow-2xl shadow-[#bc1616]/20 group">
             Experience the Live Build <ArrowRight size={22} className="group-hover:translate-x-2 md:group-hover:translate-x-3 transition-transform duration-500" />
           </a>
-          <p className="mt-6 sm:mt-8 text-gray-500 font-mono text-[10px] sm:text-[10px] uppercase">Crafted with passion • Built for excellence</p>
+          <p className="mt-6 sm:mt-8 text-gray-500 font-mono text-[10px] sm:text-[10px] uppercase">Responsive • Accessible • Performance Minded</p>
         </div>
       </section>
 

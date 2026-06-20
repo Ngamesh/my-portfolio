@@ -15,6 +15,7 @@ export default function ProjectHero({
   imageClassName = "w-full rounded-2xl transition-transform duration-700 group-hover:scale-[1.02]",
   secondaryWrapperClassName = "absolute -bottom-4 -right-1 w-[24%] sm:-bottom-6 sm:-right-2 sm:w-[22%] group-hover:translate-y-2 transition-transform duration-700",
   secondaryImageClassName = "w-full rounded-xl",
+  metadataClassName = "flex flex-wrap gap-6 md:gap-12",
   links = []
 }) {
   return (
@@ -38,7 +39,7 @@ export default function ProjectHero({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="flex flex-wrap gap-6 md:gap-12"
+          className={metadataClassName}
         >
           <div>
             <p className="text-xs font-bold uppercase text-gray-400 mb-2">Role</p>
@@ -68,7 +69,7 @@ export default function ProjectHero({
               const Icon = link.type === "source" ? Github : ExternalLink;
               const className = link.type === "primary"
                 ? "btn-primary group text-sm md:text-base"
-                : "flex items-center gap-3 px-5 py-3 rounded-lg border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/5 transition-all text-sm md:text-base";
+                : "flex items-center gap-3 px-5 py-3 rounded-lg border border-gray-400 dark:border-white/30 hover:bg-gray-50 dark:hover:bg-white/5 transition-all text-sm md:text-base";
 
               return (
                 <a key={link.label} href={link.href} target="_blank" rel="noreferrer" className={className}>
