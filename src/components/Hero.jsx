@@ -114,7 +114,7 @@ export default function Hero() {
             </p>
 
             {/* Buttons */}
-            <div className="mt-8 sm:mt-10 flex items-center justify-start gap-3 sm:gap-4">
+            <div className="mt-8 sm:mt-10 flex flex-col items-start justify-start gap-3 sm:flex-row sm:items-center sm:gap-4">
               <motion.a
                 href="/gmail-redirect.html"
                 target="_blank"
