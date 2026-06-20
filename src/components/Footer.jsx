@@ -83,6 +83,15 @@ export default function Footer() {
     e.preventDefault();
     setIsSubscribeSubmitting(true);
     try {
+      const verification = await verifyEmailAddress(subscribeEmail);
+      if (!verification.valid) {
+        const message = verification.suggestion
+          ? `Email not verified. Did you mean ${verification.suggestion}?`
+          : "Please enter an existing, deliverable email address.";
+        showNotification(message);
+        return;
+      }
+
       await sendEmailNotification({
         _subject: "New portfolio subscriber",
         _template: "table",
@@ -93,8 +102,8 @@ export default function Footer() {
       });
       showNotification("Thank you for subscribing!");
       setSubscribeEmail("");
-    } catch {
-      showNotification("Subscription could not be completed. Please try again.");
+    } catch (error) {
+      showNotification(error.message || "Subscription could not be completed. Please try again.");
     } finally {
       setIsSubscribeSubmitting(false);
     }
