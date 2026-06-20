@@ -31,12 +31,36 @@ export default function Footer() {
     }
   };
 
+  const verifyEmailAddress = async (email) => {
+    const response = await fetch("/api/validate-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+
+    const result = await response.json();
+    if (!response.ok) {
+      throw new Error(result.message || "Email verification is unavailable");
+    }
+
+    return result;
+  };
+
   const handleContact = async (e) => {
     e.preventDefault();
     if (formData.website) return;
 
     setIsContactSubmitting(true);
     try {
+      const verification = await verifyEmailAddress(formData.email);
+      if (!verification.valid) {
+        const message = verification.suggestion
+          ? `Email not verified. Did you mean ${verification.suggestion}?`
+          : "Please enter an existing, deliverable email address.";
+        showNotification(message);
+        return;
+      }
+
       await sendEmailNotification({
         _subject: "New portfolio project enquiry",
         _template: "table",
@@ -48,8 +72,8 @@ export default function Footer() {
       });
       showNotification("Message sent successfully!");
       setFormData({ email: "", message: "", website: "" });
-    } catch {
-      showNotification("Message could not be sent. Please try again.");
+    } catch (error) {
+      showNotification(error.message || "Message could not be sent. Please try again.");
     } finally {
       setIsContactSubmitting(false);
     }
@@ -140,9 +164,10 @@ export default function Footer() {
                 <motion.button
                   type="submit"
                   disabled={isContactSubmitting}
-                  className="btn-primary w-full sm:w-auto flex justify-center items-center py-3 px-6 rounded-lg disabled:cursor-not-allowed disabled:opacity-60"
+                  className="btn-primary motion-primary-action w-full sm:w-auto flex justify-center items-center py-3 px-6 rounded-lg disabled:cursor-not-allowed disabled:opacity-60"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
                 >
                   {isContactSubmitting ? "Sending..." : "Send Message"}
                 </motion.button>
@@ -163,7 +188,7 @@ export default function Footer() {
                 Stay Updated
               </h3>
               <p className="text-base max-[639px]:text-sm text-gray-500 dark:text-gray-400 mb-6 max-[639px]:mb-5 leading-relaxed max-[639px]:leading-6">
-                Subscribe to my newsletter for the latest articles, design resources, and project updates.
+                Subscribe for frontend development insights, project updates, practical resources, and lessons from building modern web experiences.
               </p>
               <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <div className="relative flex-grow">
@@ -179,9 +204,10 @@ export default function Footer() {
                 <motion.button
                   type="submit"
                   disabled={isSubscribeSubmitting}
-                  className="btn-primary w-full sm:w-auto flex justify-center items-center py-3 px-6 rounded-lg whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-60"
+                  className="btn-primary motion-primary-action w-full sm:w-auto flex justify-center items-center py-3 px-6 rounded-lg whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-60"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
                 >
                   {isSubscribeSubmitting ? "Subscribing..." : "Subscribe"}
                 </motion.button>
@@ -193,19 +219,19 @@ export default function Footer() {
                 Get Connected
               </h3>
               <div className="flex gap-4 sm:gap-6 justify-start">
-                <motion.a href="https://instagram.com/ngameshb" aria-label="Instagram" target="_blank" rel="noreferrer" className="social-icon instagram scale-100 sm:scale-115" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.9 }}>
+                <motion.a href="https://instagram.com/ngameshb" aria-label="Instagram" target="_blank" rel="noreferrer" className="social-icon instagram scale-100 sm:scale-115" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.9 }} transition={{ duration: 0.3, ease: "easeOut" }}>
                   <img src="/assets/insta.svg" alt="Instagram" className="icon-svg" />
                 </motion.a>
-                <motion.a href="https://linkedin.com/in/ngamesh" aria-label="LinkedIn" target="_blank" rel="noreferrer" className="social-icon linkedin scale-100 sm:scale-115" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.9 }}>
+                <motion.a href="https://linkedin.com/in/ngamesh" aria-label="LinkedIn" target="_blank" rel="noreferrer" className="social-icon linkedin scale-100 sm:scale-115" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.9 }} transition={{ duration: 0.3, ease: "easeOut" }}>
                   <img src="/assets/lin.svg" alt="LinkedIn" className="icon-svg" />
                 </motion.a>
-                <motion.a href="https://youtube.com/@ngamesh" aria-label="YouTube" target="_blank" rel="noreferrer" className="social-icon youtube scale-100 sm:scale-115" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.9 }}>
+                <motion.a href="https://youtube.com/@ngamesh" aria-label="YouTube" target="_blank" rel="noreferrer" className="social-icon youtube scale-100 sm:scale-115" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.9 }} transition={{ duration: 0.3, ease: "easeOut" }}>
                   <img src="/assets/yt.svg" alt="YouTube" className="icon-svg" />
                 </motion.a>
-                <motion.a href="https://facebook.com/ngameshb" aria-label="Facebook" target="_blank" rel="noreferrer" className="social-icon facebook scale-100 sm:scale-115" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.9 }}>
+                <motion.a href="https://facebook.com/ngameshb" aria-label="Facebook" target="_blank" rel="noreferrer" className="social-icon facebook scale-100 sm:scale-115" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.9 }} transition={{ duration: 0.3, ease: "easeOut" }}>
                   <img src="/assets/fb.svg" alt="Facebook" className="icon-svg" />
                 </motion.a>
-                <motion.a href="https://github.com/ngamesh" aria-label="GitHub" target="_blank" rel="noreferrer" className="social-icon github scale-100 sm:scale-115" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.9 }}>
+                <motion.a href="https://github.com/ngamesh" aria-label="GitHub" target="_blank" rel="noreferrer" className="social-icon github scale-100 sm:scale-115" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.9 }} transition={{ duration: 0.3, ease: "easeOut" }}>
                   <img src="/assets/github.svg" alt="GitHub" className="icon-svg" />
                 </motion.a>
               </div>

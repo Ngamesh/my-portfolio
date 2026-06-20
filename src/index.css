@@ -323,17 +323,12 @@ select {
   padding: 0;
   width: 36px;
   height: 36px;
-  transition: transform var(--transition-base), filter var(--transition-base);
 }
 
 .social-icon img {
   width: 36px;
   height: 36px;
-  transition: all var(--transition-base);
-}
-
-.social-icon:hover {
-  transform: scale(1.2);
+  transition: filter var(--transition-base);
 }
 
 /* Social Hover Colors (Light Mode) */
