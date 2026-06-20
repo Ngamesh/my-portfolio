@@ -143,7 +143,7 @@ export default function Footer() {
                   <img src="/assets/fb.svg" alt="Facebook" className="icon-svg" />
                 </motion.a>
                 <motion.a href="https://github.com/ngamesh" aria-label="GitHub" target="_blank" rel="noreferrer" className="social-icon github scale-100 sm:scale-115" whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.9 }}>
-                  <img src="/assets/git.svg" alt="GitHub" className="icon-svg" />
+                  <img src="/assets/github.svg" alt="GitHub" className="icon-svg" />
                 </motion.a>
               </div>
             </div>

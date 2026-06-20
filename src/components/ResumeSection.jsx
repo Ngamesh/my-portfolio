@@ -32,19 +32,34 @@ function MarqueeRow({ icons, direction = "left", baseSpeed = 50 }) {
         className="flex"
         style={{ x, willChange: "transform" }}
       >
-        {loopedIcons.map((tech, i) => (
-          <div
-            key={i}
-            className="flex justify-center items-center w-[20vw] sm:w-[18vw] md:w-[200px] flex-shrink-0 px-2 sm:px-3"
-          >
-            <img
-              src={tech.src}
-              alt={tech.alt}
-              className="w-full h-10 sm:h-12 md:h-16 object-contain transition-all duration-300"
-              draggable="false"
-            />
-          </div>
-        ))}
+        {loopedIcons.map((tech, i) => {
+          const TechIcon = tech.icon;
+
+          return (
+            <div
+              key={i}
+              className="flex flex-col justify-center items-center w-[20vw] sm:w-[18vw] md:w-[200px] flex-shrink-0 px-2 sm:px-3"
+            >
+              {TechIcon ? (
+                <TechIcon
+                  aria-hidden="true"
+                  className="h-9 w-9 sm:h-11 sm:w-11 md:h-14 md:w-14 text-gray-700 dark:text-gray-200"
+                  strokeWidth={1.6}
+                />
+              ) : (
+                <img
+                  src={tech.src}
+                  alt={`${tech.label} logo`}
+                  className="w-full h-9 sm:h-11 md:h-14 object-contain transition-all duration-300"
+                  draggable="false"
+                />
+              )}
+              <span className="mt-1 min-h-[20px] max-w-full text-center text-[8px] sm:text-[9px] md:text-[10px] font-medium leading-tight text-gray-600 dark:text-gray-300">
+                {tech.label}
+              </span>
+            </div>
+          );
+        })}
       </motion.div>
     </div>
   );
@@ -57,49 +72,48 @@ export default function ResumeSection() {
   const stackSections = [
     {
       title: "Frontend",
-      summary: "Interfaces, motion, and responsive app experiences",
+      summary: "Responsive interfaces, component-based development, modern web technologies, and interactive user experiences.",
       direction: "left",
       baseSpeed: 75,
       icons: [
-        { src: "/assets/html.png", alt: "HTML5" },
-        { src: "/assets/css.png", alt: "CSS3" },
-        { src: "/assets/js.png", alt: "JavaScript" },
-        { src: "/assets/ts.png", alt: "TypeScript" },
-        { src: "/assets/react.png", alt: "React.js" },
-        { src: "/assets/angular.png", alt: "Angular" },
-        { src: "/assets/flutter.png", alt: "Flutter" },
-        { src: "/assets/dart.png", alt: "Dart" },
-        { src: "/assets/tailwindcss.png", alt: "Tailwind CSS" },
-        { src: "/assets/bootstrap.png", alt: "Bootstrap" },
-        { src: "/assets/framer-motion.png", alt: "Framer Motion" },
+        { src: "/assets/html.png", label: "HTML5" },
+        { src: "/assets/css.png", label: "CSS3" },
+        { src: "/assets/js.png", label: "JavaScript" },
+        { src: "/assets/ts.png", label: "TypeScript" },
+        { src: "/assets/react.png", label: "React.js" },
+        { src: "/assets/tailwindcss.png", label: "Tailwind CSS" },
+        { src: "/assets/bootstrap.png", label: "Bootstrap" },
+        { src: "/assets/framer-motion.png", label: "Framer Motion" },
       ],
     },
     {
       title: "Backend",
-      summary: "Services, data, auth, and application foundations",
+      summary: "Authentication, databases, APIs, and backend technologies supporting modern web applications.",
       direction: "right",
       baseSpeed: 50,
       icons: [
-        { src: "/assets/node.png", alt: "Node.js" },
-        { src: "/assets/firebase.png", alt: "Firebase" },
-        { src: "/assets/mysql.png", alt: "MySQL" },
-        { src: "/assets/php.png", alt: "PHP" },
-        { src: "/assets/next.svg", alt: "Next.js" },
+        { src: "/assets/firebase.svg", label: "Firebase" },
+        { src: "/assets/firebase-auth.svg", label: "Firebase Authentication" },
+        { src: "/assets/rest-api.svg", label: "REST APIs" },
+        { src: "/assets/mysql.png", label: "MySQL" },
+        { src: "/assets/php.png", label: "PHP" },
       ],
     },
     {
-      title: "Tools",
-      summary: "Design, version control, and production workflow",
+      title: "Tools & Technologies",
+      summary: "Development workflow, mobile technologies, design tools, and production tooling.",
       direction: "left",
       baseSpeed: 60,
       icons: [
-        { src: "/assets/git.png", alt: "Git" },
-        { src: "/assets/vs.png", alt: "Visual Studio Code" },
-        { src: "/assets/figma.png", alt: "Figma" },
-        { src: "/assets/xd.png", alt: "Adobe XD" },
-        { src: "/assets/ps.png", alt: "Photoshop" },
-        { src: "/assets/ai.png", alt: "Illustrator" },
-        { src: "/assets/sketch.png", alt: "Sketch" },
+        { src: "/assets/git.svg", label: "Git" },
+        { src: "/assets/github.svg", label: "GitHub" },
+        { src: "/assets/vs.png", label: "Visual Studio Code" },
+        { src: "/assets/vite.svg", label: "Vite" },
+        { src: "/assets/flutter.png", label: "Flutter" },
+        { src: "/assets/dart.png", label: "Dart" },
+        { src: "/assets/figma.png", label: "Figma" },
+        { src: "/assets/xd.png", label: "Adobe XD" },
+        { src: "/assets/ps.png", label: "Photoshop" },
       ],
     },
   ];
@@ -193,7 +207,7 @@ export default function ResumeSection() {
                   DigiHawk
                 </h4>
                 <p className="text-base max-[639px]:text-sm font-medium text-gray-700 dark:text-gray-300 mt-1">
-                  Front-End Developer
+                  Frontend Developer
                 </p>
                 <p className="text-sm max-[639px]:text-xs italic text-gray-500 dark:text-gray-400">
                   April 2021 – May 2022
@@ -226,8 +240,8 @@ export default function ResumeSection() {
             >
               <div className="flex flex-shrink-0 justify-center md:justify-start w-full md:w-[260px] lg:w-[300px]">
                 <img
-                  src="/assets/uxui.avif"
-                  alt="UX/UI design"
+                  src="/assets/frontend.avif"
+                  alt="Front-end development"
                   className="w-full max-w-[280px] sm:max-w-[320px] md:max-w-none h-auto max-h-52 sm:max-h-60 md:max-h-64 object-contain"
                 />
               </div>

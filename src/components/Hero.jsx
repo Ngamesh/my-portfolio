@@ -82,14 +82,10 @@ export default function Hero() {
             <h3 className="text-3xl max-[639px]:text-2xl sm:text-4xl md:text-5xl font-extrabold mb-5 max-[639px]:mb-4 sm:mb-6 text-red dark:text-gray-100 font-nunito drop-shadow-sm">
               Frontend Developer.
             </h3>
-            <p className="text-[15px] max-[639px]:text-sm sm:text-base text-justify text-gray-600 dark:text-gray-300 leading-relaxed max-[639px]:leading-6">
-              Frontend Developer with experience developing responsive web applications
-              and interactive user interfaces using React.js, JavaScript, HTML5, CSS3,
-              and modern frontend technologies. Skilled in building reusable components,
-              integrating REST APIs, implementing responsive design, and optimizing
-              application performance. Experienced in collaborating within Agile teams
-              to deliver scalable, accessible, and user-focused digital products through
-              testing, debugging, and continuous improvement.
+            <p className="text-base sm:text-lg md:text-xl text-justify text-gray-600 dark:text-gray-300 leading-relaxed">
+              I design and build responsive, user-friendly web and mobile interfaces using
+              React, JavaScript, TypeScript, Flutter, and modern UI tools. I focus on clean
+              design, smooth interactions, and practical digital experiences.
             </p>
 
             {/* Button */}
@@ -123,7 +119,7 @@ export default function Hero() {
                 <img src="/assets/fb.svg" alt="Facebook" className="icon-svg" />
               </motion.a>
               <motion.a href="https://github.com/ngamesh" aria-label="GitHub" target="_blank" rel="noreferrer" className="social-icon github scale-100 sm:scale-110" whileHover={{ scale: 1.2, y: -5 }} whileTap={{ scale: 0.9 }}>
-                <img src="/assets/git.svg" alt="GitHub" className="icon-svg" />
+                <img src="/assets/github.svg" alt="GitHub" className="icon-svg" />
               </motion.a>
             </div>
           </div>
