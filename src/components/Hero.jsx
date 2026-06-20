@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Download } from "lucide-react";
 
 export default function Hero() {
   const [showScroll, setShowScroll] = useState(false);
@@ -88,12 +89,13 @@ export default function Hero() {
               design, smooth interactions, and practical digital experiences.
             </p>
 
-            {/* Button */}
-            <div className="mt-8 sm:mt-10 flex justify-start">
+            {/* Buttons */}
+            <div className="mt-8 sm:mt-10 flex items-center justify-start gap-3 sm:gap-4">
               <motion.button 
-                className="btn-primary text-base max-[639px]:text-sm sm:text-xl px-6 max-[639px]:px-5 sm:px-8 py-3.5 max-[639px]:py-3 sm:py-4 flex items-center gap-3 max-[639px]:gap-2.5 whitespace-nowrap shadow-lg"
+                className="btn-primary motion-primary-action border border-transparent text-xs sm:text-xl font-semibold px-3 sm:px-8 py-3 sm:py-4 flex items-center gap-2 sm:gap-3 whitespace-nowrap shadow-lg"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
               >
                 GET CONNECTED
                 <img
@@ -102,6 +104,17 @@ export default function Hero() {
                   className="w-5 h-5 sm:w-6 sm:h-6 inline-block"
                 />
               </motion.button>
+              <motion.a
+                href="/assets/ngamesh-resume.pdf"
+                download="Ngamesh-Resume.pdf"
+                className="flex items-center gap-2 sm:gap-3 whitespace-nowrap rounded-lg border border-gray-800 dark:border-gray-200 bg-transparent text-xs sm:text-xl font-semibold text-gray-800 dark:text-gray-100 px-3 sm:px-8 py-3 sm:py-4 transition-colors duration-300 hover:border-gray-800 hover:bg-gray-200 hover:text-gray-900"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                DOWNLOAD RESUME
+                <Download aria-hidden="true" className="w-5 h-5 sm:w-6 sm:h-6" />
+              </motion.a>
             </div>
 
             {/* Social icons */}

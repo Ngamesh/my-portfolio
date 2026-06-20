@@ -41,10 +41,10 @@ export default function NikeSection({ onOpenModal }) {
                     </ul>
                     <div className="mt-6 text-center">
                         <motion.button
-                            className="btn-primary leading-relaxed"
-                            whileHover={{ scale: 1.08 }}
+                            className="btn-primary motion-primary-action leading-relaxed"
+                            whileHover={{ scale: 1.05, y: -2 }}
                             whileTap={{ scale: 0.95 }}
-                            transition={{ type: "spring", stiffness: 180, damping: 12 }}
+                            transition={{ duration: 0.3, ease: "easeOut" }}
                             onClick={() => onOpenModal("nike")}
                         >
                             VIEW PROJECT →

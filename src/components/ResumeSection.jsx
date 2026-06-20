@@ -123,7 +123,7 @@ export default function ResumeSection() {
       logo: "/assets/lmu.avif",
       institution: "London Metropolitan University",
       degree: "Bachelors (Hons) Degree in IT",
-      dates: "Nov 2018 - Nov 2021",
+      dates: "Nov 2018 - Dec 2021",
       focus: "Built a strong foundation in information technology, software development, databases, and problem-solving."
     },
     {

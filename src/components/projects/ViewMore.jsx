@@ -183,9 +183,7 @@ export default function ViewMore({ filter }) {
                                             href={project.sourceUrl}
                                             target="_blank"
                                             rel="noreferrer"
-                                            className="flex items-center justify-center gap-2 w-full px-3 py-3 rounded-lg bg-black dark:bg-white !text-white dark:!text-black no-underline font-semibold text-xs sm:text-sm transition-all hover:bg-gray-800 dark:hover:bg-gray-200"
-                                            whileHover={{ scale: 1.02 }}
-                                            whileTap={{ scale: 0.98 }}
+                                            className="source-code-action flex items-center justify-center gap-2 w-full px-3 py-3 rounded-lg no-underline font-semibold text-xs sm:text-sm"
                                         >
                                             <Github size={16} />
                                             VIEW SOURCE CODE
