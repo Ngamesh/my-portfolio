@@ -22,10 +22,10 @@ export default function App() {
     <HelmetProvider>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Ngamesh Raj Bhandari — Design Engineer</title>
+        <title>Ngamesh Raj Bhandari — Web Developer</title>
         <meta
           name="description"
-          content="Ngamesh Raj Bhandari — Design Engineer. Portfolio."
+          content="Ngamesh Raj Bhandari — Web Developer. Portfolio."
         />
       </Helmet>
 
