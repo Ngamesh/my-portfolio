@@ -51,7 +51,7 @@ function MarqueeRow({ icons, direction = "left", baseSpeed = 50 }) {
                 <img
                   src={tech.src}
                   alt={`${tech.label} logo`}
-                  className="w-full h-9 sm:h-11 md:h-14 object-contain transition-all duration-300"
+                  className={`w-full h-9 sm:h-11 md:h-14 object-contain transition-all duration-300 ${tech.className || ""}`}
                   draggable="false"
                 />
               )}
@@ -79,8 +79,8 @@ export default function ResumeSection() {
       icons: [
         { src: "/assets/html.png", label: "HTML5" },
         { src: "/assets/css.png", label: "CSS3" },
-        { src: "/assets/js.png", label: "JavaScript" },
-        { src: "/assets/ts.png", label: "TypeScript" },
+        { src: "/assets/javascript.svg", label: "JavaScript" },
+        { src: "/assets/typescript.svg", label: "TypeScript", className: "dark:brightness-0 dark:invert" },
         { src: "/assets/react.png", label: "React.js" },
         { src: "/assets/tailwindcss.png", label: "Tailwind CSS" },
         { src: "/assets/bootstrap.png", label: "Bootstrap" },
@@ -107,11 +107,11 @@ export default function ResumeSection() {
       baseSpeed: 60,
       icons: [
         { src: "/assets/git.svg", label: "Git" },
-        { src: "/assets/github.svg", label: "GitHub" },
-        { src: "/assets/vs.png", label: "Visual Studio Code" },
+        { src: "/assets/github.svg", label: "GitHub", className: "dark:brightness-0 dark:invert" },
+        { src: "/assets/vs.svg", label: "Visual Studio Code" },
         { src: "/assets/vite.svg", label: "Vite" },
         { src: "/assets/flutter.png", label: "Flutter" },
-        { src: "/assets/dart.png", label: "Dart" },
+        { src: "/assets/dart.svg", label: "Dart" },
         { src: "/assets/figma.png", label: "Figma" },
         { src: "/assets/xd.png", label: "Adobe XD" },
         { src: "/assets/ps.png", label: "Photoshop" },
