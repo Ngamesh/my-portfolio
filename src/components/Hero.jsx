@@ -129,7 +129,7 @@ export default function Hero() {
               <span className="whitespace-nowrap rounded-md border border-gray-300 bg-white/40 px-3 py-1.5 dark:border-gray-700 dark:bg-white/[0.04]">2+ Years Experience</span>
               <span className="whitespace-nowrap rounded-md border border-gray-300 bg-white/40 px-3 py-1.5 dark:border-gray-700 dark:bg-white/[0.04]">4 Featured Projects</span>
               <span className="whitespace-nowrap rounded-md border border-gray-300 bg-white/40 px-3 py-1.5 dark:border-gray-700 dark:bg-white/[0.04]">React</span>
-              <span className="whitespace-nowrap rounded-md border border-gray-300 bg-white/40 px-3 py-1.5 dark:border-gray-700 dark:bg-white/[0.04]">TypeScript</span>
+              <span className="whitespace-nowrap rounded-md border border-gray-300 bg-white/40 px-3 py-1.5 dark:border-gray-700 dark:bg-white/[0.04]">JavaScript</span>
               <span className="whitespace-nowrap rounded-md border border-gray-300 bg-white/40 px-3 py-1.5 dark:border-gray-700 dark:bg-white/[0.04]">Firebase</span>
             </div>
 
