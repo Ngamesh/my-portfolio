@@ -95,26 +95,46 @@ export default function Hero() {
     <>
       <section
         id="home"
-        className="mt-20 min-h-[calc(100vh-80px)] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center py-12 sm:py-16 md:py-24 !px-4 sm:!px-6 lg:!px-8 max-w-[1200px] mx-auto gap-10 md:gap-12 w-full overflow-hidden"
+        className="mt-20 min-h-[calc(100vh-80px)] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center py-12 sm:py-16 md:py-24 !px-4 sm:!px-6 lg:!px-8 max-w-[1320px] mx-auto gap-6 sm:gap-10 md:gap-12 w-full overflow-hidden"
         onMouseMove={handleMouseMove}
       >
         {/* Left: intro card */}
         <div className="md:col-span-1 lg:col-span-2 flex justify-center md:justify-start w-full order-2 md:order-1">
-          <div className="p-0 sm:p-0 md:p-0 w-full max-w-4xl">
-            <h3 className="text-2xl max-[639px]:text-xl sm:text-3xl md:text-4xl font-extrabold mb-4 max-[639px]:mb-3 text-black dark:text-gray-100 font-nunito">
-              Hi, I am Ng.
+          <div className="p-0 sm:p-0 md:p-0 w-full max-w-4xl text-center sm:text-left">
+            <h3 className="hidden sm:block text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 text-black dark:text-gray-100 font-nunito">
+              Hi, I am Ng
             </h3>
-            <h3 className="text-3xl max-[639px]:text-2xl sm:text-4xl md:text-5xl font-extrabold mb-5 max-[639px]:mb-4 sm:mb-6 text-red dark:text-gray-100 font-nunito drop-shadow-sm">
-              Frontend Developer.
+            <h3 className="hero-role-title text-[31px] max-[639px]:text-[27.5px] sm:text-[38px] md:text-[44px] lg:text-[49px] font-extrabold text-red dark:text-gray-100 font-nunito drop-shadow-sm">
+              Frontend Developer
             </h3>
-            <p className="text-base sm:text-lg md:text-xl text-justify text-gray-600 dark:text-gray-300 leading-relaxed">
-              I design and build responsive, user-friendly web and mobile interfaces using
-              React, JavaScript, TypeScript, Flutter, and modern UI tools. I focus on clean
-              design, smooth interactions, and practical digital experiences.
-            </p>
+            <h3 className="hero-role-title text-[31px] max-[639px]:text-[27.5px] sm:text-[38px] md:text-[44px] lg:text-[49px] font-extrabold text-red dark:text-gray-100 font-nunito drop-shadow-sm">
+              React Developer
+            </h3>
+            <div className="mt-2 text-base font-medium text-black/70 dark:text-white/70 sm:text-lg">
+              Sydney, Australia
+            </div>
+            <div className="mt-5 text-base sm:text-lg md:text-xl text-center sm:text-justify leading-relaxed">
+              <p className="max-[639px]:!text-center !text-black dark:!text-gray-300">
+                Building responsive web applications and modern user interfaces with React,
+                JavaScript, and TypeScript. Combining frontend engineering with strong design
+                awareness to create accessible, performant, and intuitive digital experiences
+                across devices.
+              </p>
+            </div>
+
+            <div
+              className="mt-5 flex flex-wrap items-center justify-center gap-2 text-xs font-semibold text-black/70 dark:text-white/70 sm:justify-start sm:text-sm"
+              aria-label="Professional highlights"
+            >
+              <span className="whitespace-nowrap rounded-md border border-gray-300 bg-white/40 px-3 py-1.5 dark:border-gray-700 dark:bg-white/[0.04]">2+ Years Experience</span>
+              <span className="whitespace-nowrap rounded-md border border-gray-300 bg-white/40 px-3 py-1.5 dark:border-gray-700 dark:bg-white/[0.04]">4 Featured Projects</span>
+              <span className="whitespace-nowrap rounded-md border border-gray-300 bg-white/40 px-3 py-1.5 dark:border-gray-700 dark:bg-white/[0.04]">React</span>
+              <span className="whitespace-nowrap rounded-md border border-gray-300 bg-white/40 px-3 py-1.5 dark:border-gray-700 dark:bg-white/[0.04]">TypeScript</span>
+              <span className="whitespace-nowrap rounded-md border border-gray-300 bg-white/40 px-3 py-1.5 dark:border-gray-700 dark:bg-white/[0.04]">Firebase</span>
+            </div>
 
             {/* Buttons */}
-            <div className="mt-8 sm:mt-10 flex flex-col items-start justify-start gap-3 sm:flex-row sm:items-center sm:gap-4">
+            <div className="mt-8 sm:mt-10 flex flex-row items-center justify-center gap-2 sm:justify-start sm:gap-4">
               <motion.a
                 href="/gmail-redirect.html"
                 target="_blank"
@@ -162,7 +182,7 @@ export default function Hero() {
             </AnimatePresence>
 
             {/* Social icons */}
-            <div className="flex gap-3 sm:gap-4 mt-6 sm:mt-8 justify-start">
+            <div className="flex gap-3 sm:gap-4 mt-6 sm:mt-8 justify-center sm:justify-start">
               <motion.a href="https://instagram.com/ngameshb" aria-label="Instagram" target="_blank" rel="noreferrer" className="social-icon instagram scale-100 sm:scale-110" whileHover={{ scale: 1.2, y: -5 }} whileTap={{ scale: 0.9 }} transition={{ duration: 0.3, ease: "easeOut" }}>
                 <img src="/assets/insta.svg" alt="Instagram" className="icon-svg" />
               </motion.a>
@@ -197,10 +217,10 @@ export default function Hero() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <h2 className="text-3xl max-[639px]:text-2xl sm:text-4xl md:text-5xl font-extrabold drop-shadow-md text-gray-600 dark:text-gray-200 uppercase text-center break-words mt-2 mb-1">
+            <h2 className="hero-profile-name text-3xl sm:text-4xl md:text-5xl font-extrabold drop-shadow-md text-gray-600 dark:text-gray-200 uppercase text-center break-words mt-2 mb-1">
               NGAMESH
             </h2>
-            <p className="text-sm max-[639px]:text-xs sm:text-base text-gray-500 dark:text-gray-400 text-center">Raj Bhandari</p>
+            <p className="hero-profile-subname text-sm sm:text-base text-gray-500 dark:text-gray-400 text-center">Raj Bhandari</p>
           </div>
         </div>
       </section>

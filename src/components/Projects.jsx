@@ -67,10 +67,10 @@ export default function Projects() {
             <HotelSection onOpenModal={handleOpenModal} />
           )}
           {(filter === "all" || filter === "mobile") && (
-            <FGASection onOpenModal={handleOpenModal} />
+            <SparkSection onOpenModal={handleOpenModal} />
           )}
           {(filter === "all" || filter === "mobile") && (
-            <SparkSection onOpenModal={handleOpenModal} />
+            <FGASection onOpenModal={handleOpenModal} />
           )}
           {(filter === "all" || filter === "website") && (
             <NikeSection onOpenModal={handleOpenModal} />

@@ -1,6 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { NikeCard } from "./cards/NikeCard";
+import { ProjectMetrics } from "./ProjectMetrics";
+import { TechnologyBadges } from "./TechnologyBadges";
 
 export default function NikeSection({ onOpenModal }) {
     const introVariants = {
@@ -22,18 +24,21 @@ export default function NikeSection({ onOpenModal }) {
                     whileInView="show"
                     viewport={{ once: true, margin: "-100px" }}
                 >
-                    <h5 className="leading-snug text-xl max-[639px]:text-lg sm:text-2xl font-semibold text-gray-700 dark:text-gray-100 drop-shadow-lg">
+                    <h5 className="leading-snug text-2xl max-[639px]:text-xl sm:text-[28px] font-semibold text-gray-700 dark:text-gray-100 drop-shadow-lg">
                         <span className="font-bold">Nike </span>
                         <span className="font-light">– Commercial Promo UI</span>
                     </h5>
+                    <ProjectMetrics centered metrics={["Responsive UI", "Live Countdown", "Multi-Section Experience"]} />
+                    <TechnologyBadges
+                        centered
+                        technologies={["HTML5", "CSS3", "JavaScript", "Bootstrap 4", "jQuery"]}
+                    />
                     <div className="text-justify leading-relaxed max-[639px]:leading-6 text-base max-[639px]:text-sm text-gray-600 dark:text-gray-300 mt-3 max-w-2xl mx-auto">
                         <a>
-                            A high-impact commercial landing page showcasing limited edition Nike collections.
-                            Built with <strong>Bootstrap 4</strong> and <strong>jQuery</strong>, it features an urgency-driven design with
-                            real-time countdown timers and polished interactive product showcases.
+                            Responsive campaign interface translating bold visual concepts into usable product discovery, live countdowns, pricing cards, and smooth sectional navigation.
                         </a>
                     </div>
-                    <ul className="leading-relaxed max-[639px]:leading-5 text-sm max-[639px]:text-xs text-gray-600 dark:text-gray-300 mt-3 list-disc list-outside text-left max-w-2xl mx-auto pl-5">
+                    <ul className="leading-relaxed max-[639px]:leading-5 text-sm max-[639px]:text-xs text-gray-600 dark:text-gray-300 mt-3 list-disc list-outside text-left max-w-2xl mx-auto pl-5 space-y-1.5 max-[639px]:space-y-1">
                         <li>Urgency-driven Countdown Timer for limited releases</li>
                         <li>Smooth sectional navigation with jQuery Easing</li>
                         <li>Responsive Pricing Cards and Branch Locators</li>

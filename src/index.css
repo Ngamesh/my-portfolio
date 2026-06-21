@@ -27,7 +27,7 @@
   /* Colors (Light Mode Defaults) */
   --color-bg: #f9fafb;
   --color-text: #000000;
-  --color-text-muted: #340d0d;
+  --color-text-muted: #000000;
   --color-text-alt: #5d5d5d;
 
   --color-primary: #000000;
@@ -251,7 +251,59 @@ select {
   flex-shrink: 0;
 }
 
+@media (max-width: 639px) {
+  .hero-role-title {
+    letter-spacing: 0;
+    word-spacing: 0.08em;
+  }
+
+  .hero-action,
+  .btn-primary.hero-action {
+    gap: 0.5rem;
+    padding: 0.875rem 0.5rem;
+    font-size: 0.78rem;
+    line-height: 1.15rem;
+    letter-spacing: 0;
+    word-spacing: normal;
+  }
+
+  .hero-action-icon {
+    width: 1.4375rem;
+    height: 1.4375rem;
+  }
+
+  .experience-meta {
+    width: 100%;
+    text-align: center !important;
+    text-align-last: center !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-role-title {
+    font-size: 27.5px !important;
+  }
+
+  .hero-profile-name {
+    font-size: 20px !important;
+  }
+
+  .hero-profile-subname {
+    font-size: 10px !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-role-title {
+    font-size: 39.5px !important;
+  }
+}
+
 @media (min-width: 1024px) {
+  .hero-role-title {
+    font-size: 46.5px !important;
+  }
+
   .hero-action,
   .btn-primary.hero-action {
     gap: 0.625rem;

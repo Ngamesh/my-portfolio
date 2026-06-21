@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, useMotionValue, useAnimationFrame } from "framer-motion";
-import { CalendarDays, GraduationCap } from "lucide-react";
+import { CalendarDays, GraduationCap, MapPin } from "lucide-react";
+import { TechnologyBadges } from "./projects/TechnologyBadges";
 
 // =========================
 // Marquee Row Component
@@ -124,6 +125,7 @@ export default function ResumeSection() {
       institution: "London Metropolitan University",
       degree: "Bachelors (Hons) Degree in IT",
       dates: "Nov 2018 - Dec 2021",
+      location: "London, United Kingdom",
       focus: "Built a strong foundation in information technology, software development, databases, and problem-solving."
     },
     {
@@ -131,6 +133,7 @@ export default function ResumeSection() {
       institution: "King's Own Institute",
       degree: "Masters Degree in IT",
       dates: "Oct 2022 - July 2024",
+      location: "Sydney, Australia",
       focus: "Advanced practical knowledge across modern IT systems, project delivery, applied technology, and professional practice."
     }
   ];
@@ -196,8 +199,8 @@ export default function ResumeSection() {
             >
               <div className="flex flex-shrink-0 justify-center md:justify-start w-full md:w-[260px] lg:w-[300px]">
                 <img
-                  src="/assets/frontend.avif"
-                  alt="Front-end development"
+                  src="/assets/digihawk.jpeg"
+                  alt="DigiHawk frontend development"
                   className="w-full max-w-[280px] sm:max-w-[320px] md:max-w-none h-auto max-h-52 sm:max-h-60 md:max-h-64 object-contain"
                 />
               </div>
@@ -206,17 +209,21 @@ export default function ResumeSection() {
                 <h4 className="text-lg max-[639px]:text-base font-semibold text-gray-800 dark:text-gray-100">
                   DigiHawk
                 </h4>
-                <p className="text-base max-[639px]:text-sm font-medium text-gray-700 dark:text-gray-300 mt-1">
+                <p className="experience-meta text-base max-[639px]:text-sm font-medium text-gray-700 dark:text-gray-300 mt-1">
                   Frontend Developer
                 </p>
-                <p className="text-sm max-[639px]:text-xs italic text-gray-500 dark:text-gray-400">
+                <p className="experience-meta text-sm max-[639px]:text-xs italic text-gray-500 dark:text-gray-400">
                   April 2021 – May 2022
                 </p>
+                <TechnologyBadges responsive technologies={["HTML5", "CSS3", "JavaScript", "Bootstrap", "PHP", "Laravel"]} />
+                <p className="mt-4 text-sm font-semibold text-left text-gray-700 dark:text-gray-300 max-w-xl mx-auto md:mx-0">
+                  Overview
+                </p>
                 <p className="text-sm text-justify text-gray-600 dark:text-gray-400 mt-2 max-w-xl leading-relaxed max-[639px]:leading-6 mx-auto md:mx-0">
-                  Contributed to the development of responsive web applications and interactive user
-                  interfaces in a collaborative development environment. Worked closely with designers
-                  and developers to transform design concepts into functional, accessible, and
-                  user-friendly digital experiences.
+                  Contributed to the development of responsive web applications and user interfaces,
+                  collaborating closely with designers to transform wireframes and visual concepts into
+                  accessible, production-ready digital experiences. Focused on usability, responsiveness,
+                  cross-browser compatibility, and frontend implementation best practices.
                 </p>
                 <p className="mt-3 text-sm font-semibold text-left text-gray-700 dark:text-gray-300 max-w-xl mx-auto md:mx-0">
                   Key Contributions
@@ -248,19 +255,23 @@ export default function ResumeSection() {
 
               <div className="flex-1 text-center md:text-left min-w-0">
                 <h4 className="text-lg max-[639px]:text-base font-semibold text-gray-800 dark:text-gray-100">
-                  Personal Projects & Continuous Learning
+                  Independent Projects
                 </h4>
-                <p className="text-base max-[639px]:text-sm font-medium text-gray-700 dark:text-gray-300 mt-1">
-                  Frontend Developer (Personal Projects)
+                <p className="experience-meta text-base max-[639px]:text-sm font-medium text-gray-700 dark:text-gray-300 mt-1">
+                  Frontend Developer
                 </p>
-                <p className="text-sm max-[639px]:text-xs italic text-gray-500 dark:text-gray-400">
+                <p className="experience-meta text-sm max-[639px]:text-xs italic text-gray-500 dark:text-gray-400">
                   Feb 2023 – Present
                 </p>
+                <TechnologyBadges responsive technologies={["React", "TypeScript", "Firebase", "Vite"]} />
+                <p className="mt-4 text-sm font-semibold text-left text-gray-700 dark:text-gray-300 max-w-xl mx-auto md:mx-0">
+                  Overview
+                </p>
                 <p className="text-sm text-justify text-gray-600 dark:text-gray-400 mt-2 max-w-xl leading-relaxed max-[639px]:leading-6 mx-auto md:mx-0">
-                  Continuously expanding frontend development expertise through self-directed learning
-                  and hands-on project development. Building modern web applications while strengthening
-                  skills in React, JavaScript, responsive design, performance optimization, and
-                  component-based architecture.
+                  Developing modern frontend applications through independent projects with a strong
+                  emphasis on responsive design, usability, component architecture, accessibility, and
+                  performance optimization. Focused on transforming ideas and visual concepts into
+                  polished digital experiences.
                 </p>
                 <p className="mt-3 text-sm font-semibold text-left text-gray-700 dark:text-gray-300 max-w-xl mx-auto md:mx-0">
                   Key Contributions
@@ -310,25 +321,29 @@ export default function ResumeSection() {
                   />
                 </div>
 
-                <div className="relative flex flex-grow flex-col bg-gray-50/70 p-5 sm:p-6 dark:bg-white/[0.035]">
+                <div className="relative flex flex-grow flex-col bg-gray-50/70 p-6 sm:p-7 dark:bg-white/[0.035]">
                   <div className="relative">
                     <div className="mb-3 flex items-center gap-2 text-xs font-bold uppercase text-[#bc1616]">
                       <GraduationCap className="h-4 w-4" />
                       Education
                     </div>
-                    <h4 className="text-lg max-[639px]:text-base sm:text-xl font-bold text-gray-800 dark:text-gray-100 leading-tight text-left">
+                    <h4 className="text-lg max-[639px]:text-base sm:text-xl font-extrabold text-gray-800 dark:text-gray-100 leading-tight text-left">
                       {item.degree}
                     </h4>
-                    <p className="mt-2 text-sm max-[639px]:text-xs font-semibold text-gray-600 dark:text-gray-300 text-left">
+                    <p className="mt-3 text-sm max-[639px]:text-xs font-semibold text-gray-600 dark:text-gray-300 text-left">
                       {item.institution}
                     </p>
                     <div className="mt-4 flex items-center gap-2 text-sm max-[639px]:text-xs text-gray-500 dark:text-gray-400">
                       <CalendarDays className="h-4 w-4 text-[#bc1616]" />
                       <span>{item.dates}</span>
                     </div>
+                    <div className="mt-2 flex items-center gap-2 text-sm max-[639px]:text-xs text-gray-500 dark:text-gray-400">
+                      <MapPin className="h-4 w-4 text-[#bc1616]" />
+                      <span>{item.location}</span>
+                    </div>
                   </div>
 
-                  <p className="relative mt-5 text-sm text-justify text-gray-600 dark:text-gray-400 leading-relaxed max-[639px]:leading-6">
+                  <p className="relative mt-6 text-sm text-justify text-gray-600 dark:text-gray-400 leading-relaxed max-[639px]:leading-6">
                     {item.focus}
                   </p>
                 </div>

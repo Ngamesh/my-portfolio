@@ -1,6 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { HotelCard } from "./cards/HotelCard";
+import { ProjectMetrics } from "./ProjectMetrics";
+import { TechnologyBadges } from "./TechnologyBadges";
 
 export default function HotelSection({ onOpenModal }) {
     const introVariants = {
@@ -21,18 +23,21 @@ export default function HotelSection({ onOpenModal }) {
                 whileInView="show"
                 viewport={{ once: true, margin: "-100px" }}
             >
-                <h5 className="text-xl max-[639px]:text-lg sm:text-2xl font-semibold text-gray-700 dark:text-gray-100 drop-shadow-lg leading-snug">
+                <h5 className="text-2xl max-[639px]:text-xl sm:text-[28px] font-semibold text-gray-700 dark:text-gray-100 drop-shadow-lg leading-snug">
                     <span className="font-bold">Hotel </span>
                     <span className="font-light">– Luxury Booking Platform</span>
                 </h5>
+                <ProjectMetrics centered metrics={["10+ Pages", "3 Booking Types", "Mobile First"]} />
+                <TechnologyBadges
+                    centered
+                    technologies={["HTML5", "CSS3", "JavaScript", "Bootstrap 4", "jQuery"]}
+                />
                 <div className="text-justify text-base max-[639px]:text-sm text-gray-600 dark:text-gray-300 mt-3 leading-relaxed max-[639px]:leading-6 max-w-2xl mx-auto">
                     <a>
-                        Developed a premium multi-page booking platform for a luxury hotel in
-                        <strong> Pokhara, Lakeside</strong>. Built with <strong>Bootstrap 4</strong> and <strong>jQuery</strong>, the platform
-                        delivers a high-fidelity experience with integrated room discovery, service galleries, and a centralized reservation system.
+                        Responsive luxury hotel booking platform delivering accessible room discovery, intuitive availability workflows, and a polished reservation experience across devices.
                     </a>
                 </div>
-                <ul className="text-sm max-[639px]:text-[13px] text-gray-600 dark:text-gray-300 mt-3 list-disc list-outside text-left max-w-2xl mx-auto pl-5 leading-relaxed max-[639px]:leading-5">
+                <ul className="text-sm max-[639px]:text-[13px] text-gray-600 dark:text-gray-300 mt-3 list-disc list-outside text-left max-w-2xl mx-auto pl-5 leading-relaxed max-[639px]:leading-5 space-y-1.5 max-[639px]:space-y-1">
                     <li>Real-time availability checker and booking modal flow</li>
                     <li>Smooth room transitions using Owl Carousel</li>
                     <li>Guided browsing experience with AOS (Animate on Scroll)</li>
